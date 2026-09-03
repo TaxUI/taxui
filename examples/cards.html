@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cards & Surfaces Showcase - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+      min-height: 100vh;
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: rgba(19, 27, 46, 0.5);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #1e293b;
+      color: #a5f3fc;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(165, 243, 252, 0.2);
+    }
+
+    .demo-section {
+      background: rgba(19, 27, 46, 0.4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Decorative background circles for Glassmorphism demo */
+    .glass-backdrop {
+      position: relative;
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      background: #0f172a;
+      overflow: hidden;
+    }
+
+    .blob-1 {
+      position: absolute;
+      top: -30px;
+      left: -20px;
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.6;
+    }
+
+    .blob-2 {
+      position: absolute;
+      bottom: -40px;
+      right: -20px;
+      width: 220px;
+      height: 220px;
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      border-radius: 50%;
+      filter: blur(50px);
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div container="lg">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
+      <a href="cards.html" class="nav-link active">🃏 Cards & Surfaces</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Cards & Surfaces</h1>
+      <p>Tarjetas y superficies modulares: Glassmorphism, sombras de elevación, slots estructurados e interacción al hover.</p>
+    </header>
+
+    <!-- Demo 1: Modos y Tipos de Superficies -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Modos y Variantes Visuales
+        <span class="section-code">card="flat|elevated|glass|bordered|glow"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Superficies listas para estructurar cualquier tipo de contenido.
+      </p>
+
+      <div layout="grid" cols="1" cols-sm="2" cols-lg="3" gap="md">
+        <!-- Flat -->
+        <article card="flat">
+          <div card-body>
+            <h3 card-title>Flat (Default)</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.9rem;">
+              Superficie limpia con borde sutil sin sombras prominentes. Ideal para listas densas.
+            </p>
+          </div>
+        </article>
+
+        <!-- Elevated -->
+        <article card="elevated">
+          <div card-body>
+            <h3 card-title>Elevated</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.9rem;">
+              Profundidad realista con sombras multinivel para elementos que flotan sobre el fondo.
+            </p>
+          </div>
+        </article>
+
+        <!-- Glow -->
+        <article card="glow">
+          <div card-body>
+            <h3 card-title>Glow</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.9rem;">
+              Borde iluminado de acento para destacar productos destacados o novedades.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Demo 2: Glassmorphism -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Glassmorphism con Backdrop-Blur
+        <span class="section-code">card="glass"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Efecto de cristal esmerilado translúcido con desenfoque de fondo en CSS puro.
+      </p>
+
+      <div class="glass-backdrop">
+        <div class="blob-1"></div>
+        <div class="blob-2"></div>
+
+        <div layout="grid" cols="1" cols-sm="2" gap="lg" style="position: relative; z-index: 1;">
+          <article card="glass">
+            <header card-header>
+              <h3 card-title>Cristal Traslúcido</h3>
+              <span style="font-size: 0.8rem; background: rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 0.2rem 0.5rem; border-radius: var(--radius-full);">Glass</span>
+            </header>
+            <div card-body>
+              <p style="color: #cbd5e1; font-size: 0.9rem;">
+                Aprovecha <span class="section-code">backdrop-filter: blur()</span> para difuminar los colores dinámicos del fondo.
+              </p>
+            </div>
+            <footer card-footer>
+              <button variant="primary" size="sm">Explorar</button>
+            </footer>
+          </article>
+
+          <article card="glass" interactive>
+            <header card-header>
+              <h3 card-title>Cristal Interactivo</h3>
+              <span style="font-size: 0.8rem; background: rgba(236, 72, 153, 0.2); color: #f472b6; padding: 0.2rem 0.5rem; border-radius: var(--radius-full);">Hover Me</span>
+            </header>
+            <div card-body>
+              <p style="color: #cbd5e1; font-size: 0.9rem;">
+                Combina <span class="section-code">card="glass"</span> con <span class="section-code">interactive</span> para elevar la tarjeta al pasar el cursor.
+              </p>
+            </div>
+            <footer card-footer>
+              <button variant="outline" size="sm">Detalles</button>
+            </footer>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 3: Estructura Completa con Slots y Divisores -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Slots Estructurados (Header, Body, Footer)
+        <span class="section-code">card-header | card-body | card-footer</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Organización semántica con soporte para divisores de sección mediante <span class="section-code">divided</span>.
+      </p>
+
+      <div layout="grid" cols="1" cols-sm="2" gap="md">
+        <!-- Card with Divided Slots -->
+        <article card>
+          <header card-header divided>
+            <div>
+              <h3 card-title>Resumen de Cuenta</h3>
+              <p card-subtitle>Actualizado hace 5 minutos</p>
+            </div>
+            <button variant="ghost" size="sm" icon-only aria-label="Opciones">
+              <svg style="width:16px;height:16px;" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+            </button>
+          </header>
+
+          <div card-body>
+            <div layout="split">
+              <span style="color: var(--color-text-muted);">Balance Total</span>
+              <strong style="color: #38bdf8; font-size: 1.25rem;">$24,500.00 USD</strong>
+            </div>
+            <p style="color: var(--color-text-muted); font-size: 0.875rem;">
+              Ingresos del mes superaron el objetivo en un 18%.
+            </p>
+          </div>
+
+          <footer card-footer divided>
+            <button variant="secondary" size="sm">Historial</button>
+            <button variant="primary" size="sm">Transferir</button>
+          </footer>
+        </article>
+
+        <!-- Card with Image Media -->
+        <article card="elevated" interactive>
+          <img card-media src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80" alt="Diseño abstracto" style="height: 140px;">
+          
+          <div card-body>
+            <h3 card-title>Diseño de Superficies 3D</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.875rem;">
+              La imagen en <span class="section-code">card-media</span> se ajusta automáticamente al radio superior sin desbordar los bordes.
+            </p>
+          </div>
+
+          <footer card-footer>
+            <span style="font-size: 0.85rem; color: #38bdf8; font-weight: 600;">Lectura de 4 min</span>
+            <button variant="primary" size="sm">Leer artículo</button>
+          </footer>
+        </article>
+      </div>
+    </div>
+
+    <!-- Demo 4: Tarjetas de Pricing & Dashboard -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        4. Caso Real: Tabla de Pricing
+        <span class="section-code">card="glow" + layout="stack"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Composición rápida de interfaces completas combinando Grid, Cards, Flexbox y Botones.
+      </p>
+
+      <div layout="grid" cols="1" cols-sm="3" gap="md">
+        <!-- Starter Plan -->
+        <article card>
+          <div card-body layout="stack" gap="md">
+            <div>
+              <h3 card-title>Starter</h3>
+              <p card-subtitle>Para proyectos personales</p>
+            </div>
+            <div style="font-size: 2rem; font-weight: 800; color: #ffffff;">$0<span style="font-size: 0.9rem; color: var(--color-text-muted); font-weight: 400;">/mes</span></div>
+            <ul style="color: var(--color-text-muted); font-size: 0.875rem; padding-left: 1.25rem; line-height: 1.8;">
+              <li>1 Proyecto activo</li>
+              <li>Componentes estándar</li>
+              <li>Soporte comunitario</li>
+            </ul>
+            <button variant="secondary" block style="margin-top: auto;">Comenzar Gratis</button>
+          </div>
+        </article>
+
+        <!-- Pro Plan (Destacado) -->
+        <article card="glow" style="border-color: var(--color-primary);" interactive>
+          <div card-body layout="stack" gap="md">
+            <div layout="split">
+              <div>
+                <h3 card-title style="color: #38bdf8;">Pro Developer</h3>
+                <p card-subtitle>El más popular</p>
+              </div>
+              <span style="font-size: 0.75rem; font-weight: 700; background: var(--color-primary); color: #fff; padding: 0.2rem 0.5rem; border-radius: var(--radius-full);">POPULAR</span>
+            </div>
+            <div style="font-size: 2rem; font-weight: 800; color: #ffffff;">$29<span style="font-size: 0.9rem; color: var(--color-text-muted); font-weight: 400;">/mes</span></div>
+            <ul style="color: #e2e8f0; font-size: 0.875rem; padding-left: 1.25rem; line-height: 1.8;">
+              <li>Proyectos ilimitados</li>
+              <li>Todos los componentes UI</li>
+              <li>Soporte prioritario 24/7</li>
+              <li>Actualizaciones continuas</li>
+            </ul>
+            <button variant="primary" glow block style="margin-top: auto;">Empezar Prueba Pro</button>
+          </div>
+        </article>
+
+        <!-- Enterprise Plan -->
+        <article card>
+          <div card-body layout="stack" gap="md">
+            <div>
+              <h3 card-title>Enterprise</h3>
+              <p card-subtitle>Para grandes organizaciones</p>
+            </div>
+            <div style="font-size: 2rem; font-weight: 800; color: #ffffff;">$99<span style="font-size: 0.9rem; color: var(--color-text-muted); font-weight: 400;">/mes</span></div>
+            <ul style="color: var(--color-text-muted); font-size: 0.875rem; padding-left: 1.25rem; line-height: 1.8;">
+              <li>Todo lo del plan Pro</li>
+              <li>Servidor dedicado</li>
+              <li>SLA personalizado</li>
+            </ul>
+            <button variant="secondary" block style="margin-top: auto;">Contactar Ventas</button>
+          </div>
+        </article>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

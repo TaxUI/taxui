@@ -17,80 +17,84 @@ frameworkhtml/
 │   │   └── flex.css        # Flexbox, Stacks, Split y Clusters
 │   ├── components/
 │   │   ├── buttons.css     # Botones multivariante, glow, loading y grupos
+│   │   ├── cards.css       # Tarjetas, Glassmorphism, elevación y slots
 │   │   └── forms.css       # Formularios, switches, checkboxes, selects e input groups
 │   └── main.css            # Archivo maestro de importación
 └── examples/
     ├── flexbox.html        # Showcase de Flexbox & Stacks
     ├── grid.html           # Showcase de Grid Primitives
     ├── forms.html          # Showcase de Formularios e Inputs
-    └── buttons.html        # Showcase de Botones Multivariante
+    ├── buttons.html        # Showcase de Botones Multivariante
+    └── cards.html          # Showcase de Tarjetas y Superficies
 ```
 
 ---
 
-## 🔘 1. Botones Multivariante
+## 🃏 1. Tarjetas y Superficies
 
-### Variantes de Color y Propósito
+### Modos Visuales
 ```html
-<button variant="primary">Primary</button>
-<button variant="secondary">Secondary</button>
-<button variant="outline">Outline</button>
-<button variant="ghost">Ghost</button>
-<button variant="success">Success</button>
-<button variant="danger">Danger</button>
-<button variant="warning">Warning</button>
-<button variant="link">Enlace</button>
+<!-- Flat limpia (por defecto) -->
+<article card="flat">...</article>
+
+<!-- Elevada con sombra multinivel -->
+<article card="elevated">...</article>
+
+<!-- Glassmorphism translúcido con backdrop-blur -->
+<article card="glass">...</article>
+
+<!-- Borde iluminado de acento -->
+<article card="glow">...</article>
 ```
 
-### Efectos Glow & Pill
+### Interacción al Hover
+Añade `interactive` para elevar la tarjeta suavemente al pasar el ratón:
 ```html
-<!-- Resplandor neón suave -->
-<button variant="primary" glow>Primary Glow</button>
-
-<!-- Bordes circulares -->
-<button variant="primary" glow pill>Pill Button</button>
+<article card="glass" interactive>...</article>
 ```
 
-### Escala de Tamaños
+### Slots Estructurados (Header, Body, Footer)
 ```html
-<button variant="primary" size="sm">Pequeño</button>
-<button variant="primary" size="md">Mediano (Default)</button>
-<button variant="primary" size="lg">Grande</button>
-<button variant="primary" size="xl">Extra Grande Hero</button>
+<article card="elevated">
+  <!-- Cabecera con divisor opcional -->
+  <header card-header divided>
+    <h3 card-title>Título de la Tarjeta</h3>
+    <p card-subtitle>Subtítulo o metadato</p>
+  </header>
+
+  <!-- Contenido principal -->
+  <div card-body>
+    <p>Contenido principal del componente...</p>
+  </div>
+
+  <!-- Pie con botones de acción -->
+  <footer card-footer divided>
+    <button variant="secondary" size="sm">Cancelar</button>
+    <button variant="primary" size="sm">Guardar</button>
+  </footer>
+</article>
 ```
 
-### Estado de Carga (Loading Spinner Puro CSS)
-Oculta el texto y muestra un spinner animado manteniendo el ancho del botón y bloqueando clics:
+### Imágenes y Medios
 ```html
-<button variant="primary" loading>Guardar Cambios</button>
-```
-
-### Botones con Iconos y Cuadrados
-```html
-<!-- Con icono y texto -->
-<button variant="primary">
-  <svg>...</svg>
-  <span>Crear Proyecto</span>
-</button>
-
-<!-- Botón cuadrado solo icono -->
-<button variant="secondary" icon-only aria-label="Editar">
-  <svg>...</svg>
-</button>
-```
-
-### Grupos de Botones
-```html
-<div button-group>
-  <button variant="secondary">Día</button>
-  <button variant="primary">Semana</button>
-  <button variant="secondary">Mes</button>
-</div>
+<article card="elevated">
+  <img card-media src="portada.jpg" alt="Portada">
+  <div card-body>...</div>
+</article>
 ```
 
 ---
 
-## 📝 2. Formularios & Inputs Nativos
+## 🔘 2. Botones Multivariante
+
+* **Variantes:** `variant="primary|secondary|outline|ghost|success|danger|warning|link"`
+* **Efectos:** `glow` (resplandor de acento), `pill` (bordes redondeados), `block` (100% de ancho).
+* **Estado de Carga:** `<button variant="primary" loading>Guardar</button>` (spinner puro CSS).
+* **Segmented Controls:** `<div button-group><label><input type="radio" checked><span>Día</span></label>...</div>`
+
+---
+
+## 📝 3. Formularios & Inputs Nativos
 
 * **Toggle Switches:** `<input type="checkbox" switch checked>`
 * **Checkboxes & Radios:** `<input type="checkbox">` / `<input type="radio">` con checkmark SVG automático.
@@ -100,7 +104,7 @@ Oculta el texto y muestra un spinner animado manteniendo el ancho del botón y b
 
 ---
 
-## ⚡ 3. Primitivas Flexbox & Stacks
+## ⚡ 4. Primitivas Flexbox & Stacks
 
 * **`layout="stack"`**: Columna vertical con espaciado constante.
 * **`layout="row"`**: Fila horizontal centrada.
@@ -112,7 +116,7 @@ Oculta el texto y muestra un spinner animado manteniendo el ancho del botón y b
 
 ---
 
-## 📐 4. Primitivas Grid
+## 📐 5. Primitivas Grid
 
 * **`layout="grid" grid="auto-fit" min-col="sm"`**: Grilla auto-responsiva sin media queries.
 * **`cols="1"` a `cols="12"`**: Sistema de columnas fijas.
