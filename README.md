@@ -1,19 +1,20 @@
-# 🚀 TaxUI - Grid Layout Primitives
+# 🚀 Framework HTML - Layout Primitives
 
-Un sistema de grillas declarativo, moderno y ultra rápido enfocado en escribir HTML semántico y atributos limpios sin perder tiempo configurando CSS.
+Un framework de layout declarativo, moderno y ultra rápido enfocado en escribir HTML semántico y atributos limpios sin perder tiempo configurando CSS.
 
 ---
 
 ## 📦 Estructura del Proyecto
 
 ```text
-taxui/
+frameworkhtml/
 ├── src/
 │   ├── base/
 │   │   ├── variables.css   # Tokens de diseño (gaps, breakpoints, radios, colores)
 │   │   └── reset.css       # Reset moderno y estandarización de box-sizing
 │   ├── layout/
-│   │   └── grid.css        # Sistema completo de Grid declarativo
+│   │   ├── grid.css        # Sistema completo de Grid declarativo
+│   │   └── flex.css        # Primitivas de Flexbox, Stacks, Split y Clusters
 │   └── main.css            # Archivo maestro de importación
 └── examples/
     └── index.html          # Showcase interactivo con ejemplos en vivo
@@ -21,53 +22,97 @@ taxui/
 
 ---
 
-## 🛠️ Guía Rápida de Uso
+## ⚡ 1. Primitivas Flexbox & Stacks
 
-### 1. Grid Auto-Responsive (Sin Media Queries)
-Crea grillas que se adaptan solas al ancho de pantalla según el tamaño mínimo deseado:
-
+### Stack (Columna Vertical)
+Organiza elementos verticalmente con separación uniforme:
 ```html
-<!-- Se ajusta de 1 a N columnas automáticamente -->
+<div layout="stack" gap="md">
+  <div>Elemento 1</div>
+  <div>Elemento 2</div>
+  <div>Elemento 3</div>
+</div>
+```
+
+### Row (Fila Horizontal)
+Alinea elementos horizontalmente (por defecto centrados verticalmente):
+```html
+<div layout="row" gap="md" align="center" justify="between">
+  <div>Logo</div>
+  <div>Menú</div>
+</div>
+```
+
+### Split (Barra de navegación / Cabecera)
+Separa los elementos hacia los extremos automáticamente (`space-between`):
+```html
+<div layout="split">
+  <div>Logo / Título</div>
+  <div layout="row" gap="sm">
+    <button>Iniciar Sesión</button>
+    <button>Registrarse</button>
+  </div>
+</div>
+```
+
+### Cluster (Tags, Chips y Badges)
+Agrupa elementos horizontalmente que envuelven suavemente si se acaba el espacio:
+```html
+<div layout="cluster" gap="sm">
+  <span>#HTML</span>
+  <span>#CSS</span>
+  <span>#JavaScript</span>
+</div>
+```
+
+### Responsive Row-to-Stack
+Fila en tablet/desktop, se convierte automáticamente en columna en móviles:
+```html
+<div layout="row-responsive" gap="md">
+  <div flex="1">Columna A</div>
+  <div flex="1">Columna B</div>
+</div>
+```
+
+### Centrado Perfecto
+Centra cualquier contenido en ambos ejes con una sola línea de HTML:
+```html
+<div layout="center" full-screen>
+  <div class="card">Contenido centrado</div>
+</div>
+```
+
+### Modificadores de Hijos Flex (Smart Auto-Margins & Sizing)
+* `flex="1"` / `flex="auto"` / `flex="none"`
+* `grow` / `no-shrink`
+* `push="right"` / `push="left"` / `push="top"` / `push="bottom"` / `push="center"`
+
+---
+
+## 📐 2. Primitivas Grid
+
+### Grid Auto-Responsive (Sin Media Queries)
+Se adapta automáticamente de 1 a N columnas según el tamaño deseado:
+```html
 <div layout="grid" grid="auto-fit" min-col="sm" gap="md">
   <div>Tarjeta 1</div>
   <div>Tarjeta 2</div>
   <div>Tarjeta 3</div>
 </div>
 ```
+Presets de `min-col`: `2xs` (120px), `xs` (180px), `sm` (240px), `md` (300px), `lg` (380px), `xl` (480px).
 
-**Presets de `min-col`:**
-* `min-col="2xs"`: 120px
-* `min-col="xs"`: 180px
-* `min-col="sm"`: 240px
-* `min-col="md"`: 300px
-* `min-col="lg"`: 380px
-* `min-col="xl"`: 480px
-
----
-
-### 2. Sistema de 12 Columnas y Spans
-Define columnas fijas y expande elementos hijos fácilmente:
-
+### Sistema de 12 Columnas y Spans
 ```html
 <div layout="grid" cols="12" gap="md">
-  <header span="full">Encabezado (12 col)</header>
-  <main span="8">Contenido principal (8 col)</main>
-  <aside span="4">Barra lateral (4 col)</aside>
+  <header span="full">Cabecera (12 cols)</header>
+  <main span="8">Contenido principal (8 cols)</main>
+  <aside span="4">Sidebar (4 cols)</aside>
 </div>
 ```
 
-**Modificadores de hijos:**
-* `span="1"` a `span="12"` o `span="full"`
-* `span-row="1"` a `span-row="6"` o `span-row="full"`
-* `col-start="1"` a `col-start="12"`
-
----
-
-### 3. Columnas Responsivas por Breakpoint
-Controla el número de columnas según el dispositivo:
-
+### Responsive por Breakpoint
 ```html
-<!-- 1 col en móvil, 2 en tablet, 4 en desktop -->
 <div layout="grid" cols="1" cols-sm="2" cols-lg="4" gap="md">
   <div>1</div>
   <div>2</div>
@@ -76,38 +121,17 @@ Controla el número de columnas según el dispositivo:
 </div>
 ```
 
-**Breakpoints disponibles:**
-* `cols-sm="..."`: ≥ 640px
-* `cols-md="..."`: ≥ 768px
-* `cols-lg="..."`: ≥ 1024px
-* `cols-xl="..."`: ≥ 1280px
-
----
-
-### 4. Layouts Preset
-Patrones de diseño listos para usar:
-
+### Layouts Preset
 ```html
-<!-- Sidebar con ancho óptimo + contenido fluido -->
 <div layout="grid" cols="sidebar-left" gap="lg">
-  <nav>Menú</nav>
-  <main>Panel de control</main>
+  <nav>Menú Lateral</nav>
+  <section>Panel Principal</section>
 </div>
 ```
-
-* `cols="sidebar-left"` / `cols="sidebar-right"`
-* `cols="auto-1fr"` / `cols="1fr-auto"`
-* `cols="golden-left"` / `cols="golden-right"`
+Valores: `sidebar-left`, `sidebar-right`, `auto-1fr`, `1fr-auto`, `golden-left`, `golden-right`.
 
 ---
 
-### 5. Control de Espaciado (Gaps)
-Ajusta la separación entre elementos:
-
-```html
-<div layout="grid" cols="3" gap="lg" gap-y="xl">
-  ...
-</div>
-```
-
-Valores: `none`, `3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`.
+## 🎨 Gaps Disponibles
+Valores para `gap`, `gap-x`, `gap-y`:
+`none`, `3xs` (2px), `2xs` (4px), `xs` (8px), `sm` (12px), `md` (16px), `lg` (24px), `xl` (32px), `2xl` (48px), `3xl` (64px).

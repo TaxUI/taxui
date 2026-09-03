@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox & Stack Primitives Showcase</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: rgba(19, 27, 46, 0.5);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #1e293b;
+      color: #a5f3fc;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(165, 243, 252, 0.2);
+    }
+
+    .demo-section {
+      background: rgba(19, 27, 46, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .box {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(99, 102, 241, 0.2) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      color: #e2e8f0;
+      font-weight: 500;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .box:hover {
+      transform: translateY(-2px);
+      border-color: #60a5fa;
+    }
+
+    .box.accent {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(168, 85, 247, 0.25) 100%);
+      border-color: rgba(236, 72, 153, 0.4);
+    }
+
+    .box.highlight {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(6, 182, 212, 0.25) 100%);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    .tag-badge {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #7dd3fc;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: #0b0f19;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div container="lg">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="row" justify="center" gap="sm">
+      <a href="index.html" class="nav-link active">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Flexbox & Stack Primitives</h1>
+      <p>Alineación horizontal, vertical, distribución y auto-márgenes declarativos sin escribir CSS.</p>
+    </header>
+
+    <!-- Demo 1: Stack Vertical -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Stack (Columna Vertical)
+        <span class="section-code">&lt;div layout="stack" gap="sm"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Distribuye elementos verticalmente con separación uniforme sin colapso de márgenes.
+      </p>
+
+      <div layout="stack" gap="sm">
+        <div class="box">Elemento Superior</div>
+        <div class="box">Elemento Central</div>
+        <div class="box">Elemento Inferior</div>
+      </div>
+    </div>
+
+    <!-- Demo 2: Row Horizontal -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Row (Fila Horizontal)
+        <span class="section-code">&lt;div layout="row" gap="md"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Organiza elementos horizontalmente centrados verticalmente por defecto.
+      </p>
+
+      <div layout="row" gap="md">
+        <div class="box" flex="1">Item 1 (flex="1")</div>
+        <div class="box" flex="1">Item 2 (flex="1")</div>
+        <div class="box" flex="1">Item 3 (flex="1")</div>
+      </div>
+    </div>
+
+    <!-- Demo 3: Split Layout (Navbar / Toolbar) -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Split Layout (Patrón Navbar / Barra de Acciones)
+        <span class="section-code">&lt;div layout="split"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Distribuye automáticamente los elementos a los extremos opuestos (<span class="section-code">justify-content: space-between</span>).
+      </p>
+
+      <div layout="split" style="background: rgba(15, 23, 42, 0.8); padding: 1rem 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+        <div layout="row" gap="sm">
+          <div class="avatar">F</div>
+          <div>
+            <strong style="color: #f8fafc; font-size: 0.95rem;">Mi Aplicación</strong><br>
+            <span style="font-size: 0.75rem; color: var(--color-text-muted);">Dashboard</span>
+          </div>
+        </div>
+
+        <div layout="row" gap="sm">
+          <div class="box highlight" style="min-height: 36px; padding: 0.35rem 0.9rem; font-size: 0.85rem;">Notificaciones</div>
+          <div class="box accent" style="min-height: 36px; padding: 0.35rem 0.9rem; font-size: 0.85rem;">Perfil</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 4: Cluster (Tags y Badges) -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        4. Cluster (Etiquetas y Badges con salto automático)
+        <span class="section-code">&lt;div layout="cluster" gap="sm"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Agrupación fluida horizontal con envoltorio automático (<span class="section-code">flex-wrap: wrap</span>).
+      </p>
+
+      <div layout="cluster" gap="sm">
+        <span class="tag-badge">#HTML5</span>
+        <span class="tag-badge">#CSS3</span>
+        <span class="tag-badge">#Flexbox</span>
+        <span class="tag-badge">#Grid</span>
+        <span class="tag-badge">#Responsive</span>
+        <span class="tag-badge">#Zero-CSS-Fatigue</span>
+        <span class="tag-badge">#ModernWeb</span>
+        <span class="tag-badge">#FastPrototyping</span>
+      </div>
+    </div>
+
+    <!-- Demo 5: Smart Pushing -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        5. Smart Pushing (Auto-Márgenes Inteligentes)
+        <span class="section-code">&lt;div push="right"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Empuja elementos hacia los extremos dentro de cualquier fila o columna.
+      </p>
+
+      <div layout="row" gap="md">
+        <div class="box">Inicio</div>
+        <div class="box">Centro 1</div>
+        <div class="box">Centro 2</div>
+        <div class="box accent" push="right">push="right"</div>
+      </div>
+    </div>
+
+    <!-- Demo 6: Responsive Row-to-Stack -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        6. Fila Responsiva (Row en Desktop, Stack en Móvil)
+        <span class="section-code">&lt;div layout="row-responsive"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Pasa de fila horizontal a columna vertical automáticamente en pantallas móviles.
+      </p>
+
+      <div layout="row-responsive" gap="md">
+        <div class="box highlight" flex="1">Tarjeta A (flex="1")</div>
+        <div class="box highlight" flex="1">Tarjeta B (flex="1")</div>
+        <div class="box highlight" flex="1">Tarjeta C (flex="1")</div>
+      </div>
+    </div>
+
+    <!-- Demo 7: Centrado Perfecto -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        7. Centrado Perfecto Instantáneo
+        <span class="section-code">&lt;div layout="center"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Centra elementos en ambos ejes en 1 sola línea de HTML.
+      </p>
+
+      <div layout="center" style="min-height: 120px; background: rgba(15, 23, 42, 0.5); border: 1px dashed var(--color-border); border-radius: var(--radius-md);">
+        <div class="box accent">¡Centrado perfecto horizontal y vertical!</div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

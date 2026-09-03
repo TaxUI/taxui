@@ -8,6 +8,7 @@
 
 /* 2. Layout Primitives */
 @import "./layout/grid.css";
+@import "./layout/flex.css";
 
 /* 3. Base Container Helper */
 :where([container], .container) {

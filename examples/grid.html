@@ -90,11 +90,38 @@
       background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(6, 182, 212, 0.25) 100%);
       border-color: rgba(16, 185, 129, 0.4);
     }
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: rgba(19, 27, 46, 0.5);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
   </style>
 </head>
 <body>
 
   <div container="lg">
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="row" justify="center" gap="sm">
+      <a href="index.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link active">📐 Grid Primitives</a>
+    </nav>
+
     <!-- Header -->
     <header class="demo-header">
       <h1>Grid Layout Primitives</h1>

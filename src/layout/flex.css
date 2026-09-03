@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Flexbox & Stack Layout Primitives
+   Declarative, intuitive horizontal & vertical alignment without custom CSS.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Stack (Vertical Layout / Column)
+   -------------------------------------------------------------------------- */
+:where([layout="stack"], [layout="col"], [layout="column"], [stack], .stack) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap, var(--gap-md));
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   2. Row (Horizontal Layout)
+   -------------------------------------------------------------------------- */
+:where([layout="row"], [row], .row) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--grid-gap, var(--gap-md));
+  width: 100%;
+}
+
+/* Inline Flex Containers */
+:where([layout="inline-row"], [inline-row]) {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--grid-gap, var(--gap-md));
+}
+
+:where([layout="inline-stack"], [inline-stack]) {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--grid-gap, var(--gap-md));
+}
+
+/* --------------------------------------------------------------------------
+   3. Specialized Layout Primitives (High Frequency Patterns)
+   -------------------------------------------------------------------------- */
+
+/* Split: Space between items (Navbar, Card Headers, Action bars) */
+:where([layout="split"], [split]) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--grid-gap, var(--gap-md));
+  width: 100%;
+}
+
+/* Center: Absolute perfect centering (Heroes, Empty states, Loaders) */
+:where([layout="center"], [center]) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  gap: var(--grid-gap, var(--gap-md));
+}
+
+/* Cluster: Ideal for tags, badges, button groups with wrapping */
+:where([layout="cluster"], [cluster]) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--grid-gap, var(--gap-sm));
+}
+
+/* Responsive Row-to-Stack (Row on tablet/desktop, Stack on mobile) */
+:where([layout="row-responsive"], [layout="stack-mobile"], [responsive-stack]) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap, var(--gap-md));
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  :where([layout="row-responsive"], [layout="stack-mobile"], [responsive-stack]) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Flex Wrapping & Direction Modifiers
+   -------------------------------------------------------------------------- */
+:where([wrap="wrap"], [wrap])       { flex-wrap: wrap; }
+:where([wrap="nowrap"], [nowrap])   { flex-wrap: nowrap; }
+:where([wrap="reverse"])            { flex-wrap: wrap-reverse; }
+
+:where([direction="row"])           { flex-direction: row; }
+:where([direction="row-reverse"])   { flex-direction: row-reverse; }
+:where([direction="col"], [direction="column"]) { flex-direction: column; }
+:where([direction="col-reverse"])   { flex-direction: column-reverse; }
+
+/* Responsive Directions */
+@media (min-width: 640px) {
+  [direction-sm="row"]    { flex-direction: row; }
+  [direction-sm="column"], [direction-sm="col"] { flex-direction: column; }
+}
+
+@media (min-width: 768px) {
+  [direction-md="row"]    { flex-direction: row; }
+  [direction-md="column"], [direction-md="col"] { flex-direction: column; }
+}
+
+@media (min-width: 1024px) {
+  [direction-lg="row"]    { flex-direction: row; }
+  [direction-lg="column"], [direction-lg="col"] { flex-direction: column; }
+}
+
+/* --------------------------------------------------------------------------
+   5. Alignment Controls
+   -------------------------------------------------------------------------- */
+/* Align items (cross axis) */
+:where([align="start"], [align-items="start"])       { align-items: flex-start; }
+:where([align="center"], [align-items="center"])     { align-items: center; }
+:where([align="end"], [align-items="end"])           { align-items: flex-end; }
+:where([align="stretch"], [align-items="stretch"])   { align-items: stretch; }
+:where([align="baseline"], [align-items="baseline"]) { align-items: baseline; }
+
+/* Justify content (main axis) */
+:where([justify="start"], [justify-content="start"])     { justify-content: flex-start; }
+:where([justify="center"], [justify-content="center"])   { justify-content: center; }
+:where([justify="end"], [justify-content="end"])         { justify-content: flex-end; }
+:where([justify="between"], [justify-content="between"]) { justify-content: space-between; }
+:where([justify="around"], [justify-content="around"])   { justify-content: space-around; }
+:where([justify="evenly"], [justify-content="evenly"])   { justify-content: space-evenly; }
+
+/* --------------------------------------------------------------------------
+   6. Child Modifiers (Flex items)
+   -------------------------------------------------------------------------- */
+/* Sizing & Growth */
+[flex="1"]       { flex: 1 1 0%; }
+[flex="auto"]    { flex: 1 1 auto; }
+[flex="initial"] { flex: 0 1 auto; }
+[flex="none"]    { flex: none; }
+
+[grow="1"], [grow] { flex-grow: 1; }
+[grow="0"]         { flex-grow: 0; }
+
+[shrink="0"], [no-shrink] { flex-shrink: 0; }
+[shrink="1"]              { flex-shrink: 1; }
+
+/* Self Alignment */
+[align-self="auto"]     { align-self: auto; }
+[align-self="start"]    { align-self: flex-start; }
+[align-self="center"]   { align-self: center; }
+[align-self="end"]      { align-self: flex-end; }
+[align-self="stretch"]  { align-self: stretch; }
+[align-self="baseline"] { align-self: baseline; }
+
+/* Smart Pushing (Auto-margins) */
+[push="right"], [push="end"]     { margin-left: auto; }
+[push="left"], [push="start"]    { margin-right: auto; }
+[push="top"]                     { margin-bottom: auto; }
+[push="bottom"]                  { margin-top: auto; }
+[push="x"], [push="center-x"]    { margin-inline: auto; }
+[push="y"], [push="center-y"]    { margin-block: auto; }
+[push="center"]                  { margin: auto; }
+
+/* Height / Fullscreen helpers */
+[full-height] { min-height: 100%; }
+[full-screen] { min-height: 100vh; }
