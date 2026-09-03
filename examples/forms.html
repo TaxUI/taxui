@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forms & Inputs Showcase - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: rgba(19, 27, 46, 0.5);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #1e293b;
+      color: #a5f3fc;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(165, 243, 252, 0.2);
+    }
+
+    .demo-section {
+      background: rgba(19, 27, 46, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-submit {
+      background-color: var(--color-primary);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 0.65rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--color-primary-hover);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+  <div container="md">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="row" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link active">📝 Forms & Inputs</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Forms & Native Inputs</h1>
+      <p>Controles de formulario modernos, switches, checkboxes customizados, grupos con iconos y validación nativa.</p>
+    </header>
+
+    <!-- Demo 1: Toggle Switches -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Toggle Switches Animados
+        <span class="section-code">&lt;input type="checkbox" switch&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Solo agrega el atributo <span class="section-code">switch</span> a un checkbox estándar. Cero wrappers o divs extra.
+      </p>
+
+      <div layout="stack" gap="md">
+        <label layout="row" gap="sm" style="cursor: pointer;">
+          <input type="checkbox" switch checked>
+          <span>Activar notificaciones por correo</span>
+        </label>
+
+        <label layout="row" gap="sm" style="cursor: pointer;">
+          <input type="checkbox" switch>
+          <span>Modo de rendimiento alto</span>
+        </label>
+
+        <label layout="row" gap="sm" style="cursor: pointer;">
+          <input type="checkbox" switch size="lg" checked>
+          <span>Switch grande (<span class="section-code">size="lg"</span>)</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Demo 2: Custom Checkbox & Radio -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Checkboxes & Radios Modernos
+        <span class="section-code">&lt;input type="checkbox"&gt; / &lt;input type="radio"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Estilo uniforme en todos los navegadores con checkmark SVG integrado automáticamente.
+      </p>
+
+      <div layout="grid" cols="1" cols-sm="2" gap="lg">
+        <!-- Checkboxes -->
+        <div layout="stack" gap="sm">
+          <strong style="color: #cbd5e1; font-size: 0.9rem;">Checkboxes:</strong>
+          <label layout="row" gap="sm" style="cursor: pointer;">
+            <input type="checkbox" checked>
+            <span>Recordar mi sesión</span>
+          </label>
+          <label layout="row" gap="sm" style="cursor: pointer;">
+            <input type="checkbox">
+            <span>Acepto los términos y condiciones</span>
+          </label>
+        </div>
+
+        <!-- Radios -->
+        <div layout="stack" gap="sm">
+          <strong style="color: #cbd5e1; font-size: 0.9rem;">Radio buttons:</strong>
+          <label layout="row" gap="sm" style="cursor: pointer;">
+            <input type="radio" name="plan" checked>
+            <span>Plan Mensual ($9/mes)</span>
+          </label>
+          <label layout="row" gap="sm" style="cursor: pointer;">
+            <input type="radio" name="plan">
+            <span>Plan Anual ($79/año)</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 3: Inputs de Texto, Selects y Textareas -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Inputs, Select Dropdown & Textarea
+        <span class="section-code">&lt;input&gt; &lt;select&gt; &lt;textarea&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Bordes pulidos, anillo de foco con glow y flecha SVG personalizada para selects.
+      </p>
+
+      <div layout="stack" gap="md">
+        <div layout="grid" cols="1" cols-sm="2" gap="md">
+          <div field>
+            <label for="username">Nombre de usuario</label>
+            <input type="text" id="username" placeholder="Ej: Matias Dev">
+          </div>
+
+          <div field>
+            <label for="country">País / Región</label>
+            <select id="country">
+              <option value="">Selecciona tu país...</option>
+              <option value="es">España</option>
+              <option value="mx">México</option>
+              <option value="ar">Argentina</option>
+              <option value="co">Colombia</option>
+              <option value="cl">Chile</option>
+            </select>
+          </div>
+        </div>
+
+        <div field>
+          <label for="bio">Biografía</label>
+          <textarea id="bio" placeholder="Cuéntanos un poco sobre ti..."></textarea>
+          <span helper-text>Máximo 200 caracteres.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 4: Input Groups & Addons -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        4. Input Groups con Addons y Botones
+        <span class="section-code">&lt;div input-group&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Une prefijos, sufijos e inputs sin desalineaciones ni bordes dobles.
+      </p>
+
+      <div layout="stack" gap="md">
+        <div input-group>
+          <span addon>https://</span>
+          <input type="text" placeholder="misitio.com">
+          <button class="btn-submit" type="button">Conectar</button>
+        </div>
+
+        <div input-group>
+          <span addon>$</span>
+          <input type="number" placeholder="0.00" step="0.01">
+          <span addon>USD</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 5: Inputs con Iconos Integrados -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        5. Inputs con Iconos
+        <span class="section-code">&lt;div input-icon="left"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Posicionamiento perfecto del icono con padding adaptado automáticamente.
+      </p>
+
+      <div layout="stack" gap="md">
+        <!-- Search icon input -->
+        <div input-icon="left">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input type="search" placeholder="Buscar proyectos, componentes, archivos...">
+        </div>
+
+        <!-- Email icon input -->
+        <div input-icon="left">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <input type="email" placeholder="correo@ejemplo.com">
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 6: Subida de Archivos y Dropzone -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        6. Subida de Archivos & Dropzone
+        <span class="section-code">&lt;input type="file"&gt; y &lt;div dropzone&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Botón nativo estilizado y área de dropzone para arrastrar y soltar archivos.
+      </p>
+
+      <div layout="stack" gap="md">
+        <input type="file">
+
+        <label dropzone>
+          <input type="file" style="display: none;">
+          <svg style="width: 36px; height: 36px; color: var(--color-primary);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+          </svg>
+          <div>
+            <strong style="color: #f1f5f9;">Haz clic para subir</strong> o arrastra archivos aquí
+          </div>
+          <span style="font-size: 0.8rem; color: var(--color-text-muted);">PNG, JPG, PDF hasta 10MB</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Demo 7: Range Slider -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        7. Range Slider Personalizado
+        <span class="section-code">&lt;input type="range"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Control deslizante limpio con track y thumb estilizados en Chrome y Firefox.
+      </p>
+
+      <div layout="stack" gap="xs">
+        <div layout="split">
+          <label style="font-size: 0.85rem; color: var(--color-text-muted);">Nivel de volumen</label>
+          <span style="font-size: 0.85rem; font-weight: 600; color: #38bdf8;">75%</span>
+        </div>
+        <input type="range" min="0" max="100" value="75">
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -10,7 +10,10 @@
 @import "./layout/grid.css";
 @import "./layout/flex.css";
 
-/* 3. Base Container Helper */
+/* 3. Components */
+@import "./components/forms.css";
+
+/* 4. Base Container Helper */
 :where([container], .container) {
   width: 100%;
   margin-inline: auto;

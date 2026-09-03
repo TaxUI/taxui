@@ -44,4 +44,28 @@
   --color-primary: #3b82f6;
   --color-primary-hover: #2563eb;
   --color-primary-text: #ffffff;
+  --color-primary-glow: rgba(59, 130, 246, 0.25);
+
+  /* Status Colors */
+  --color-danger: #ef4444;
+  --color-danger-bg: rgba(239, 68, 68, 0.15);
+  --color-danger-border: #dc2626;
+  --color-success: #10b981;
+  --color-success-bg: rgba(16, 185, 129, 0.15);
+  --color-success-border: #059669;
+  --color-warning: #f59e0b;
+  --color-warning-bg: rgba(245, 158, 11, 0.15);
+
+  /* Form & Input Tokens */
+  --input-bg: #0e1526;
+  --input-border: #23314f;
+  --input-border-hover: #33466f;
+  --input-text: #f1f5f9;
+  --input-placeholder: #64748b;
+  --input-focus-border: var(--color-primary);
+  --input-focus-ring: var(--color-primary-glow);
+  --input-padding-y: 0.625rem;
+  --input-padding-x: 0.875rem;
+  --input-radius: var(--radius-md);
+  --input-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
