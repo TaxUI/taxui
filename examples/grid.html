@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid Primitives Showcase</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    /* Demo visual styles for demonstration boxes */
+    body {
+      padding-block: 2.5rem;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #1e293b;
+      color: #a5f3fc;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .demo-section {
+      background: rgba(19, 27, 46, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .box {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(99, 102, 241, 0.2) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      color: #e2e8f0;
+      font-weight: 500;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .box:hover {
+      transform: translateY(-2px);
+      border-color: #60a5fa;
+    }
+
+    .box.accent {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(168, 85, 247, 0.25) 100%);
+      border-color: rgba(236, 72, 153, 0.4);
+    }
+
+    .box.highlight {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(6, 182, 212, 0.25) 100%);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div container="lg">
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Grid Layout Primitives</h1>
+      <p>Sistema de grillas ultra rápido, declarativo y sin tocar una sola línea de CSS.</p>
+    </header>
+
+    <!-- Demo 1: Auto-Fit Responsive (Sin media queries) -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Grid Auto-Responsive
+        <span class="section-code">&lt;div layout="grid" grid="auto-fit" min-col="sm"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Cambia de 1 a 4 columnas automáticamente al redimensionar tu pantalla. No requiere media queries manuales.
+      </p>
+
+      <div layout="grid" grid="auto-fit" min-col="sm" gap="md">
+        <div class="box">Tarjeta 1</div>
+        <div class="box">Tarjeta 2</div>
+        <div class="box">Tarjeta 3</div>
+        <div class="box">Tarjeta 4</div>
+      </div>
+    </div>
+
+    <!-- Demo 2: Columnas fijas con Spans -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Sistema de 12 Columnas & Spans
+        <span class="section-code">&lt;div layout="grid" cols="12"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Usa <span class="section-code">span="4"</span>, <span class="section-code">span="8"</span> o <span class="section-code">span="full"</span> en los hijos directos.
+      </p>
+
+      <div layout="grid" cols="12" gap="md">
+        <div class="box accent" span="full">span="full" (Ancho completo - 12 columnas)</div>
+        <div class="box highlight" span="8">span="8" (Contenido principal)</div>
+        <div class="box" span="4">span="4" (Sidebar)</div>
+        <div class="box" span="3">span="3"</div>
+        <div class="box" span="3">span="3"</div>
+        <div class="box" span="3">span="3"</div>
+        <div class="box" span="3">span="3"</div>
+      </div>
+    </div>
+
+    <!-- Demo 3: Responsive Breakpoints -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Columnas Responsivas con Breakpoints
+        <span class="section-code">&lt;div layout="grid" cols="1" cols-sm="2" cols-lg="4"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        1 columna en móvil, 2 en tablets y 4 en pantallas grandes.
+      </p>
+
+      <div layout="grid" cols="1" cols-sm="2" cols-lg="4" gap="md">
+        <div class="box">Columna 1</div>
+        <div class="box">Columna 2</div>
+        <div class="box">Columna 3</div>
+        <div class="box">Columna 4</div>
+      </div>
+    </div>
+
+    <!-- Demo 4: Layouts Preset (Sidebar + Content) -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        4. Layouts Preset: Sidebar + Dashboard
+        <span class="section-code">&lt;div layout="grid" cols="sidebar-left"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Sidebar fijo con ancho óptimo + área de trabajo fluida.
+      </p>
+
+      <div layout="grid" cols="sidebar-left" gap="lg">
+        <div class="box accent" style="min-height: 140px;">
+          <strong>Sidebar</strong><br>
+          <span style="font-size: 0.8rem; opacity: 0.8;">Navegación / Menú</span>
+        </div>
+        <div class="box highlight" style="min-height: 140px;">
+          <strong>Área Principal</strong><br>
+          <span style="font-size: 0.8rem; opacity: 0.8;">Contenido dinámico fluido</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 5: Gaps configurables -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        5. Control de Espaciado (Gaps)
+        <span class="section-code">gap="xs" | "md" | "xl"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Controla los espacios con design tokens listos para usar:
+      </p>
+
+      <div layout="grid" cols="3" gap="xl">
+        <div class="box">gap="xl" (Grande)</div>
+        <div class="box">gap="xl" (Grande)</div>
+        <div class="box">gap="xl" (Grande)</div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

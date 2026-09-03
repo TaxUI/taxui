@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Base Design Tokens & Variables
+   ========================================================================== */
+
+:root {
+  /* Gaps & Spacings */
+  --gap-none: 0px;
+  --gap-3xs: 0.125rem; /* 2px */
+  --gap-2xs: 0.25rem;  /* 4px */
+  --gap-xs:  0.5rem;   /* 8px */
+  --gap-sm:  0.75rem;  /* 12px */
+  --gap-md:  1rem;     /* 16px */
+  --gap-lg:  1.5rem;   /* 24px */
+  --gap-xl:  2rem;     /* 32px */
+  --gap-2xl: 3rem;     /* 48px */
+  --gap-3xl: 4rem;     /* 64px */
+
+  /* Default Grid Configuration */
+  --grid-gap: var(--gap-md);
+  --grid-min-col: 260px;
+  
+  /* Column Minimum Width Presets (Auto-Grid) */
+  --min-col-2xs: 120px;
+  --min-col-xs:  180px;
+  --min-col-sm:  240px;
+  --min-col-md:  300px;
+  --min-col-lg:  380px;
+  --min-col-xl:  480px;
+
+  /* Basic Border Radius & Aesthetics */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Neutral Theme Palette */
+  --color-bg: #0b0f19;
+  --color-surface: #131b2e;
+  --color-surface-hover: #1c2740;
+  --color-border: #23314f;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-primary-text: #ffffff;
+}

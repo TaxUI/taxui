@@ -1,0 +1,24 @@
+/* ==========================================================================
+   Main Framework Entry Point
+   ========================================================================== */
+
+/* 1. Base Tokens & Reset */
+@import "./base/variables.css";
+@import "./base/reset.css";
+
+/* 2. Layout Primitives */
+@import "./layout/grid.css";
+
+/* 3. Base Container Helper */
+:where([container], .container) {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--gap-md);
+  max-width: 1280px;
+}
+
+:where([container="sm"]) { max-width: 640px; }
+:where([container="md"]) { max-width: 768px; }
+:where([container="lg"]) { max-width: 1024px; }
+:where([container="xl"]) { max-width: 1280px; }
+:where([container="full"]) { max-width: 100%; }
