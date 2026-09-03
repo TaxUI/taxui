@@ -19,6 +19,7 @@ frameworkhtml/
 │   │   ├── buttons.css     # Botones multivariante, glow, loading y grupos
 │   │   ├── cards.css       # Tarjetas, Glassmorphism, elevación y slots
 │   │   ├── badges.css      # Badges semánticos, chips removibles y notificaciones
+│   │   ├── alerts.css      # Alertas, callouts con borde lateral y banners
 │   │   └── forms.css       # Formularios, switches, checkboxes, selects e input groups
 │   └── main.css            # Archivo maestro de importación
 └── examples/
@@ -27,58 +28,70 @@ frameworkhtml/
     ├── forms.html          # Showcase de Formularios e Inputs
     ├── buttons.html        # Showcase de Botones Multivariante
     ├── cards.html          # Showcase de Tarjetas y Superficies
-    └── badges.html         # Showcase de Badges, Chips y Notificaciones
+    ├── badges.html         # Showcase de Badges, Chips y Notificaciones
+    └── alerts.html         # Showcase de Alertas y Banners
 ```
 
 ---
 
-## 🏷️ 1. Badges, Chips & Notificaciones Flotantes
+## 🔔 1. Alertas & Mensajes de Feedback
 
 ### Variantes Semánticas
 ```html
-<span badge="primary">Primary</span>
-<span badge="success">Activo</span>
-<span badge="warning">Pendiente</span>
-<span badge="danger">Error</span>
-<span badge="purple">Nuevo</span>
+<div alert="info">
+  <svg>...</svg>
+  <div alert-content>
+    <strong alert-title>Información</strong>
+    <p alert-description>Detalles de la notificación...</p>
+  </div>
+</div>
+
+<div alert="success">...</div>
+<div alert="warning">...</div>
+<div alert="danger">...</div>
 ```
 
-### Estilos Visuales y Modificadores
+### Borde de Acento Lateral & Descartable
 ```html
-<!-- Sólido -->
-<span badge="primary" style-type="solid">Solid Badge</span>
-
-<!-- Formato circular Pill -->
-<span badge="success" pill>Pill Badge</span>
-
-<!-- Tamaños -->
-<span badge="primary" pill size="sm">Pequeño</span>
-<span badge="primary" pill size="lg">Grande</span>
+<div alert="warning" border="left">
+  <svg>...</svg>
+  <div alert-content>
+    <strong alert-title>Almacenamiento casi lleno</strong>
+    <p alert-description>Te quedan 500 MB libres.</p>
+    <div alert-actions>
+      <button variant="warning" size="sm">Ampliar</button>
+    </div>
+  </div>
+  <button alert-close aria-label="Cerrar">×</button>
+</div>
 ```
 
-### Chips Interactivos y Removibles
+### Banners de Anuncio y Toasts
 ```html
-<span chip="primary" pill>
-  <span>HTML5</span>
-  <button dismiss aria-label="Eliminar">×</button>
-</span>
-```
+<!-- Banner superior de ancho completo -->
+<aside banner alert="info">
+  <span>🚀 ¡Nueva versión disponible!</span>
+  <a href="#">Ver más →</a>
+</aside>
 
-### Puntos de Estado y Contadores Flotantes
-```html
-<!-- Punto de estado con animación de pulso -->
-<div class="avatar" badge-dot="success" pulse>...</div>
-
-<!-- Contador flotante sobre botón o icono -->
-<div badge-container>
-  <button variant="secondary" icon-only>🔔</button>
-  <span badge="danger" badge-float style-type="solid">3</span>
+<!-- Toast compacto flotante -->
+<div alert="info" pill glow>
+  <p alert-description>Presiona Ctrl + K para buscar.</p>
 </div>
 ```
 
 ---
 
-## 🃏 2. Tarjetas y Superficies
+## 🏷️ 2. Badges, Chips & Notificaciones Flotantes
+
+* **Variantes:** `badge="primary|success|warning|danger|purple"`
+* **Estilos:** `style-type="solid|outline"` y modificador `pill`
+* **Chips Removibles:** `<span chip="primary" pill><span>JS</span><button dismiss>×</button></span>`
+* **Puntos de Estado & Contadores:** `badge-dot="success" pulse` y `<span badge-float>3</span>`
+
+---
+
+## 🃏 3. Tarjetas y Superficies
 
 * **Modos:** `card="flat|elevated|glass|glow"`
 * **Glassmorphism:** `<article card="glass">...</article>`
@@ -87,7 +100,7 @@ frameworkhtml/
 
 ---
 
-## 🔘 3. Botones Multivariante
+## 🔘 4. Botones Multivariante
 
 * **Variantes:** `variant="primary|secondary|outline|ghost|success|danger|warning|link"`
 * **Efectos:** `glow`, `pill`, `block`, `icon-only`
@@ -96,7 +109,7 @@ frameworkhtml/
 
 ---
 
-## 📝 4. Formularios & Inputs Nativos
+## 📝 5. Formularios & Inputs Nativos
 
 * **Toggle Switches:** `<input type="checkbox" switch checked>`
 * **Checkboxes & Radios:** `<input type="checkbox">` / `<input type="radio">` con checkmark SVG automático.
@@ -106,7 +119,7 @@ frameworkhtml/
 
 ---
 
-## ⚡ 5. Primitivas Flexbox & Stacks
+## ⚡ 6. Primitivas Flexbox & Stacks
 
 * **`layout="stack"`**: Columna vertical con espaciado constante.
 * **`layout="row"`**: Fila horizontal centrada.
@@ -118,7 +131,7 @@ frameworkhtml/
 
 ---
 
-## 📐 6. Primitivas Grid
+## 📐 7. Primitivas Grid
 
 * **`layout="grid" grid="auto-fit" min-col="sm"`**: Grilla auto-responsiva sin media queries.
 * **`cols="1"` a `cols="12"`**: Sistema de columnas fijas.

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerts & Feedback Showcase - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+      min-height: 100vh;
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: rgba(19, 27, 46, 0.5);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #1e293b;
+      color: #a5f3fc;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(165, 243, 252, 0.2);
+    }
+
+    .demo-section {
+      background: rgba(19, 27, 46, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Banner -->
+  <aside banner alert="info" style="margin-bottom: 2rem;">
+    <span>🚀 <strong>¡Versión 1.0 en camino!</strong> Nuevo sistema de componentes disponible.</span>
+    <a href="cards.html" style="color: #38bdf8; font-weight: 600; text-decoration: underline;">Ver componentes →</a>
+  </aside>
+
+  <div container="md">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
+      <a href="cards.html" class="nav-link">🃏 Cards & Surfaces</a>
+      <a href="badges.html" class="nav-link">🏷️ Badges & Chips</a>
+      <a href="alerts.html" class="nav-link active">🔔 Alerts & Feedback</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Alerts & Feedback Banners</h1>
+      <p>Mensajes de estado, advertencias con borde lateral, banners de anuncio y notificaciones cerrables.</p>
+    </header>
+
+    <!-- Demo 1: Variantes Semánticas -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Variantes Semánticas
+        <span class="section-code">alert="info|success|warning|danger|neutral"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Mensajes de feedback con iconos y paleta adaptada para cada estado.
+      </p>
+
+      <div layout="stack" gap="md">
+        <!-- Info -->
+        <div alert="info">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div alert-content>
+            <strong alert-title>Actualización disponible</strong>
+            <p alert-description>Hay una nueva versión del framework lista para descargar.</p>
+          </div>
+        </div>
+
+        <!-- Success -->
+        <div alert="success">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div alert-content>
+            <strong alert-title>Cambios guardados con éxito</strong>
+            <p alert-description>Tu perfil y preferencias han sido actualizados en el servidor.</p>
+          </div>
+        </div>
+
+        <!-- Warning -->
+        <div alert="warning">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <div alert-content>
+            <strong alert-title>Periodo de prueba próximo a vencer</strong>
+            <p alert-description>Te quedan 3 días de tu prueba gratuita. Actualiza para no perder tus datos.</p>
+          </div>
+        </div>
+
+        <!-- Danger -->
+        <div alert="danger">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div alert-content>
+            <strong alert-title>Error de conexión al servidor</strong>
+            <p alert-description>No se pudieron sincronizar los datos. Revisa tu conexión a internet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 2: Borde Lateral de Acento -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Borde de Acento Lateral
+        <span class="section-code">border="left"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Diseño limpio tipo callout con barra lateral prominente.
+      </p>
+
+      <div layout="stack" gap="md">
+        <div alert="info" border="left">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div alert-content>
+            <strong alert-title>Consejo de rendimiento</strong>
+            <p alert-description>Utiliza <code>layout="grid" grid="auto-fit"</code> para prescindir de media queries manuales.</p>
+          </div>
+        </div>
+
+        <div alert="success" border="left">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          <div alert-content>
+            <strong alert-title>Deploy completado</strong>
+            <p alert-description>La aplicación está en producción en <strong>https://miapp.dev</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 3: Alertas con Acciones y Cierre -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Alertas con Acciones y Botón de Cierre
+        <span class="section-code">alert-actions | alert-close</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Integración con botones de acción rápida y botón de descarte.
+      </p>
+
+      <div layout="stack" gap="md">
+        <!-- Dismissible complex alert -->
+        <div alert="warning" border="left">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <div alert-content>
+            <strong alert-title>Almacenamiento casi lleno (92%)</strong>
+            <p alert-description>Te quedan menos de 500 MB libres en tu cuenta.</p>
+            <div alert-actions>
+              <button variant="warning" size="sm">Ampliar Plan</button>
+              <button variant="ghost" size="sm" style="color: inherit;">Liberar Espacio</button>
+            </div>
+          </div>
+          <button alert-close aria-label="Cerrar" onclick="this.parentElement.remove()">×</button>
+        </div>
+
+        <!-- Dismissible success alert -->
+        <div alert="success">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div alert-content>
+            <p alert-description>¡Tu correo electrónico ha sido verificado con éxito!</p>
+          </div>
+          <button alert-close aria-label="Cerrar" onclick="this.parentElement.remove()">×</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 4: Estilo Toast Flotante -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        4. Toast Flotante Estilo Pill
+        <span class="section-code">alert="info" pill glow</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Formato compacto para notificaciones tipo snackbar o toasts.
+      </p>
+
+      <div layout="stack" gap="md" align="center">
+        <div alert="info" pill glow style="max-width: 480px;">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          <div alert-content>
+            <p alert-description>Nuevos atajos de teclado disponibles. Presiona <strong>Ctrl + K</strong>.</p>
+          </div>
+          <button alert-close aria-label="Cerrar" onclick="this.parentElement.remove()">×</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

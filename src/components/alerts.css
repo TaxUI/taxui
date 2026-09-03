@@ -1,0 +1,208 @@
+/* ==========================================================================
+   Alerts, Banners & Feedback Primitives
+   Semantics, notifications, left-accent borders, full-width banners & toasts.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base Alert Container
+   -------------------------------------------------------------------------- */
+:where([alert], .alert) {
+  --alert-bg: rgba(59, 130, 246, 0.12);
+  --alert-border: rgba(59, 130, 246, 0.35);
+  --alert-color: #93c5fd;
+  --alert-title-color: #ffffff;
+  --alert-icon-color: #38bdf8;
+  --alert-radius: var(--radius-md);
+  --alert-padding: 1rem 1.25rem;
+  --alert-glow: none;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  width: 100%;
+  padding: var(--alert-padding);
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--alert-color);
+  background-color: var(--alert-bg);
+  border: 1px solid var(--alert-border);
+  border-radius: var(--alert-radius);
+  box-shadow: var(--alert-glow);
+  position: relative;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. Alert Variants (Info, Success, Warning, Danger, Neutral)
+   -------------------------------------------------------------------------- */
+
+/* Info (Default) */
+:where([alert="info"], [alert=""], .alert-info) {
+  --alert-bg: rgba(59, 130, 246, 0.12);
+  --alert-border: rgba(59, 130, 246, 0.35);
+  --alert-color: #93c5fd;
+  --alert-title-color: #ffffff;
+  --alert-icon-color: #38bdf8;
+  --alert-glow: 0 0 16px rgba(59, 130, 246, 0.12);
+}
+
+/* Success */
+:where([alert="success"], .alert-success) {
+  --alert-bg: rgba(16, 185, 129, 0.12);
+  --alert-border: rgba(16, 185, 129, 0.35);
+  --alert-color: #a7f3d0;
+  --alert-title-color: #ffffff;
+  --alert-icon-color: #34d399;
+  --alert-glow: 0 0 16px rgba(16, 185, 129, 0.12);
+}
+
+/* Warning */
+:where([alert="warning"], .alert-warning) {
+  --alert-bg: rgba(245, 158, 11, 0.12);
+  --alert-border: rgba(245, 158, 11, 0.35);
+  --alert-color: #fde68a;
+  --alert-title-color: #ffffff;
+  --alert-icon-color: #fbbf24;
+  --alert-glow: 0 0 16px rgba(245, 158, 11, 0.12);
+}
+
+/* Danger / Error */
+:where([alert="danger"], [alert="error"], .alert-danger) {
+  --alert-bg: rgba(239, 68, 68, 0.12);
+  --alert-border: rgba(239, 68, 68, 0.35);
+  --alert-color: #fca5a5;
+  --alert-title-color: #ffffff;
+  --alert-icon-color: #f87171;
+  --alert-glow: 0 0 16px rgba(239, 68, 68, 0.12);
+}
+
+/* Neutral / Secondary */
+:where([alert="neutral"], [alert="secondary"], .alert-neutral) {
+  --alert-bg: rgba(148, 163, 184, 0.1);
+  --alert-border: rgba(148, 163, 184, 0.25);
+  --alert-color: #cbd5e1;
+  --alert-title-color: #ffffff;
+  --alert-icon-color: #94a3b8;
+  --alert-glow: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Style Appearances: Solid & Left Accent Border
+   -------------------------------------------------------------------------- */
+
+/* Solid Style */
+:where([alert][style-type="solid"]) {
+  color: #ffffff !important;
+}
+:where([alert="info"][style-type="solid"]) { background-color: var(--color-primary); border-color: var(--color-primary); }
+:where([alert="success"][style-type="solid"]) { background-color: var(--color-success); border-color: var(--color-success); }
+:where([alert="warning"][style-type="solid"]) { background-color: var(--color-warning); color: #0b0f19 !important; border-color: var(--color-warning); --alert-title-color: #0b0f19; --alert-icon-color: #0b0f19; }
+:where([alert="danger"][style-type="solid"], [alert="error"][style-type="solid"]) { background-color: var(--color-danger); border-color: var(--color-danger); }
+
+/* Left Accent Border */
+:where([alert][border="left"], [alert][accent-left]) {
+  border-left-width: 4px;
+}
+:where([alert="info"][border="left"], [alert="info"][accent-left]) { border-left-color: var(--color-primary); }
+:where([alert="success"][border="left"], [alert="success"][accent-left]) { border-left-color: var(--color-success); }
+:where([alert="warning"][border="left"], [alert="warning"][accent-left]) { border-left-color: var(--color-warning); }
+:where([alert="danger"][border="left"], [alert="danger"][accent-left]) { border-left-color: var(--color-danger); }
+
+/* Glow Effect */
+:where([alert][glow]) {
+  box-shadow: var(--alert-glow);
+}
+
+/* Pill (Floating Toast / Snack style) */
+:where([alert][pill]) {
+  border-radius: var(--radius-full);
+  padding-inline: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. Alert Sub-Elements (Slots)
+   -------------------------------------------------------------------------- */
+
+/* Icon Slot */
+:where([alert-icon], .alert-icon, [alert] > svg:first-child) {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--alert-icon-color);
+  margin-top: 0.125rem;
+}
+
+/* Content Container */
+:where([alert-content], .alert-content) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1 1 auto;
+}
+
+/* Title Slot */
+:where([alert-title], .alert-title) {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--alert-title-color);
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Description / Text */
+:where([alert-description], .alert-description) {
+  font-size: 0.875rem;
+  color: inherit;
+  margin: 0;
+}
+
+/* Action Buttons Container */
+:where([alert-actions], .alert-actions) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Close Button Slot */
+:where([alert-close], .alert-close, button.alert-close) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  margin-left: auto;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: none;
+  color: inherit;
+  opacity: 0.7;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+:where([alert-close], .alert-close, button.alert-close):hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   5. Full-Width Announcement Banners ([banner])
+   -------------------------------------------------------------------------- */
+:where([banner], .banner) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 0;
+  border-inline: none;
+  border-top: none;
+}
