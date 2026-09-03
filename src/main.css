@@ -12,6 +12,7 @@
 
 /* 3. Components */
 @import "./components/forms.css";
+@import "./components/buttons.css";
 
 /* 4. Base Container Helper */
 :where([container], .container) {

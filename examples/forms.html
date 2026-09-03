@@ -105,10 +105,11 @@
   <div container="md">
 
     <!-- Navigation between examples -->
-    <nav class="demo-nav" layout="row" justify="center" gap="sm">
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
       <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
       <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
       <a href="forms.html" class="nav-link active">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
     </nav>
 
     <!-- Header -->
@@ -314,10 +315,17 @@
 
       <div layout="stack" gap="xs">
         <div layout="split">
-          <label style="font-size: 0.85rem; color: var(--color-text-muted);">Nivel de volumen</label>
-          <span style="font-size: 0.85rem; font-weight: 600; color: #38bdf8;">75%</span>
+          <label for="vol-slider" style="font-size: 0.85rem; color: var(--color-text-muted);">Nivel de volumen</label>
+          <output id="vol-val" for="vol-slider" style="font-size: 0.85rem; font-weight: 600; color: #38bdf8;">75%</output>
         </div>
-        <input type="range" min="0" max="100" value="75">
+        <input 
+          id="vol-slider" 
+          type="range" 
+          min="0" 
+          max="100" 
+          value="75"
+          oninput="document.getElementById('vol-val').textContent = this.value + '%'"
+        >
       </div>
     </div>
 

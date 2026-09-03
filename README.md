@@ -11,97 +11,110 @@ frameworkhtml/
 ├── src/
 │   ├── base/
 │   │   ├── variables.css   # Tokens de diseño (gaps, inputs, radios, colores)
-│   │   └── reset.css       # Reset moderno y estandarización de box-sizing
+│   │   └── reset.css       # Reset moderno y normalización
 │   ├── layout/
-│   │   ├── grid.css        # Sistema completo de Grid declarativo
-│   │   └── flex.css        # Primitivas de Flexbox, Stacks, Split y Clusters
+│   │   ├── grid.css        # Sistema de Grid declarativo
+│   │   └── flex.css        # Flexbox, Stacks, Split y Clusters
 │   ├── components/
+│   │   ├── buttons.css     # Botones multivariante, glow, loading y grupos
 │   │   └── forms.css       # Formularios, switches, checkboxes, selects e input groups
 │   └── main.css            # Archivo maestro de importación
 └── examples/
-    ├── flexbox.html        # Showcase interactivo de Flexbox & Stacks
-    ├── grid.html           # Showcase interactivo de Grid Primitives
-    └── forms.html          # Showcase interactivo de Formularios e Inputs
+    ├── flexbox.html        # Showcase de Flexbox & Stacks
+    ├── grid.html           # Showcase de Grid Primitives
+    ├── forms.html          # Showcase de Formularios e Inputs
+    └── buttons.html        # Showcase de Botones Multivariante
 ```
 
 ---
 
-## 📝 1. Formularios & Inputs Nativos
+## 🔘 1. Botones Multivariante
 
-### Toggle Switches Animados
-Transforma cualquier checkbox en un switch moderno con solo un atributo:
+### Variantes de Color y Propósito
 ```html
-<label layout="row" gap="sm">
-  <input type="checkbox" switch checked>
-  <span>Activar notificaciones</span>
-</label>
-
-<!-- Switch tamaño grande -->
-<input type="checkbox" switch size="lg">
+<button variant="primary">Primary</button>
+<button variant="secondary">Secondary</button>
+<button variant="outline">Outline</button>
+<button variant="ghost">Ghost</button>
+<button variant="success">Success</button>
+<button variant="danger">Danger</button>
+<button variant="warning">Warning</button>
+<button variant="link">Enlace</button>
 ```
 
-### Checkboxes & Radios Personalizados
-Checkmarks y radio dots automáticos y accesibles sin necesidad de divs o spans adicionales:
+### Efectos Glow & Pill
 ```html
-<label layout="row" gap="sm">
-  <input type="checkbox" checked>
-  <span>Recordar sesión</span>
-</label>
+<!-- Resplandor neón suave -->
+<button variant="primary" glow>Primary Glow</button>
 
-<label layout="row" gap="sm">
-  <input type="radio" name="plan" checked>
-  <span>Plan Pro</span>
-</label>
+<!-- Bordes circulares -->
+<button variant="primary" glow pill>Pill Button</button>
 ```
 
-### Input Groups & Addons (Fusión sin bordes dobles)
+### Escala de Tamaños
 ```html
-<div input-group>
-  <span addon>https://</span>
-  <input type="text" placeholder="misitio.com">
-  <button type="button">Conectar</button>
-</div>
+<button variant="primary" size="sm">Pequeño</button>
+<button variant="primary" size="md">Mediano (Default)</button>
+<button variant="primary" size="lg">Grande</button>
+<button variant="primary" size="xl">Extra Grande Hero</button>
 ```
 
-### Inputs con Iconos Integrados
+### Estado de Carga (Loading Spinner Puro CSS)
+Oculta el texto y muestra un spinner animado manteniendo el ancho del botón y bloqueando clics:
 ```html
-<div input-icon="left">
+<button variant="primary" loading>Guardar Cambios</button>
+```
+
+### Botones con Iconos y Cuadrados
+```html
+<!-- Con icono y texto -->
+<button variant="primary">
   <svg>...</svg>
-  <input type="search" placeholder="Buscar...">
-</div>
+  <span>Crear Proyecto</span>
+</button>
+
+<!-- Botón cuadrado solo icono -->
+<button variant="secondary" icon-only aria-label="Editar">
+  <svg>...</svg>
+</button>
 ```
 
-### Subida de Archivos y Dropzone
+### Grupos de Botones
 ```html
-<!-- Input de archivo nativo estilizado -->
-<input type="file">
-
-<!-- Área de arrastrar y soltar -->
-<label dropzone>
-  <input type="file" style="display: none;">
-  <span>Arrastra archivos aquí o haz clic para subir</span>
-</label>
+<div button-group>
+  <button variant="secondary">Día</button>
+  <button variant="primary">Semana</button>
+  <button variant="secondary">Mes</button>
+</div>
 ```
 
 ---
 
-## ⚡ 2. Primitivas Flexbox & Stacks
+## 📝 2. Formularios & Inputs Nativos
 
-* **`layout="stack"`**: Columna vertical con espaciado constante y limpio.
-* **`layout="row"`**: Fila horizontal centrada verticalmente por defecto.
-* **`layout="split"`**: Distribución de extremos tipo *Navbar/Toolbar* (`space-between` instantáneo).
-* **`layout="cluster"`**: Agrupación fluida para tags, chips y badges con salto de línea.
+* **Toggle Switches:** `<input type="checkbox" switch checked>`
+* **Checkboxes & Radios:** `<input type="checkbox">` / `<input type="radio">` con checkmark SVG automático.
+* **Input Groups & Addons:** `<div input-group><span addon>https://</span><input><button>Go</button></div>`
+* **Inputs con Iconos:** `<div input-icon="left"><svg>...</svg><input></div>`
+* **Dropzone:** `<label dropzone><input type="file" style="display:none">...</label>`
+
+---
+
+## ⚡ 3. Primitivas Flexbox & Stacks
+
+* **`layout="stack"`**: Columna vertical con espaciado constante.
+* **`layout="row"`**: Fila horizontal centrada.
+* **`layout="split"`**: Distribución de extremos tipo *Navbar/Toolbar*.
+* **`layout="cluster"`**: Agrupación fluida para tags y badges con salto automático.
 * **`layout="row-responsive"`**: Fila en pantallas grandes que pasa a columna en móviles.
 * **`layout="center"`**: Centrado perfecto horizontal y vertical.
 * **`push="right" | "left" | "top" | "bottom"`**: Empuje con auto-márgenes inteligentes.
-* **`flex="1"` / `grow` / `no-shrink`**: Control directo de tamaño en los hijos.
 
 ---
 
-## 📐 3. Primitivas Grid
+## 📐 4. Primitivas Grid
 
 * **`layout="grid" grid="auto-fit" min-col="sm"`**: Grilla auto-responsiva sin media queries.
 * **`cols="1"` a `cols="12"`**: Sistema de columnas fijas.
 * **`span="1"` a `span="12"` o `span="full"`**: Expansión de elementos hijos.
-* **`cols-sm="..."`, `cols-md="..."`, `cols-lg="..."`**: Control responsivo por breakpoint.
-* **`cols="sidebar-left"` / `cols="sidebar-right"`**: Presets de layout listos para usar.
+* **`cols="sidebar-left"`**: Layout preset de barra lateral + contenido fluido.

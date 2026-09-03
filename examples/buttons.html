@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buttons Showcase - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: rgba(19, 27, 46, 0.5);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #1e293b;
+      color: #a5f3fc;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(165, 243, 252, 0.2);
+    }
+
+    .demo-section {
+      background: rgba(19, 27, 46, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    svg {
+      width: 1.15em;
+      height: 1.15em;
+    }
+  </style>
+</head>
+<body>
+
+  <div container="md">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link active">🔘 Buttons</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Multivariant Buttons</h1>
+      <p>Botones declarativos con múltiples variantes, efectos glow, spinner de carga integrado y grupos.</p>
+    </header>
+
+    <!-- Demo 1: Variantes Principales -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Variantes de Color y Propósito
+        <span class="section-code">variant="primary|outline|ghost|danger..."</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Cambia la personalidad y función del botón con una simple palabra clave.
+      </p>
+
+      <div layout="cluster" gap="md">
+        <button variant="primary">Primary</button>
+        <button variant="secondary">Secondary</button>
+        <button variant="outline">Outline</button>
+        <button variant="ghost">Ghost</button>
+        <button variant="success">Success</button>
+        <button variant="danger">Danger</button>
+        <button variant="warning">Warning</button>
+        <button variant="link">Enlace de texto</button>
+      </div>
+    </div>
+
+    <!-- Demo 2: Efectos Especiales: Glow y Pill -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Efectos: Resplandor (Glow) y Bordes Redondeados (Pill)
+        <span class="section-code">&lt;button variant="primary" glow pill&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Agrega <span class="section-code">glow</span> para un resplandor neón suave y <span class="section-code">pill</span> para bordes circulares.
+      </p>
+
+      <div layout="cluster" gap="md">
+        <button variant="primary" glow>Primary + Glow</button>
+        <button variant="primary" glow pill>Primary + Glow + Pill</button>
+        <button variant="success" glow>Success Glow</button>
+        <button variant="danger" glow>Danger Glow</button>
+        <button variant="secondary" pill>Secondary Pill</button>
+      </div>
+    </div>
+
+    <!-- Demo 3: Tamaños -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Escala de Tamaños
+        <span class="section-code">size="sm" | "md" | "lg" | "xl"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Desde botones compactos para tablas hasta botones grandes para Hero sections.
+      </p>
+
+      <div layout="cluster" gap="md" align="center">
+        <button variant="primary" size="sm">size="sm"</button>
+        <button variant="primary" size="md">size="md" (Default)</button>
+        <button variant="primary" size="lg">size="lg"</button>
+        <button variant="primary" size="xl" glow>size="xl" Hero</button>
+      </div>
+    </div>
+
+    <!-- Demo 4: Estado de Carga (Loading Spinner) -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        4. Estado de Carga (Loading Spinner Puro CSS)
+        <span class="section-code">&lt;button loading&gt; o aria-busy="true"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Oculta el texto y muestra un spinner animado bloqueando clics automáticamente sin romper el ancho del botón.
+      </p>
+
+      <div layout="stack" gap="md">
+        <div layout="cluster" gap="md">
+          <button variant="primary" loading>Guardar Cambios</button>
+          <button variant="outline" loading>Cargando datos</button>
+          <button variant="danger" loading>Eliminando cuenta</button>
+          <button variant="secondary" size="sm" loading>Compacto</button>
+        </div>
+
+        <!-- Interactive loading toggle test -->
+        <div style="background: rgba(15, 23, 42, 0.6); padding: 1rem; border-radius: var(--radius-md); border: 1px dashed var(--color-border);" layout="row" justify="between" align="center">
+          <span style="font-size: 0.85rem; color: var(--color-text-muted);">Haz clic para probar el estado de carga dinámico:</span>
+          <button id="test-btn" variant="primary" onclick="this.toggleAttribute('loading')">
+            Haz clic aquí
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 5: Botones con Iconos & Icon-Only -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        5. Botones con Iconos & Botones Cuadrados
+        <span class="section-code">icon-only | pill</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Alineación precisa de SVGs y formato cuadrado perfecto con <span class="section-code">icon-only</span>.
+      </p>
+
+      <div layout="stack" gap="md">
+        <div layout="cluster" gap="md">
+          <button variant="primary">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+            <span>Crear Proyecto</span>
+          </button>
+
+          <button variant="secondary">
+            <span>Descargar PDF</span>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Icon only buttons -->
+        <div layout="cluster" gap="sm">
+          <button variant="secondary" icon-only aria-label="Editar">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
+          </button>
+
+          <button variant="danger-outline" icon-only aria-label="Eliminar">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+          </button>
+
+          <button variant="primary" icon-only pill glow aria-label="Favorito">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 6: Button Groups & Segmented Controls -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        6. Button Groups & Segmented Controls
+        <span class="section-code">&lt;div button-group&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Soporta controles segmentados nativos (HTML puro sin JS) y barras de herramientas.
+      </p>
+
+      <div layout="stack" gap="lg">
+        <!-- Pure HTML Segmented Control with Radios -->
+        <div>
+          <strong style="font-size: 0.85rem; color: #94a3b8; display: block; margin-bottom: 0.5rem;">
+            A. Control Segmentado (HTML Puro con &lt;input type="radio"&gt;):
+          </strong>
+          <div button-group>
+            <label>
+              <input type="radio" name="timeframe" value="day">
+              <span>Día</span>
+            </label>
+            <label>
+              <input type="radio" name="timeframe" value="week" checked>
+              <span>Semana</span>
+            </label>
+            <label>
+              <input type="radio" name="timeframe" value="month">
+              <span>Mes</span>
+            </label>
+            <label>
+              <input type="radio" name="timeframe" value="year">
+              <span>Año</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Interactive standard button group with toggle -->
+        <div>
+          <strong style="font-size: 0.85rem; color: #94a3b8; display: block; margin-bottom: 0.5rem;">
+            B. Botones con Estado Activo / Toggle:
+          </strong>
+          <div button-group toggle>
+            <button variant="secondary">Vista Lista</button>
+            <button variant="secondary" active>Vista Cuadrícula</button>
+            <button variant="secondary">Vista Tabla</button>
+          </div>
+        </div>
+
+        <!-- Static toolbar -->
+        <div>
+          <strong style="font-size: 0.85rem; color: #94a3b8; display: block; margin-bottom: 0.5rem;">
+            C. Barra de Herramientas (Outline):
+          </strong>
+          <div button-group>
+            <button variant="outline">Izquierda</button>
+            <button variant="outline">Centro</button>
+            <button variant="outline">Derecha</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 7: Botón de Ancho Completo -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        7. Botón de Ancho Completo (Block)
+        <span class="section-code">&lt;button block&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Ideal para formularios de login, checkout y modales en móviles.
+      </p>
+
+      <button variant="primary" block size="lg" glow>
+        Continuar al Pago ($49.00)
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    // Automatic toggle handler for button groups with [toggle] attribute
+    document.querySelectorAll('[button-group][toggle]').forEach(group => {
+      group.addEventListener('click', (e) => {
+        const btn = e.target.closest('button, [role="button"]');
+        if (!btn || !group.contains(btn)) return;
+        group.querySelectorAll('button, [role="button"]').forEach(b => b.removeAttribute('active'));
+        btn.setAttribute('active', '');
+      });
+    });
+  </script>
+
+</body>
+</html>
