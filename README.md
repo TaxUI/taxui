@@ -18,6 +18,7 @@ frameworkhtml/
 │   ├── components/
 │   │   ├── buttons.css     # Botones multivariante, glow, loading y grupos
 │   │   ├── cards.css       # Tarjetas, Glassmorphism, elevación y slots
+│   │   ├── badges.css      # Badges semánticos, chips removibles y notificaciones
 │   │   └── forms.css       # Formularios, switches, checkboxes, selects e input groups
 │   └── main.css            # Archivo maestro de importación
 └── examples/
@@ -25,76 +26,77 @@ frameworkhtml/
     ├── grid.html           # Showcase de Grid Primitives
     ├── forms.html          # Showcase de Formularios e Inputs
     ├── buttons.html        # Showcase de Botones Multivariante
-    └── cards.html          # Showcase de Tarjetas y Superficies
+    ├── cards.html          # Showcase de Tarjetas y Superficies
+    └── badges.html         # Showcase de Badges, Chips y Notificaciones
 ```
 
 ---
 
-## 🃏 1. Tarjetas y Superficies
+## 🏷️ 1. Badges, Chips & Notificaciones Flotantes
 
-### Modos Visuales
+### Variantes Semánticas
 ```html
-<!-- Flat limpia (por defecto) -->
-<article card="flat">...</article>
-
-<!-- Elevada con sombra multinivel -->
-<article card="elevated">...</article>
-
-<!-- Glassmorphism translúcido con backdrop-blur -->
-<article card="glass">...</article>
-
-<!-- Borde iluminado de acento -->
-<article card="glow">...</article>
+<span badge="primary">Primary</span>
+<span badge="success">Activo</span>
+<span badge="warning">Pendiente</span>
+<span badge="danger">Error</span>
+<span badge="purple">Nuevo</span>
 ```
 
-### Interacción al Hover
-Añade `interactive` para elevar la tarjeta suavemente al pasar el ratón:
+### Estilos Visuales y Modificadores
 ```html
-<article card="glass" interactive>...</article>
+<!-- Sólido -->
+<span badge="primary" style-type="solid">Solid Badge</span>
+
+<!-- Formato circular Pill -->
+<span badge="success" pill>Pill Badge</span>
+
+<!-- Tamaños -->
+<span badge="primary" pill size="sm">Pequeño</span>
+<span badge="primary" pill size="lg">Grande</span>
 ```
 
-### Slots Estructurados (Header, Body, Footer)
+### Chips Interactivos y Removibles
 ```html
-<article card="elevated">
-  <!-- Cabecera con divisor opcional -->
-  <header card-header divided>
-    <h3 card-title>Título de la Tarjeta</h3>
-    <p card-subtitle>Subtítulo o metadato</p>
-  </header>
-
-  <!-- Contenido principal -->
-  <div card-body>
-    <p>Contenido principal del componente...</p>
-  </div>
-
-  <!-- Pie con botones de acción -->
-  <footer card-footer divided>
-    <button variant="secondary" size="sm">Cancelar</button>
-    <button variant="primary" size="sm">Guardar</button>
-  </footer>
-</article>
+<span chip="primary" pill>
+  <span>HTML5</span>
+  <button dismiss aria-label="Eliminar">×</button>
+</span>
 ```
 
-### Imágenes y Medios
+### Puntos de Estado y Contadores Flotantes
 ```html
-<article card="elevated">
-  <img card-media src="portada.jpg" alt="Portada">
-  <div card-body>...</div>
-</article>
+<!-- Punto de estado con animación de pulso -->
+<div class="avatar" badge-dot="success" pulse>...</div>
+
+<!-- Contador flotante sobre botón o icono -->
+<div badge-container>
+  <button variant="secondary" icon-only>🔔</button>
+  <span badge="danger" badge-float style-type="solid">3</span>
+</div>
 ```
 
 ---
 
-## 🔘 2. Botones Multivariante
+## 🃏 2. Tarjetas y Superficies
+
+* **Modos:** `card="flat|elevated|glass|glow"`
+* **Glassmorphism:** `<article card="glass">...</article>`
+* **Interacción al Hover:** `<article card="glass" interactive>...</article>`
+* **Slots:** `<header card-header divided>`, `<div card-body>`, `<footer card-footer divided>`
+
+---
+
+## 🔘 3. Botones Multivariante
 
 * **Variantes:** `variant="primary|secondary|outline|ghost|success|danger|warning|link"`
-* **Efectos:** `glow` (resplandor de acento), `pill` (bordes redondeados), `block` (100% de ancho).
-* **Estado de Carga:** `<button variant="primary" loading>Guardar</button>` (spinner puro CSS).
+* **Efectos:** `glow`, `pill`, `block`, `icon-only`
+* **Estado de Carga:** `<button variant="primary" loading>Guardar</button>`
 * **Segmented Controls:** `<div button-group><label><input type="radio" checked><span>Día</span></label>...</div>`
 
 ---
 
-## 📝 3. Formularios & Inputs Nativos
+## 📝 4. Formularios & Inputs Nativos
 
 * **Toggle Switches:** `<input type="checkbox" switch checked>`
 * **Checkboxes & Radios:** `<input type="checkbox">` / `<input type="radio">` con checkmark SVG automático.
@@ -104,7 +106,7 @@ Añade `interactive` para elevar la tarjeta suavemente al pasar el ratón:
 
 ---
 
-## ⚡ 4. Primitivas Flexbox & Stacks
+## ⚡ 5. Primitivas Flexbox & Stacks
 
 * **`layout="stack"`**: Columna vertical con espaciado constante.
 * **`layout="row"`**: Fila horizontal centrada.
@@ -116,7 +118,7 @@ Añade `interactive` para elevar la tarjeta suavemente al pasar el ratón:
 
 ---
 
-## 📐 5. Primitivas Grid
+## 📐 6. Primitivas Grid
 
 * **`layout="grid" grid="auto-fit" min-col="sm"`**: Grilla auto-responsiva sin media queries.
 * **`cols="1"` a `cols="12"`**: Sistema de columnas fijas.

@@ -1,0 +1,264 @@
+/* ==========================================================================
+   Badges, Chips & Floating Notification Badges
+   Declarative tags, status pills, dismissible chips & floating counters.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base Badge & Chip Container
+   -------------------------------------------------------------------------- */
+:where([badge], .badge, [chip], .chip) {
+  --badge-bg: rgba(59, 130, 246, 0.15);
+  --badge-color: #60a5fa;
+  --badge-border: rgba(59, 130, 246, 0.3);
+  --badge-glow: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  font-family: inherit;
+  font-size: 0.775rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border-radius: var(--radius-sm);
+  background-color: var(--badge-bg);
+  color: var(--badge-color);
+  border: 1px solid var(--badge-border);
+  box-shadow: var(--badge-glow);
+  transition: all 0.18s ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. Badge Color Variants (Subtle Modern Style by Default)
+   -------------------------------------------------------------------------- */
+
+/* Primary / Blue (Default) */
+:where([badge="primary"], [variant="primary"][badge], [chip="primary"]) {
+  --badge-bg: rgba(59, 130, 246, 0.15);
+  --badge-color: #60a5fa;
+  --badge-border: rgba(59, 130, 246, 0.3);
+  --badge-glow: 0 0 10px rgba(59, 130, 246, 0.2);
+}
+
+/* Secondary / Neutral */
+:where([badge="secondary"], [badge="neutral"], [variant="secondary"][badge], [chip="secondary"]) {
+  --badge-bg: rgba(148, 163, 184, 0.15);
+  --badge-color: #cbd5e1;
+  --badge-border: rgba(148, 163, 184, 0.25);
+  --badge-glow: none;
+}
+
+/* Success / Green */
+:where([badge="success"], [variant="success"][badge], [chip="success"]) {
+  --badge-bg: rgba(16, 185, 129, 0.15);
+  --badge-color: #34d399;
+  --badge-border: rgba(16, 185, 129, 0.3);
+  --badge-glow: 0 0 10px rgba(16, 185, 129, 0.2);
+}
+
+/* Danger / Red */
+:where([badge="danger"], [badge="error"], [variant="danger"][badge], [chip="danger"]) {
+  --badge-bg: rgba(239, 68, 68, 0.15);
+  --badge-color: #f87171;
+  --badge-border: rgba(239, 68, 68, 0.3);
+  --badge-glow: 0 0 10px rgba(239, 68, 68, 0.2);
+}
+
+/* Warning / Amber */
+:where([badge="warning"], [variant="warning"][badge], [chip="warning"]) {
+  --badge-bg: rgba(245, 158, 11, 0.15);
+  --badge-color: #fbbf24;
+  --badge-border: rgba(245, 158, 11, 0.3);
+  --badge-glow: 0 0 10px rgba(245, 158, 11, 0.2);
+}
+
+/* Purple / Violet */
+:where([badge="purple"], [chip="purple"]) {
+  --badge-bg: rgba(168, 85, 247, 0.15);
+  --badge-color: #c084fc;
+  --badge-border: rgba(168, 85, 247, 0.3);
+  --badge-glow: 0 0 10px rgba(168, 85, 247, 0.2);
+}
+
+/* Pink / Rose */
+:where([badge="pink"], [chip="pink"]) {
+  --badge-bg: rgba(236, 72, 153, 0.15);
+  --badge-color: #f472b6;
+  --badge-border: rgba(236, 72, 153, 0.3);
+  --badge-glow: 0 0 10px rgba(236, 72, 153, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   3. Solid & Outline Appearance Modes
+   -------------------------------------------------------------------------- */
+
+/* Solid Style */
+:where([badge][style-type="solid"], [chip][style-type="solid"], [badge-solid]) {
+  color: #ffffff !important;
+}
+:where([badge="primary"][style-type="solid"], [badge-solid="primary"]) { background-color: var(--color-primary); border-color: var(--color-primary); }
+:where([badge="secondary"][style-type="solid"], [badge-solid="secondary"]) { background-color: var(--color-surface); border-color: var(--color-border); }
+:where([badge="success"][style-type="solid"], [badge-solid="success"]) { background-color: var(--color-success); border-color: var(--color-success); }
+:where([badge="danger"][style-type="solid"], [badge-solid="danger"]) { background-color: var(--color-danger); border-color: var(--color-danger); }
+:where([badge="warning"][style-type="solid"], [badge-solid="warning"]) { background-color: var(--color-warning); color: #0b0f19 !important; border-color: var(--color-warning); }
+
+/* Outline Style */
+:where([badge][style-type="outline"], [chip][style-type="outline"], [badge-outline]) {
+  background-color: transparent !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. Modifiers: Pill, Sizes & Glow
+   -------------------------------------------------------------------------- */
+
+/* Pill (Full Rounded) */
+:where([badge][pill], [chip][pill], [pill][badge]) {
+  border-radius: var(--radius-full);
+  padding-inline: 0.75rem;
+}
+
+/* Badge Sizes */
+:where([badge][size="sm"], [chip][size="sm"]) {
+  font-size: 0.7rem;
+  padding: 0.1rem 0.45rem;
+}
+:where([badge][size="sm"][pill], [chip][size="sm"][pill]) {
+  padding-inline: 0.55rem;
+}
+
+:where([badge][size="lg"], [chip][size="lg"]) {
+  font-size: 0.875rem;
+  padding: 0.35rem 0.85rem;
+}
+
+/* Glow Effect */
+:where([badge][glow], [chip][glow]) {
+  box-shadow: var(--badge-glow);
+}
+
+/* --------------------------------------------------------------------------
+   5. Interactive & Dismissible Chips
+   -------------------------------------------------------------------------- */
+:where([chip], [badge][interactive]) {
+  cursor: pointer;
+}
+
+:where([chip]:hover, [badge][interactive]:hover) {
+  filter: brightness(1.2);
+  transform: translateY(-1px);
+}
+
+/* Dismiss / Close button inside chip */
+:where([chip], [badge]) > :where([dismiss], [close], button.close) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.2rem;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 0.95rem;
+  line-height: 1;
+  opacity: 0.65;
+  cursor: pointer;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+:where([chip], [badge]) > :where([dismiss], [close], button.close):hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   6. Notification Dots & Floating Counter Badges
+   -------------------------------------------------------------------------- */
+
+/* Badge Container for relative positioning */
+:where([badge-container], .badge-container) {
+  position: relative !important;
+  display: inline-flex !important;
+  vertical-align: middle;
+}
+
+/* Floating Badge Pill/Counter */
+:where([badge-float], [badge-container] > [badge-float]) {
+  position: absolute !important;
+  top: -6px;
+  right: -6px;
+  transform: translate(25%, -25%);
+  z-index: 10;
+  font-size: 0.675rem !important;
+  padding: 0.15rem 0.45rem !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: 0 0 0 2px var(--color-bg);
+}
+
+/* Floating Position Modifiers */
+:where([badge-float="top-left"]) {
+  top: -6px;
+  left: -6px;
+  right: auto;
+  transform: translate(-25%, -25%);
+}
+:where([badge-float="bottom-right"]) {
+  bottom: -6px;
+  top: auto;
+  right: -6px;
+  transform: translate(25%, 25%);
+}
+:where([badge-float="bottom-left"]) {
+  bottom: -6px;
+  top: auto;
+  left: -6px;
+  right: auto;
+  transform: translate(-25%, 25%);
+}
+
+/* Notification Status Dot */
+:where([badge-dot]) {
+  position: relative !important;
+}
+
+:where([badge-dot])::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--color-danger);
+  box-shadow: 0 0 0 2px var(--color-bg);
+  z-index: 5;
+}
+
+/* Dot Color Variants */
+:where([badge-dot="primary"])::after { background-color: var(--color-primary); }
+:where([badge-dot="success"])::after { background-color: var(--color-success); }
+:where([badge-dot="warning"])::after { background-color: var(--color-warning); }
+:where([badge-dot="danger"])::after,
+:where([badge-dot="error"])::after { background-color: var(--color-danger); }
+
+/* Pulse Animation on Dot */
+:where([badge-dot][pulse])::after {
+  animation: badge-pulse 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.7;
+  }
+}

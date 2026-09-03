@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Badges & Chips Showcase - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+      min-height: 100vh;
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: rgba(19, 27, 46, 0.5);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #1e293b;
+      color: #a5f3fc;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(165, 243, 252, 0.2);
+    }
+
+    .demo-section {
+      background: rgba(19, 27, 46, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Mock avatar */
+    .mock-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: #0b0f19;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div container="md">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
+      <a href="cards.html" class="nav-link">🃏 Cards & Surfaces</a>
+      <a href="badges.html" class="nav-link active">🏷️ Badges & Chips</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Badges, Chips & Notifications</h1>
+      <p>Etiquetas semánticas, chips removibles, puntos de estado animados y badges flotantes para avatares y botones.</p>
+    </header>
+
+    <!-- Demo 1: Variantes Semánticas -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Variantes de Color Semánticas
+        <span class="section-code">badge="primary|success|warning|danger..."</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Estilo moderno sutil con fondo traslúcido y contraste perfecto.
+      </p>
+
+      <div layout="cluster" gap="sm">
+        <span badge="primary">Primary</span>
+        <span badge="secondary">Neutral</span>
+        <span badge="success">Activo</span>
+        <span badge="warning">Pendiente</span>
+        <span badge="danger">Error</span>
+        <span badge="purple">Nuevo</span>
+        <span badge="pink">Pro</span>
+      </div>
+    </div>
+
+    <!-- Demo 2: Estilos Visuales (Subtle, Solid, Outline) -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Estilos Visuales: Sólido y Outline
+        <span class="section-code">style-type="solid|outline"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Elige entre fondos translúcidos, colores sólidos o bordes mínimos transparentes.
+      </p>
+
+      <div layout="stack" gap="md">
+        <!-- Subtle (Default) -->
+        <div layout="cluster" gap="sm" align="center">
+          <span style="font-size: 0.85rem; color: #94a3b8; width: 80px;">Subtle:</span>
+          <span badge="primary">Primary</span>
+          <span badge="success">Success</span>
+          <span badge="danger">Danger</span>
+          <span badge="warning">Warning</span>
+        </div>
+
+        <!-- Solid -->
+        <div layout="cluster" gap="sm" align="center">
+          <span style="font-size: 0.85rem; color: #94a3b8; width: 80px;">Solid:</span>
+          <span badge="primary" style-type="solid">Primary</span>
+          <span badge="success" style-type="solid">Success</span>
+          <span badge="danger" style-type="solid">Danger</span>
+          <span badge="warning" style-type="solid">Warning</span>
+        </div>
+
+        <!-- Outline -->
+        <div layout="cluster" gap="sm" align="center">
+          <span style="font-size: 0.85rem; color: #94a3b8; width: 80px;">Outline:</span>
+          <span badge="primary" style-type="outline">Primary</span>
+          <span badge="success" style-type="outline">Success</span>
+          <span badge="danger" style-type="outline">Danger</span>
+          <span badge="warning" style-type="outline">Warning</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 3: Forma Pill, Tamaños y Glow -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Modificadores de Forma y Tamaño
+        <span class="section-code">pill | size="sm|lg" | glow</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Bordes completamente circulares y escala tipográfica adaptada.
+      </p>
+
+      <div layout="cluster" gap="md" align="center">
+        <span badge="primary" pill size="sm">size="sm"</span>
+        <span badge="primary" pill>Default Pill</span>
+        <span badge="primary" pill size="lg">size="lg"</span>
+        <span badge="purple" pill glow>Purple + Glow</span>
+      </div>
+    </div>
+
+    <!-- Demo 4: Chips Interactivos y Removibles -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        4. Chips Interactivos y Removibles
+        <span class="section-code">&lt;span chip&gt; &lt;button dismiss&gt;×&lt;/button&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Ideales para filtros seleccionados, etiquetas de categorías y correos destinatarios.
+      </p>
+
+      <div layout="cluster" gap="sm">
+        <span chip="primary" pill>
+          <span>HTML5</span>
+          <button dismiss aria-label="Eliminar" onclick="this.parentElement.remove()">×</button>
+        </span>
+
+        <span chip="purple" pill>
+          <span>CSS Grid</span>
+          <button dismiss aria-label="Eliminar" onclick="this.parentElement.remove()">×</button>
+        </span>
+
+        <span chip="success" pill>
+          <span>Flexbox</span>
+          <button dismiss aria-label="Eliminar" onclick="this.parentElement.remove()">×</button>
+        </span>
+
+        <span chip="secondary" pill>
+          <span>JavaScript</span>
+          <button dismiss aria-label="Eliminar" onclick="this.parentElement.remove()">×</button>
+        </span>
+      </div>
+    </div>
+
+    <!-- Demo 5: Puntos de Notificación y Badges Flotantes -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        5. Puntos de Estado y Badges Flotantes
+        <span class="section-code">badge-dot | badge-float | pulse</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Superposición perfecta sobre avatares y botones sin romper el flujo del layout.
+      </p>
+
+      <div layout="stack" gap="lg">
+        <!-- Status Dots on Avatars -->
+        <div>
+          <strong style="font-size: 0.85rem; color: #94a3b8; display: block; margin-bottom: 0.75rem;">
+            Puntos de Estado (Status Dots):
+          </strong>
+          <div layout="cluster" gap="lg" align="center">
+            <!-- Online -->
+            <div class="mock-avatar" badge-dot="success">
+              MD
+            </div>
+
+            <!-- Busy / Danger -->
+            <div class="mock-avatar" badge-dot="danger">
+              JS
+            </div>
+
+            <!-- Pulsing Dot -->
+            <div class="mock-avatar" badge-dot="primary" pulse>
+              AI
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Counters on Buttons -->
+        <div>
+          <strong style="font-size: 0.85rem; color: #94a3b8; display: block; margin-bottom: 0.75rem;">
+            Contadores Flotantes (Floating Badges):
+          </strong>
+          <div layout="cluster" gap="lg" align="center">
+            <!-- Notification bell with count -->
+            <div badge-container>
+              <button variant="secondary" icon-only aria-label="Notificaciones">
+                <svg style="width:18px;height:18px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+              </button>
+              <span badge="danger" badge-float style-type="solid">3</span>
+            </div>
+
+            <!-- Messages with 99+ count -->
+            <div badge-container>
+              <button variant="secondary">
+                <span>Mensajes</span>
+              </button>
+              <span badge="primary" badge-float style-type="solid">99+</span>
+            </div>
+
+            <!-- Cart button with green badge -->
+            <div badge-container>
+              <button variant="primary" glow>
+                <span>Carrito</span>
+              </button>
+              <span badge="success" badge-float style-type="solid">5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
