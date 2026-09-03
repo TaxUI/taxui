@@ -16,6 +16,7 @@
 @import "./components/cards.css";
 @import "./components/badges.css";
 @import "./components/alerts.css";
+@import "./components/avatars.css";
 
 /* 4. Base Container Helper */
 :where([container], .container) {

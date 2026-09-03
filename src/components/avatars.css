@@ -1,0 +1,186 @@
+/* ==========================================================================
+   Avatars & Avatar Groups Primitives
+   Individual avatars, fallback initials, status presence indicators & stacked groups.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base Avatar Container
+   -------------------------------------------------------------------------- */
+:where([avatar], .avatar) {
+  --avatar-size: 2.5rem; /* 40px */
+  --avatar-radius: var(--radius-full);
+  --avatar-bg: #1e293b;
+  --avatar-color: #f8fafc;
+  --avatar-ring: 2px solid var(--color-bg);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  min-width: var(--avatar-size);
+  min-height: var(--avatar-size);
+  max-width: var(--avatar-size);
+  max-height: var(--avatar-size);
+  aspect-ratio: 1 / 1;
+  border-radius: var(--avatar-radius);
+  background-color: var(--avatar-bg);
+  color: var(--avatar-color);
+  font-family: inherit;
+  font-size: calc(var(--avatar-size) * 0.38);
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  user-select: none;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.18s ease;
+}
+
+/* Image Avatar styling: when <img> itself has [avatar] */
+:where(img[avatar]) {
+  width: var(--avatar-size) !important;
+  height: var(--avatar-size) !important;
+  max-width: var(--avatar-size) !important;
+  max-height: var(--avatar-size) !important;
+  min-width: var(--avatar-size) !important;
+  min-height: var(--avatar-size) !important;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--avatar-radius);
+  display: inline-block;
+}
+
+/* Nested image inside avatar container <div avatar><img ...></div> */
+:where([avatar] > img, .avatar > img) {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   2. Avatar Sizes
+   -------------------------------------------------------------------------- */
+:where([avatar][size="xs"], img[avatar][size="xs"]) { --avatar-size: 1.5rem; font-size: 0.65rem; }  /* 24px */
+:where([avatar][size="sm"], img[avatar][size="sm"]) { --avatar-size: 2rem; font-size: 0.75rem; }    /* 32px */
+:where([avatar][size="md"], img[avatar][size="md"]) { --avatar-size: 2.5rem; font-size: 0.9rem; }   /* 40px */
+:where([avatar][size="lg"], img[avatar][size="lg"]) { --avatar-size: 3rem; font-size: 1.1rem; }     /* 48px */
+:where([avatar][size="xl"], img[avatar][size="xl"]) { --avatar-size: 4rem; font-size: 1.4rem; }     /* 64px */
+:where([avatar][size="2xl"], img[avatar][size="2xl"]) { --avatar-size: 5rem; font-size: 1.75rem; } /* 80px */
+
+/* --------------------------------------------------------------------------
+   3. Shapes: Circle & Rounded Square
+   -------------------------------------------------------------------------- */
+:where([avatar][shape="rounded"], img[avatar][shape="rounded"]) {
+  --avatar-radius: var(--radius-md);
+}
+
+:where([avatar][shape="square"], img[avatar][shape="square"]) {
+  --avatar-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   4. Initials & Color Variants
+   -------------------------------------------------------------------------- */
+:where([avatar][variant="primary"]) {
+  --avatar-bg: rgba(59, 130, 246, 0.2);
+  --avatar-color: #38bdf8;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+:where([avatar][variant="gradient"]) {
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: #0b0f19;
+}
+
+:where([avatar][variant="purple"]) {
+  --avatar-bg: rgba(168, 85, 247, 0.2);
+  --avatar-color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+:where([avatar][variant="success"]) {
+  --avatar-bg: rgba(16, 185, 129, 0.2);
+  --avatar-color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+:where([avatar][variant="secondary"]) {
+  --avatar-bg: rgba(148, 163, 184, 0.2);
+  --avatar-color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   5. Presence Status Indicators (Online, Busy, Away, Offline)
+   -------------------------------------------------------------------------- */
+:where([avatar][status])::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: max(8px, calc(var(--avatar-size) * 0.26));
+  height: max(8px, calc(var(--avatar-size) * 0.26));
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--color-bg);
+  z-index: 5;
+}
+
+/* Position overrides */
+:where([avatar][status-pos="top-right"])::after {
+  top: 0px;
+  bottom: auto;
+  right: 0px;
+}
+
+/* Status colors */
+:where([avatar][status="online"])::after { background-color: var(--color-success); }
+:where([avatar][status="busy"])::after,
+:where([avatar][status="dnd"])::after { background-color: var(--color-danger); }
+:where([avatar][status="away"])::after { background-color: var(--color-warning); }
+:where([avatar][status="offline"])::after { background-color: #64748b; }
+
+/* Status pulse animation */
+:where([avatar][status][pulse])::after {
+  animation: avatar-status-pulse 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes avatar-status-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px rgba(16, 185, 129, 0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Avatar Groups (Stacked Avatars)
+   -------------------------------------------------------------------------- */
+:where([avatar-group], .avatar-group) {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+:where([avatar-group] > [avatar], [avatar-group] > .avatar, [avatar-group] > img[avatar]) {
+  box-shadow: 0 0 0 2px var(--color-bg);
+  margin-left: calc(var(--avatar-size) * -0.25);
+  transition: transform 0.2s ease, z-index 0.2s ease, box-shadow 0.2s ease;
+}
+
+:where([avatar-group] > [avatar]:first-child, [avatar-group] > .avatar:first-child, [avatar-group] > img[avatar]:first-child) {
+  margin-left: 0;
+}
+
+/* Interactive Hover Lift on Avatar Group */
+:where([avatar-group] > [avatar]:hover, [avatar-group] > .avatar:hover, [avatar-group] > img[avatar]:hover) {
+  transform: translateY(-3px) scale(1.1);
+  z-index: 10;
+  box-shadow: 0 0 0 2px var(--color-primary), 0 4px 8px rgba(0, 0, 0, 0.4);
+}

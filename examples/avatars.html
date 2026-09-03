@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avatars & Groups Showcase - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+      min-height: 100vh;
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: rgba(19, 27, 46, 0.5);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #1e293b;
+      color: #a5f3fc;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(165, 243, 252, 0.2);
+    }
+
+    .demo-section {
+      background: rgba(19, 27, 46, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body>
+
+  <div container="md">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
+      <a href="cards.html" class="nav-link">🃏 Cards & Surfaces</a>
+      <a href="badges.html" class="nav-link">🏷️ Badges & Chips</a>
+      <a href="alerts.html" class="nav-link">🔔 Alerts & Feedback</a>
+      <a href="avatars.html" class="nav-link active">👤 Avatars</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Avatars & User Groups</h1>
+      <p>Fotos de perfil, iniciales automáticas, indicadores de estado de presencia y grupos apilados interactivos.</p>
+    </header>
+
+    <!-- Demo 1: Fotos e Iniciales -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Fotos e Iniciales de Respaldo
+        <span class="section-code">&lt;img avatar&gt; | &lt;div avatar&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Soporta fotos con recorte automático de proporciones y texto de iniciales centrado.
+      </p>
+
+      <div layout="cluster" gap="md" align="center">
+        <!-- Photo Avatar -->
+        <img avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="Usuario 1">
+        <img avatar src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80" alt="Usuario 2">
+        <img avatar src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=80" alt="Usuario 3">
+
+        <!-- Initials Avatars -->
+        <div avatar variant="gradient">MD</div>
+        <div avatar variant="primary">AI</div>
+        <div avatar variant="purple">JS</div>
+        <div avatar variant="success">OK</div>
+        <div avatar variant="secondary">GH</div>
+      </div>
+    </div>
+
+    <!-- Demo 2: Escala de Tamaños -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Escala de Tamaños
+        <span class="section-code">size="xs|sm|md|lg|xl|2xl"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Desde 24px hasta 80px con cálculo tipográfico automático.
+      </p>
+
+      <div layout="cluster" gap="lg" align="center">
+        <div avatar size="xs" variant="primary">XS</div>
+        <div avatar size="sm" variant="gradient">SM</div>
+        <div avatar size="md" variant="purple">MD</div>
+        <div avatar size="lg" variant="success">LG</div>
+        <div avatar size="xl" variant="primary">XL</div>
+        <div avatar size="2xl" variant="gradient">2XL</div>
+      </div>
+    </div>
+
+    <!-- Demo 3: Formas -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Formas Geométricas
+        <span class="section-code">shape="circle|rounded|square"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Círculo completo (por defecto), bordes redondeados y cuadrado suave.
+      </p>
+
+      <div layout="cluster" gap="lg" align="center">
+        <div avatar size="xl" variant="gradient">Circle</div>
+        <div avatar size="xl" shape="rounded" variant="primary">Round</div>
+        <div avatar size="xl" shape="square" variant="purple">Square</div>
+      </div>
+    </div>
+
+    <!-- Demo 4: Estados de Presencia -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        4. Estados de Presencia y Conexión
+        <span class="section-code">status="online|busy|away|offline" pulse</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Indicador de conexión ubicado en la esquina con anillo de separación y animación de pulso.
+      </p>
+
+      <div layout="cluster" gap="xl" align="center">
+        <!-- Online with pulse -->
+        <div avatar size="lg" status="online" pulse variant="gradient">
+          ON
+        </div>
+
+        <!-- Busy / DND -->
+        <div avatar size="lg" status="busy" variant="primary">
+          BY
+        </div>
+
+        <!-- Away -->
+        <div avatar size="lg" status="away" variant="purple">
+          AW
+        </div>
+
+        <!-- Offline -->
+        <div avatar size="lg" status="offline" variant="secondary">
+          OFF
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 5: Grupos de Avatares Apilados -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        5. Grupos de Avatares Apilados
+        <span class="section-code">&lt;div avatar-group&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Superposición perfecta con márgenes negativos, anillo de recorte y elevación interactiva al pasar el cursor.
+      </p>
+
+      <div layout="stack" gap="lg">
+        <!-- Medium Avatar Group -->
+        <div layout="split" align="center">
+          <span style="color: var(--color-text-muted); font-size: 0.9rem;">Equipo de desarrollo:</span>
+          <div avatar-group>
+            <img avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="User 1">
+            <img avatar src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80" alt="User 2">
+            <img avatar src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=80" alt="User 3">
+            <div avatar variant="gradient">MD</div>
+            <div avatar variant="secondary" style="font-size: 0.75rem;">+5</div>
+          </div>
+        </div>
+
+        <!-- Large Avatar Group with Status -->
+        <div layout="split" align="center">
+          <span style="color: var(--color-text-muted); font-size: 0.9rem;">Participantes en vivo (size="lg"):</span>
+          <div avatar-group>
+            <div avatar size="lg" status="online" pulse variant="gradient">MD</div>
+            <div avatar size="lg" status="online" variant="primary">AI</div>
+            <div avatar size="lg" status="busy" variant="purple">JS</div>
+            <div avatar size="lg" variant="secondary" style="font-size: 0.85rem;">+12</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -20,6 +20,7 @@ frameworkhtml/
 │   │   ├── cards.css       # Tarjetas, Glassmorphism, elevación y slots
 │   │   ├── badges.css      # Badges semánticos, chips removibles y notificaciones
 │   │   ├── alerts.css      # Alertas, callouts con borde lateral y banners
+│   │   ├── avatars.css     # Avatares, estados de presencia y grupos apilados
 │   │   └── forms.css       # Formularios, switches, checkboxes, selects e input groups
 │   └── main.css            # Archivo maestro de importación
 └── examples/
@@ -29,60 +30,67 @@ frameworkhtml/
     ├── buttons.html        # Showcase de Botones Multivariante
     ├── cards.html          # Showcase de Tarjetas y Superficies
     ├── badges.html         # Showcase de Badges, Chips y Notificaciones
-    └── alerts.html         # Showcase de Alertas y Banners
+    ├── alerts.html         # Showcase de Alertas y Banners
+    └── avatars.html        # Showcase de Avatares y Grupos de Usuarios
 ```
 
 ---
 
-## 🔔 1. Alertas & Mensajes de Feedback
+## 👤 1. Avatares & Grupos de Usuarios
 
-### Variantes Semánticas
+### Fotos e Iniciales Automáticas
 ```html
-<div alert="info">
-  <svg>...</svg>
-  <div alert-content>
-    <strong alert-title>Información</strong>
-    <p alert-description>Detalles de la notificación...</p>
-  </div>
-</div>
+<!-- Avatar con imagen -->
+<img avatar src="usuario.jpg" alt="Foto">
 
-<div alert="success">...</div>
-<div alert="warning">...</div>
-<div alert="danger">...</div>
+<!-- Avatar con iniciales centradas -->
+<div avatar variant="gradient">MD</div>
+<div avatar variant="primary">AI</div>
 ```
 
-### Borde de Acento Lateral & Descartable
+### Escala de Tamaños y Formas
 ```html
-<div alert="warning" border="left">
-  <svg>...</svg>
-  <div alert-content>
-    <strong alert-title>Almacenamiento casi lleno</strong>
-    <p alert-description>Te quedan 500 MB libres.</p>
-    <div alert-actions>
-      <button variant="warning" size="sm">Ampliar</button>
-    </div>
-  </div>
-  <button alert-close aria-label="Cerrar">×</button>
-</div>
+<!-- Tamaños de 24px a 80px -->
+<div avatar size="xs">XS</div>
+<div avatar size="md">MD</div>
+<div avatar size="2xl">2XL</div>
+
+<!-- Formas -->
+<div avatar shape="circle">...</div>   <!-- Círculo (Default) -->
+<div avatar shape="rounded">...</div>  <!-- Bordes redondeados -->
+<div avatar shape="square">...</div>   <!-- Cuadrado suave -->
 ```
 
-### Banners de Anuncio y Toasts
+### Estados de Presencia
 ```html
-<!-- Banner superior de ancho completo -->
-<aside banner alert="info">
-  <span>🚀 ¡Nueva versión disponible!</span>
-  <a href="#">Ver más →</a>
-</aside>
+<div avatar status="online" pulse>...</div>
+<div avatar status="busy">...</div>
+<div avatar status="away">...</div>
+<div avatar status="offline">...</div>
+```
 
-<!-- Toast compacto flotante -->
-<div alert="info" pill glow>
-  <p alert-description>Presiona Ctrl + K para buscar.</p>
+### Grupos de Avatares Apilados
+```html
+<div avatar-group>
+  <img avatar src="user1.jpg">
+  <img avatar src="user2.jpg">
+  <div avatar variant="gradient">MD</div>
+  <div avatar variant="secondary">+5</div>
 </div>
 ```
 
 ---
 
-## 🏷️ 2. Badges, Chips & Notificaciones Flotantes
+## 🔔 2. Alertas & Mensajes de Feedback
+
+* **Variantes:** `alert="info|success|warning|danger|neutral"`
+* **Borde Lateral:** `<div alert="warning" border="left">...</div>`
+* **Slots:** `alert-icon`, `alert-title`, `alert-description`, `alert-actions`, `<button alert-close>`
+* **Banners & Toasts:** `<aside banner alert="info">` y `<div alert="info" pill glow>`
+
+---
+
+## 🏷️ 3. Badges, Chips & Notificaciones Flotantes
 
 * **Variantes:** `badge="primary|success|warning|danger|purple"`
 * **Estilos:** `style-type="solid|outline"` y modificador `pill`
@@ -91,7 +99,7 @@ frameworkhtml/
 
 ---
 
-## 🃏 3. Tarjetas y Superficies
+## 🃏 4. Tarjetas y Superficies
 
 * **Modos:** `card="flat|elevated|glass|glow"`
 * **Glassmorphism:** `<article card="glass">...</article>`
@@ -100,7 +108,7 @@ frameworkhtml/
 
 ---
 
-## 🔘 4. Botones Multivariante
+## 🔘 5. Botones Multivariante
 
 * **Variantes:** `variant="primary|secondary|outline|ghost|success|danger|warning|link"`
 * **Efectos:** `glow`, `pill`, `block`, `icon-only`
@@ -109,7 +117,7 @@ frameworkhtml/
 
 ---
 
-## 📝 5. Formularios & Inputs Nativos
+## 📝 6. Formularios & Inputs Nativos
 
 * **Toggle Switches:** `<input type="checkbox" switch checked>`
 * **Checkboxes & Radios:** `<input type="checkbox">` / `<input type="radio">` con checkmark SVG automático.
@@ -119,7 +127,7 @@ frameworkhtml/
 
 ---
 
-## ⚡ 6. Primitivas Flexbox & Stacks
+## ⚡ 7. Primitivas Flexbox & Stacks
 
 * **`layout="stack"`**: Columna vertical con espaciado constante.
 * **`layout="row"`**: Fila horizontal centrada.
@@ -131,7 +139,7 @@ frameworkhtml/
 
 ---
 
-## 📐 7. Primitivas Grid
+## 📐 8. Primitivas Grid
 
 * **`layout="grid" grid="auto-fit" min-col="sm"`**: Grilla auto-responsiva sin media queries.
 * **`cols="1"` a `cols="12"`**: Sistema de columnas fijas.
