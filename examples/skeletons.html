@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es" theme="dark" theme-accent="blue" id="theme-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skeletons & Placeholders Showcase - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: var(--color-surface);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+      background: var(--color-primary-glow);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: var(--color-surface-hover);
+      color: var(--color-primary);
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+
+    .demo-section {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--card-shadow);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .demo-card-box {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div container="lg">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
+      <a href="cards.html" class="nav-link">🃏 Cards & Surfaces</a>
+      <a href="badges.html" class="nav-link">🏷️ Badges & Chips</a>
+      <a href="alerts.html" class="nav-link">🔔 Alerts & Feedback</a>
+      <a href="avatars.html" class="nav-link">👤 Avatars</a>
+      <a href="tables.html" class="nav-link">📊 Tables</a>
+      <a href="modals.html" class="nav-link">🪟 Modals</a>
+      <a href="accordions.html" class="nav-link">📂 Accordions</a>
+      <a href="tooltips.html" class="nav-link">💬 Tooltips</a>
+      <a href="utilities.html" class="nav-link">🛠️ Utilities</a>
+      <a href="themes.html" class="nav-link">🎨 Themes</a>
+      <a href="skeletons.html" class="nav-link active">💀 Skeletons</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Skeletons & Loading Placeholders</h1>
+      <p>Pantallas de carga y placeholders fluidos sin JavaScript: efecto onda shimmer acelerado por GPU, pulso y formas semánticas adaptables a temas.</p>
+    </header>
+
+    <!-- Controls Bar -->
+    <div class="demo-section" layout="row-responsive" justify="space-between" align="center" gap="md">
+      <div layout="row" align="center" gap="sm">
+        <span style="font-weight: 600; font-size: 0.9rem;">Animación:</span>
+        <div button-group>
+          <button id="anim-shimmer" variant="primary" onclick="setSkeletonType('shimmer')">🌊 Shimmer (Onda)</button>
+          <button id="anim-pulse" variant="ghost" onclick="setSkeletonType('pulse')">💓 Pulse</button>
+          <button id="anim-static" variant="ghost" onclick="setSkeletonType('static')">⏹️ Estático</button>
+        </div>
+      </div>
+
+      <div layout="row" align="center" gap="sm">
+        <span style="font-weight: 600; font-size: 0.9rem;">Tema:</span>
+        <div button-group>
+          <button id="theme-dark" variant="primary" onclick="setThemeMode('dark')">🌙 Oscuro</button>
+          <button id="theme-light" variant="ghost" onclick="setThemeMode('light')">☀️ Claro</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 1: Formas Semánticas Primitivas -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Formas Semánticas Básicas
+        <span class="section-code">skeleton="text|title|circle|media|button|badge"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Primitivas listas para simular cualquier elemento de la interfaz manteniendo proporciones reales.
+      </p>
+
+      <div layout="grid" cols="1" cols-md="3" gap="lg" id="skeleton-container">
+        <!-- Text & Heading Placeholders -->
+        <div class="demo-card-box" layout="stack" gap="md">
+          <strong style="font-size: 0.9rem; color: var(--color-primary);">Líneas de Texto & Títulos</strong>
+          <div skeleton="title"></div>
+          <div skeleton="text"></div>
+          <div skeleton="text" w="80%"></div>
+          <div skeleton="text" w="60%"></div>
+        </div>
+
+        <!-- Avatars & Circles -->
+        <div class="demo-card-box" layout="stack" gap="md">
+          <strong style="font-size: 0.9rem; color: var(--color-primary);">Avatares & Círculos</strong>
+          <div layout="row" align="center" gap="sm">
+            <div skeleton="circle" size="xs"></div>
+            <div skeleton="circle" size="sm"></div>
+            <div skeleton="circle" size="md"></div>
+            <div skeleton="circle" size="lg"></div>
+            <div skeleton="circle" size="xl"></div>
+          </div>
+          <div layout="row" align="center" gap="sm" style="margin-top: 0.5rem;">
+            <div skeleton="circle" size="sm"></div>
+            <div skeleton="text" w="60%"></div>
+          </div>
+        </div>
+
+        <!-- UI Elements: Buttons, Badges, Inputs -->
+        <div class="demo-card-box" layout="stack" gap="md">
+          <strong style="font-size: 0.9rem; color: var(--color-primary);">Controles e Inputs</strong>
+          <div layout="row" gap="sm">
+            <div skeleton="badge"></div>
+            <div skeleton="badge"></div>
+          </div>
+          <div skeleton="input"></div>
+          <div layout="row" gap="sm">
+            <div skeleton="button"></div>
+            <div skeleton="button" style="width: 5rem;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 2: Composición Real: Tarjeta de Artículo / E-Commerce -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Composición Completa: Tarjetas de Producto / Artículo
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Comparación directa entre una tarjeta en estado de carga (Skeleton) y la tarjeta con datos cargados.
+      </p>
+
+      <div layout="grid" cols="1" cols-md="2" gap="lg">
+        <!-- Skeleton Card -->
+        <div card surface>
+          <div skeleton="media" style="border-radius: 0; aspect-ratio: 16/9;"></div>
+          <div card-body layout="stack" gap="md">
+            <div layout="row" justify="space-between" align="center">
+              <div skeleton="badge"></div>
+              <div skeleton="text" style="width: 4rem;"></div>
+            </div>
+            <div skeleton="title" w="90%"></div>
+            <div skeleton="paragraph">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div layout="row" align="center" justify="space-between" style="margin-top: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--color-border);">
+              <div layout="row" align="center" gap="sm">
+                <div skeleton="circle" size="sm"></div>
+                <div skeleton="text" style="width: 6rem;"></div>
+              </div>
+              <div skeleton="button" style="width: 5.5rem; height: 2rem;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loaded Card (Target) -->
+        <div card surface>
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80" alt="Cover" card-media style="aspect-ratio: 16/9;">
+          <div card-body layout="stack" gap="md">
+            <div layout="row" justify="space-between" align="center">
+              <span badge="primary" size="sm">Frontend CSS</span>
+              <span style="font-size: 0.8rem; color: var(--color-text-muted);">Hace 5 min</span>
+            </div>
+            <h3 card-title>Arquitectura de Componentes Declarativos</h3>
+            <p card-subtitle style="line-height: 1.5;">
+              Aprende cómo construir una interfaz rápida, accesible y sin fatiga eliminando JavaScript innecesario y aprovechando tokens nativos.
+            </p>
+            <div layout="row" align="center" justify="space-between" style="margin-top: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--color-border);">
+              <div layout="row" align="center" gap="sm">
+                <div avatar="sm" style="background: var(--color-primary); color: #fff; font-weight: 700; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; width: 2rem; height: 2rem;">JS</div>
+                <span style="font-size: 0.875rem; font-weight: 500;">Juan Pérez</span>
+              </div>
+              <button variant="primary" size="sm">Leer Más</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 3: Feed de Usuarios & Tabla de Datos -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Feed de Usuarios & Filas de Tablas
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Placeholders para listas de contactos, notificaciones y tablas de datos.
+      </p>
+
+      <div layout="grid" cols="1" cols-md="2" gap="lg">
+        <!-- User List / Activity Skeleton -->
+        <div class="demo-card-box" layout="stack" gap="md">
+          <strong style="font-size: 0.95rem; color: var(--color-text);">Lista de Contactos (Cargando...)</strong>
+
+          <!-- Item 1 -->
+          <div layout="row" align="center" justify="space-between" gap="md" style="padding-bottom: 0.75rem; border-bottom: 1px solid var(--color-border);">
+            <div layout="row" align="center" gap="sm" style="flex: 1;">
+              <div skeleton="circle" size="md"></div>
+              <div layout="stack" gap="xs" style="flex: 1;">
+                <div skeleton="text" w="60%"></div>
+                <div skeleton="text" w="40%"></div>
+              </div>
+            </div>
+            <div skeleton="button" style="width: 4.5rem; height: 1.85rem;"></div>
+          </div>
+
+          <!-- Item 2 -->
+          <div layout="row" align="center" justify="space-between" gap="md" style="padding-bottom: 0.75rem; border-bottom: 1px solid var(--color-border);">
+            <div layout="row" align="center" gap="sm" style="flex: 1;">
+              <div skeleton="circle" size="md"></div>
+              <div layout="stack" gap="xs" style="flex: 1;">
+                <div skeleton="text" w="75%"></div>
+                <div skeleton="text" w="50%"></div>
+              </div>
+            </div>
+            <div skeleton="button" style="width: 4.5rem; height: 1.85rem;"></div>
+          </div>
+
+          <!-- Item 3 -->
+          <div layout="row" align="center" justify="space-between" gap="md">
+            <div layout="row" align="center" gap="sm" style="flex: 1;">
+              <div skeleton="circle" size="md"></div>
+              <div layout="stack" gap="xs" style="flex: 1;">
+                <div skeleton="text" w="50%"></div>
+                <div skeleton="text" w="30%"></div>
+              </div>
+            </div>
+            <div skeleton="button" style="width: 4.5rem; height: 1.85rem;"></div>
+          </div>
+        </div>
+
+        <!-- Table Row Placeholders -->
+        <div class="demo-card-box" layout="stack" gap="md">
+          <strong style="font-size: 0.95rem; color: var(--color-text);">Tabla de Transacciones (Cargando...)</strong>
+
+          <div table-container style="border: none; box-shadow: none;">
+            <table table>
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Estado</th>
+                  <th>Monto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div layout="row" align="center" gap="xs">
+                      <div skeleton="circle" size="xs"></div>
+                      <div skeleton="text" style="width: 6rem;"></div>
+                    </div>
+                  </td>
+                  <td><div skeleton="badge"></div></td>
+                  <td><div skeleton="text" style="width: 4rem;"></div></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div layout="row" align="center" gap="xs">
+                      <div skeleton="circle" size="xs"></div>
+                      <div skeleton="text" style="width: 7.5rem;"></div>
+                    </div>
+                  </td>
+                  <td><div skeleton="badge"></div></td>
+                  <td><div skeleton="text" style="width: 3.5rem;"></div></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div layout="row" align="center" gap="xs">
+                      <div skeleton="circle" size="xs"></div>
+                      <div skeleton="text" style="width: 5rem;"></div>
+                    </div>
+                  </td>
+                  <td><div skeleton="badge"></div></td>
+                  <td><div skeleton="text" style="width: 4.5rem;"></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 4: Modificadores de Ancho y Altura -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        4. Modificadores de Ancho y Altura
+        <span class="section-code">w="25%|33%|50%|75%|full"</span>
+        <span class="section-code">h="xs|sm|md|lg|xl"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Control fino de dimensiones sin estilos inline.
+      </p>
+
+      <div layout="stack" gap="sm">
+        <div skeleton="text" w="25%"></div>
+        <div skeleton="text" w="33%"></div>
+        <div skeleton="text" w="50%"></div>
+        <div skeleton="text" w="75%"></div>
+        <div skeleton="text" w="90%"></div>
+        <div skeleton="text" w="full"></div>
+      </div>
+
+      <div layout="grid" cols="2" cols-md="4" gap="md" style="margin-top: 1.5rem;">
+        <div>
+          <span style="font-size: 0.75rem; color: var(--color-text-muted); display: block; margin-bottom: 0.25rem;">h="sm" (1.25rem)</span>
+          <div skeleton h="sm"></div>
+        </div>
+        <div>
+          <span style="font-size: 0.75rem; color: var(--color-text-muted); display: block; margin-bottom: 0.25rem;">h="md" (2.5rem)</span>
+          <div skeleton h="md"></div>
+        </div>
+        <div>
+          <span style="font-size: 0.75rem; color: var(--color-text-muted); display: block; margin-bottom: 0.25rem;">h="lg" (5rem)</span>
+          <div skeleton h="lg"></div>
+        </div>
+        <div>
+          <span style="font-size: 0.75rem; color: var(--color-text-muted); display: block; margin-bottom: 0.25rem;">h="xl" (10rem)</span>
+          <div skeleton h="xl"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function setSkeletonType(type) {
+      const skeletons = document.querySelectorAll('[skeleton]');
+      skeletons.forEach(el => {
+        const shape = el.getAttribute('skeleton');
+        // If it's a semantic shape, we can set skeleton-animation or swap attribute
+        if (type === 'pulse') {
+          el.setAttribute('skeleton-pulse', '');
+          el.removeAttribute('skeleton-static');
+        } else if (type === 'static') {
+          el.setAttribute('skeleton-static', '');
+          el.removeAttribute('skeleton-pulse');
+        } else {
+          el.removeAttribute('skeleton-pulse');
+          el.removeAttribute('skeleton-static');
+        }
+      });
+
+      const btnShimmer = document.getElementById('anim-shimmer');
+      const btnPulse = document.getElementById('anim-pulse');
+      const btnStatic = document.getElementById('anim-static');
+
+      [btnShimmer, btnPulse, btnStatic].forEach(b => b.setAttribute('variant', 'ghost'));
+      if (type === 'shimmer') btnShimmer.setAttribute('variant', 'primary');
+      if (type === 'pulse') btnPulse.setAttribute('variant', 'primary');
+      if (type === 'static') btnStatic.setAttribute('variant', 'primary');
+    }
+
+    function setThemeMode(mode) {
+      document.documentElement.setAttribute('theme', mode);
+      document.documentElement.setAttribute('data-theme', mode);
+
+      const btnDark = document.getElementById('theme-dark');
+      const btnLight = document.getElementById('theme-light');
+
+      if (mode === 'dark') {
+        btnDark.setAttribute('variant', 'primary');
+        btnLight.setAttribute('variant', 'ghost');
+      } else {
+        btnDark.setAttribute('variant', 'ghost');
+        btnLight.setAttribute('variant', 'primary');
+      }
+    }
+  </script>
+
+</body>
+</html>

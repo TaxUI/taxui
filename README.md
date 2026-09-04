@@ -26,6 +26,7 @@ frameworkhtml/
 │   │   ├── modals.css      # Modales nativos HTML5 <dialog>, drawers y bottom sheets
 │   │   ├── accordions.css  # Acordeones nativos <details>, chevrons y single-open
 │   │   ├── tooltips.css    # Tooltips puros en CSS con flechas y 4 posiciones
+│   │   ├── skeletons.css   # Placeholders de carga, shimmer GPU y formas semánticas
 │   │   └── forms.css       # Formularios, switches, checkboxes, selects e input groups
 │   ├── utilities/
 │   │   └── utilities.css   # Truncado de texto, line-clamp, aspect-ratios y media-frame
@@ -44,12 +45,37 @@ frameworkhtml/
     ├── accordions.html     # Showcase de Acordeones y Colapsables
     ├── tooltips.html       # Showcase de Tooltips Puros en CSS
     ├── utilities.html      # Showcase de Utilidades de Truncado & Aspect Ratio
-    └── themes.html         # Showcase de Sistema de Temas & Dark/Light Mode
+    ├── themes.html         # Showcase de Sistema de Temas & Dark/Light Mode
+    └── skeletons.html      # Showcase de Skeletons & Placeholders de Carga
 ```
 
 ---
 
-## 🎨 1. Sistema de Temas & Modo Oscuro/Claro
+## 💀 1. Skeletons & Placeholders de Carga
+
+```html
+<!-- Formas Semánticas con Onda Shimmer Fluida -->
+<div skeleton="circle" size="md"></div>
+<div skeleton="title" w="75%"></div>
+<div skeleton="text" w="100%"></div>
+<div skeleton="button"></div>
+
+<!-- Animaciones Declarativas -->
+<div skeleton="text" skeleton="shimmer"></div> <!-- Onda Shimmer (Default) -->
+<div skeleton="text" skeleton="pulse"></div>   <!-- Pulso de Opacidad -->
+<div skeleton="text" skeleton="static"></div>  <!-- Bloque Estático -->
+
+<!-- Helper de Párrafo Multilínea -->
+<div skeleton="paragraph">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+```
+
+---
+
+## 🎨 2. Sistema de Temas & Modo Oscuro/Claro
 
 ### Modo Global
 ```html
@@ -79,7 +105,7 @@ frameworkhtml/
 
 ---
 
-## 🛠️ 2. Utilidades de Truncado & Aspect Ratio
+## 🛠️ 3. Utilidades de Truncado & Aspect Ratio
 
 * **Truncado 1 Línea:** `<p truncate>...</p>`
 * **Clamping Multilínea:** `<p clamp="2">...</p>` a `<p clamp="6">...</p>`
@@ -88,7 +114,7 @@ frameworkhtml/
 
 ---
 
-## 💬 3. Tooltips Puros en CSS (Zero JS)
+## 💬 4. Tooltips Puros en CSS (Zero JS)
 
 * **Posicionamiento:** `<button tooltip="Texto" tooltip-pos="top|bottom|left|right">`
 * **Variantes de Color:** `tooltip-variant="primary|success|danger|glass"`
@@ -96,7 +122,7 @@ frameworkhtml/
 
 ---
 
-## 📂 4. Acordeones & Colapsables (`<details>`)
+## 📂 5. Acordeones & Colapsables (`<details>`)
 
 * **Acordeón Conectado:** `<div accordion><details><summary>Título</summary><div accordion-body>...</div></details></div>`
 * **Cierre Automático Excluyente:** `<details name="faq-group">`
@@ -104,7 +130,7 @@ frameworkhtml/
 
 ---
 
-## 🪟 5. Modales Nativos & Drawers (`<dialog>`)
+## 🪟 6. Modales Nativos & Drawers (`<dialog>`)
 
 * **Base:** `<dialog size="sm|md|lg|fullscreen">` con apertura nativa `.showModal()` y cierre `Esc`.
 * **Slots:** `<header modal-header divided>`, `<div modal-body>`, `<footer modal-footer divided>`.
@@ -113,7 +139,7 @@ frameworkhtml/
 
 ---
 
-## 📊 6. Tablas de Datos Responsivas
+## 📊 7. Tablas de Datos Responsivas
 
 * **Contenedor:** `<div table-container><table striped>...</table></div>`
 * **Densidades:** `table[density="compact|relaxed"]`
@@ -122,7 +148,7 @@ frameworkhtml/
 
 ---
 
-## 👤 7. Avatares & Grupos de Usuarios
+## 👤 8. Avatares & Grupos de Usuarios
 
 * **Fotos e Iniciales:** `<img avatar src="user.jpg">` o `<div avatar variant="gradient">MD</div>`
 * **Escala de Tamaños:** `size="xs|sm|md|lg|xl|2xl"`
@@ -132,7 +158,7 @@ frameworkhtml/
 
 ---
 
-## 🔔 8. Alertas & Mensajes de Feedback
+## 🔔 9. Alertas & Mensajes de Feedback
 
 * **Variantes:** `alert="info|success|warning|danger|neutral"`
 * **Borde Lateral:** `<div alert="warning" border="left">...</div>`
@@ -141,7 +167,7 @@ frameworkhtml/
 
 ---
 
-## 🏷️ 9. Badges, Chips & Notificaciones Flotantes
+## 🏷️ 10. Badges, Chips & Notificaciones Flotantes
 
 * **Variantes:** `badge="primary|success|warning|danger|purple"`
 * **Estilos:** `style-type="solid|outline"` y modificador `pill`
@@ -150,7 +176,7 @@ frameworkhtml/
 
 ---
 
-## 🃏 10. Tarjetas y Superficies
+## 🃏 11. Tarjetas y Superficies
 
 * **Modos:** `card="flat|elevated|glass|glow"`
 * **Glassmorphism:** `<article card="glass">...</article>`
@@ -159,7 +185,7 @@ frameworkhtml/
 
 ---
 
-## 🔘 11. Botones Multivariante
+## 🔘 12. Botones Multivariante
 
 * **Variantes:** `variant="primary|secondary|outline|ghost|success|danger|warning|link"`
 * **Efectos:** `glow`, `pill`, `block`, `icon-only`
@@ -168,7 +194,7 @@ frameworkhtml/
 
 ---
 
-## 📝 12. Formularios & Inputs Nativos
+## 📝 13. Formularios & Inputs Nativos
 
 * **Toggle Switches:** `<input type="checkbox" switch checked>`
 * **Checkboxes & Radios:** `<input type="checkbox">` / `<input type="radio">` con checkmark SVG automático.
@@ -178,7 +204,7 @@ frameworkhtml/
 
 ---
 
-## ⚡ 13. Primitivas Flexbox & Stacks
+## ⚡ 14. Primitivas Flexbox & Stacks
 
 * **`layout="stack"`**: Columna vertical con espaciado constante.
 * **`layout="row"`**: Fila horizontal centrada.
@@ -190,7 +216,7 @@ frameworkhtml/
 
 ---
 
-## 📐 14. Primitivas Grid
+## 📐 15. Primitivas Grid
 
 * **`layout="grid" grid="auto-fit" min-col="sm"`**: Grilla auto-responsiva sin media queries.
 * **`cols="1"` a `cols="12"`**: Sistema de columnas fijas.

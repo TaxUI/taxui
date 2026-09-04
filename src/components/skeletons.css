@@ -1,0 +1,211 @@
+/* ==========================================================================
+   Skeleton Screens & Loading Placeholders Primitives
+   Declarative, zero-JavaScript shimmer and pulse placeholders for modern UX.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base Skeleton Primitive
+   -------------------------------------------------------------------------- */
+:where([skeleton], .skeleton, [placeholder-skeleton]) {
+  --skeleton-base-bg: var(--skeleton-bg, var(--color-surface-hover));
+  --skeleton-highlight: var(--skeleton-shimmer-color, rgba(255, 255, 255, 0.08));
+  --skeleton-radius: var(--radius-md);
+  --skeleton-duration: 1.8s;
+
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--skeleton-base-bg);
+  border-radius: var(--skeleton-radius);
+  user-select: none;
+  pointer-events: none;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   2. Shimmer Wave Animation (Default & skeleton="shimmer")
+   -------------------------------------------------------------------------- */
+:where([skeleton]:not([skeleton="pulse"]):not([skeleton="static"]), 
+       [skeleton="shimmer"], 
+       [skeleton-shimmer],
+       .skeleton:not(.skeleton-pulse):not(.skeleton-static))::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--skeleton-highlight) 50%,
+    transparent 100%
+  );
+  animation: skeleton-shimmer var(--skeleton-duration) cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Pulse Animation (skeleton="pulse")
+   -------------------------------------------------------------------------- */
+:where([skeleton="pulse"], [skeleton-pulse], .skeleton-pulse) {
+  animation: skeleton-pulse var(--skeleton-duration) ease-in-out infinite;
+}
+
+:where([skeleton="pulse"], [skeleton-pulse], .skeleton-pulse)::after {
+  display: none !important;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Static Mode (skeleton="static")
+   -------------------------------------------------------------------------- */
+:where([skeleton="static"], [skeleton-static], .skeleton-static) {
+  animation: none !important;
+}
+
+:where([skeleton="static"], [skeleton-static], .skeleton-static)::after {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Animation Speed Modifiers
+   -------------------------------------------------------------------------- */
+:where([skeleton-speed="fast"]) { --skeleton-duration: 1.1s; }
+:where([skeleton-speed="slow"]) { --skeleton-duration: 2.5s; }
+
+/* --------------------------------------------------------------------------
+   6. Semantic Shapes & Pre-built Types
+   -------------------------------------------------------------------------- */
+
+/* Text Line */
+:where([skeleton="text"], [skeleton-text]) {
+  height: 0.875em;
+  min-height: 0.875rem;
+  margin-block: 0.35rem;
+  border-radius: var(--radius-sm);
+  width: 100%;
+}
+
+/* Title / Heading Line */
+:where([skeleton="title"], [skeleton="heading"], [skeleton-title]) {
+  height: 1.5em;
+  min-height: 1.5rem;
+  margin-block: 0.4rem;
+  border-radius: var(--radius-sm);
+  width: 70%;
+}
+
+/* Paragraph Container Helper (Simulates naturally wrapped text) */
+:where([skeleton-paragraph], [skeleton="paragraph"]) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+:where([skeleton-paragraph] > *, [skeleton="paragraph"] > *) {
+  height: 0.875em;
+  border-radius: var(--radius-sm);
+  background-color: var(--skeleton-base-bg, var(--skeleton-bg, var(--color-surface-hover)));
+}
+
+:where([skeleton-paragraph] > *:last-child, [skeleton="paragraph"] > *:last-child) {
+  width: 60%;
+}
+
+/* Circle / Avatar */
+:where([skeleton="circle"], [skeleton="avatar"], [skeleton-circle], [skeleton-avatar]) {
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1;
+  width: var(--skeleton-size, 2.5rem);
+  height: var(--skeleton-size, 2.5rem);
+  flex-shrink: 0;
+}
+
+/* Media / Image / Thumbnail */
+:where([skeleton="media"], [skeleton="image"], [skeleton-media]) {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+}
+
+/* Button Skeleton */
+:where([skeleton="button"], [skeleton-button]) {
+  height: 2.5rem;
+  width: 7.5rem;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+/* Input / Form Control Skeleton */
+:where([skeleton="input"], [skeleton-input]) {
+  height: 2.65rem;
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+
+/* Badge / Pill Skeleton */
+:where([skeleton="badge"], [skeleton-badge]) {
+  height: 1.4rem;
+  width: 4.5rem;
+  border-radius: var(--radius-full);
+}
+
+/* --------------------------------------------------------------------------
+   7. Size Modifiers for Avatars & Blocks (size="xs|sm|md|lg|xl|2xl")
+   -------------------------------------------------------------------------- */
+:where([skeleton][size="xs"], [skeleton-circle][size="xs"]) { --skeleton-size: 1.5rem; width: 1.5rem; height: 1.5rem; }
+:where([skeleton][size="sm"], [skeleton-circle][size="sm"]) { --skeleton-size: 2rem; width: 2rem; height: 2rem; }
+:where([skeleton][size="md"], [skeleton-circle][size="md"]) { --skeleton-size: 2.5rem; width: 2.5rem; height: 2.5rem; }
+:where([skeleton][size="lg"], [skeleton-circle][size="lg"]) { --skeleton-size: 3.5rem; width: 3.5rem; height: 3.5rem; }
+:where([skeleton][size="xl"], [skeleton-circle][size="xl"]) { --skeleton-size: 4.5rem; width: 4.5rem; height: 4.5rem; }
+:where([skeleton][size="2xl"], [skeleton-circle][size="2xl"]) { --skeleton-size: 6rem; width: 6rem; height: 6rem; }
+
+/* --------------------------------------------------------------------------
+   8. Width & Dimension Helpers (w="25%|33%|50%|66%|75%|80%|90%|full")
+   -------------------------------------------------------------------------- */
+:where([skeleton][w="25%"], [skeleton-w="25%"]) { width: 25% !important; }
+:where([skeleton][w="33%"], [skeleton-w="33%"]) { width: 33.333% !important; }
+:where([skeleton][w="50%"], [skeleton-w="50%"]) { width: 50% !important; }
+:where([skeleton][w="60%"], [skeleton-w="60%"]) { width: 60% !important; }
+:where([skeleton][w="66%"], [skeleton-w="66%"]) { width: 66.666% !important; }
+:where([skeleton][w="75%"], [skeleton-w="75%"]) { width: 75% !important; }
+:where([skeleton][w="80%"], [skeleton-w="80%"]) { width: 80% !important; }
+:where([skeleton][w="90%"], [skeleton-w="90%"]) { width: 90% !important; }
+:where([skeleton][w="full"], [skeleton][w="100%"], [skeleton-w="full"]) { width: 100% !important; }
+
+/* Height Helpers (h="xs|sm|md|lg|xl|2xl") */
+:where([skeleton][h="xs"]) { height: 0.75rem !important; }
+:where([skeleton][h="sm"]) { height: 1.25rem !important; }
+:where([skeleton][h="md"]) { height: 2.5rem !important; }
+:where([skeleton][h="lg"]) { height: 5rem !important; }
+:where([skeleton][h="xl"]) { height: 10rem !important; }
+:where([skeleton][h="2xl"]) { height: 15rem !important; }
+
+/* --------------------------------------------------------------------------
+   9. Accessibility: Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  :where([skeleton], .skeleton)::after {
+    animation: none !important;
+    display: none !important;
+  }
+  :where([skeleton="pulse"], [skeleton-pulse], .skeleton-pulse) {
+    animation: none !important;
+  }
+}
