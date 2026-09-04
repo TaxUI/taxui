@@ -18,6 +18,7 @@
 @import "./components/alerts.css";
 @import "./components/avatars.css";
 @import "./components/tables.css";
+@import "./components/modals.css";
 
 /* 4. Base Container Helper */
 :where([container], .container) {

@@ -1,0 +1,225 @@
+/* ==========================================================================
+   Native Dialogs, Modals & Slide-over Drawers Primitives
+   HTML5 <dialog> styling, backdrop blur, open animations, slots & drawer sheets.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base <dialog> and [modal] Styling
+   -------------------------------------------------------------------------- */
+:where(dialog, [modal], .modal) {
+  --modal-max-width: 540px;
+  --modal-padding: 1.5rem;
+  --modal-bg: #131b2e;
+  --modal-border: var(--color-border);
+  --modal-radius: var(--radius-xl);
+  --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  margin: auto;
+  padding: 0;
+  width: calc(100% - 2rem);
+  max-width: var(--modal-max-width);
+  background-color: var(--modal-bg);
+  color: var(--color-text);
+  border: 1px solid var(--modal-border);
+  border-radius: var(--modal-radius);
+  box-shadow: var(--modal-shadow);
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   2. Backdrop Styling & Blur
+   -------------------------------------------------------------------------- */
+:where(dialog)::backdrop {
+  background-color: rgba(11, 15, 25, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* --------------------------------------------------------------------------
+   3. Entrance Animations
+   -------------------------------------------------------------------------- */
+:where(dialog[open]) {
+  animation: modal-enter 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+:where(dialog[open])::backdrop {
+  animation: modal-backdrop-enter 0.2s ease forwards;
+}
+
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes modal-backdrop-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   4. Modal Sizing Modifiers
+   -------------------------------------------------------------------------- */
+:where(dialog[size="sm"], [modal][size="sm"]) { --modal-max-width: 400px; }
+:where(dialog[size="md"], [modal][size="md"]) { --modal-max-width: 540px; }
+:where(dialog[size="lg"], [modal][size="lg"]) { --modal-max-width: 768px; }
+:where(dialog[size="xl"], [modal][size="xl"]) { --modal-max-width: 960px; }
+
+:where(dialog[size="fullscreen"], [modal][size="fullscreen"]) {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  border-radius: 0;
+  border: none;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   5. Glassmorphism & Glow Modal Modifiers
+   -------------------------------------------------------------------------- */
+:where(dialog[modal="glass"], dialog[glass]) {
+  background: rgba(19, 27, 46, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+:where(dialog[modal="glow"], dialog[glow]) {
+  box-shadow: 0 0 35px -5px rgba(56, 189, 248, 0.25), 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   6. Structured Slots (Header, Body, Footer)
+   -------------------------------------------------------------------------- */
+:where([modal-header]) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-md);
+  padding: var(--modal-padding);
+}
+
+:where([modal-header][divided]) {
+  border-bottom: 1px solid var(--modal-border);
+}
+
+:where([modal-title]) {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+:where([modal-close]) {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 1.35rem;
+  line-height: 1;
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+:where([modal-close]:hover) {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+:where([modal-body]) {
+  padding: var(--modal-padding);
+  overflow-y: auto;
+  max-height: calc(85vh - 140px);
+}
+
+:where([modal-footer]) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gap-sm);
+  padding: var(--modal-padding);
+  background-color: rgba(15, 23, 42, 0.4);
+}
+
+:where([modal-footer][divided]) {
+  border-top: 1px solid var(--modal-border);
+}
+
+/* --------------------------------------------------------------------------
+   7. Slide-over Drawers & Bottom Sheets (drawer="right|left|bottom")
+   -------------------------------------------------------------------------- */
+
+/* Right Drawer */
+:where(dialog[drawer="right"]) {
+  margin: 0 0 0 auto;
+  height: 100vh;
+  max-height: 100vh;
+  width: min(420px, 100%);
+  max-width: 100%;
+  border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+  border-right: none;
+  animation: drawer-right-enter 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes drawer-right-enter {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Left Drawer */
+:where(dialog[drawer="left"]) {
+  margin: 0 auto 0 0;
+  height: 100vh;
+  max-height: 100vh;
+  width: min(340px, 100%);
+  max-width: 100%;
+  border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+  border-left: none;
+  animation: drawer-left-enter 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes drawer-left-enter {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+/* Bottom Sheet */
+:where(dialog[drawer="bottom"]) {
+  margin: auto 0 0 0;
+  width: 100vw;
+  max-width: 100vw;
+  max-height: 85vh;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  border-bottom: none;
+  animation: drawer-bottom-enter 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes drawer-bottom-enter {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Bottom Sheet Drag/Grab Bar Handle */
+:where(dialog[drawer="bottom"]) [modal-handle] {
+  width: 40px;
+  height: 4px;
+  background-color: var(--color-border);
+  border-radius: var(--radius-full);
+  margin: 0.75rem auto 0.25rem auto;
+}

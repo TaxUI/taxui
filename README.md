@@ -22,6 +22,7 @@ frameworkhtml/
 │   │   ├── alerts.css      # Alertas, callouts con borde lateral y banners
 │   │   ├── avatars.css     # Avatares, estados de presencia y grupos apilados
 │   │   ├── tables.css      # Tablas responsivas, scroll horizontal y stacked cards
+│   │   ├── modals.css      # Modales nativos HTML5 <dialog>, drawers y bottom sheets
 │   │   └── forms.css       # Formularios, switches, checkboxes, selects e input groups
 │   └── main.css            # Archivo maestro de importación
 └── examples/
@@ -33,64 +34,75 @@ frameworkhtml/
     ├── badges.html         # Showcase de Badges, Chips y Notificaciones
     ├── alerts.html         # Showcase de Alertas y Banners
     ├── avatars.html        # Showcase de Avatares y Grupos de Usuarios
-    └── tables.html         # Showcase de Tablas de Datos Responsivas
+    ├── tables.html         # Showcase de Tablas de Datos Responsivas
+    └── modals.html         # Showcase de Modales y Drawers Nativos
 ```
 
 ---
 
-## 📊 1. Tablas de Datos Responsivas
+## 🪟 1. Modales Nativos & Drawers (`<dialog>`)
 
-### Contenedor de Scroll y Filas Cebra
+### Modal con Slots y Cierre Nativo
 ```html
-<div table-container>
-  <table striped>
-    <thead>
-      <tr>
-        <th>Usuario</th>
-        <th>Rol</th>
-        <th align="right">Último Acceso</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr selected>
-        <td>Matías Dev</td>
-        <td>Admin</td>
-        <td align="right">Hace 2 min</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<dialog size="md" onclick="if(event.target === this) this.close()">
+  <form method="dialog">
+    <header modal-header divided>
+      <h3 modal-title>Título del Modal</h3>
+      <button modal-close formmethod="dialog">×</button>
+    </header>
+
+    <div modal-body>
+      <p>Contenido del modal con scroll interno seguro...</p>
+    </div>
+
+    <footer modal-footer divided>
+      <button type="button" variant="ghost" onclick="this.closest('dialog').close()">Cancelar</button>
+      <button type="submit" variant="primary">Confirmar</button>
+    </footer>
+  </form>
+</dialog>
 ```
 
-### Densidades de Espaciado
+### Escala de Tamaños
 ```html
-<table density="compact">...</table>  <!-- Ideal para dashboards financieros densos -->
-<table density="relaxed">...</table>  <!-- Ideal para vistas modernas de SaaS -->
+<dialog size="sm">...</dialog>          <!-- Diálogos de confirmación / alertas -->
+<dialog size="md">...</dialog>          <!-- Formularios estándar (Default) -->
+<dialog size="lg">...</dialog>          <!-- Vistas detalladas -->
+<dialog size="fullscreen">...</dialog>  <!-- Modal a pantalla completa -->
 ```
 
-### Vista Automática de Tarjetas en Móviles (`< 640px`)
+### Modos Glassmorphism & Glow
 ```html
-<table responsive="stack">
-  <thead>
-    <tr>
-      <th>Factura</th>
-      <th>Monto</th>
-      <th>Estado</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td data-label="Factura">#INV-001</td>
-      <td data-label="Monto" numeric>$1,250.00</td>
-      <td data-label="Estado"><span badge="success">Pagada</span></td>
-    </tr>
-  </tbody>
-</table>
+<dialog modal="glass" glow size="md">...</dialog>
+```
+
+### Paneles Deslizables (Drawers) y Bottom Sheets
+```html
+<!-- Drawer lateral derecho (carrito, filtros, perfil) -->
+<dialog drawer="right">...</dialog>
+
+<!-- Drawer lateral izquierdo (menú de navegación) -->
+<dialog drawer="left">...</dialog>
+
+<!-- Bottom Sheet móvil con tirador de agarre -->
+<dialog drawer="bottom">
+  <div modal-handle></div>
+  <div modal-body>...</div>
+</dialog>
 ```
 
 ---
 
-## 👤 2. Avatares & Grupos de Usuarios
+## 📊 2. Tablas de Datos Responsivas
+
+* **Contenedor:** `<div table-container><table striped>...</table></div>`
+* **Densidades:** `table[density="compact|relaxed"]`
+* **Alineación Numérica:** `th[numeric]`, `td[numeric]` (alineación decimal con `tabular-nums`)
+* **Vista Móvil en Tarjetas:** `<table responsive="stack">` con `data-label="..."`
+
+---
+
+## 👤 3. Avatares & Grupos de Usuarios
 
 * **Fotos e Iniciales:** `<img avatar src="user.jpg">` o `<div avatar variant="gradient">MD</div>`
 * **Escala de Tamaños:** `size="xs|sm|md|lg|xl|2xl"`
@@ -100,7 +112,7 @@ frameworkhtml/
 
 ---
 
-## 🔔 3. Alertas & Mensajes de Feedback
+## 🔔 4. Alertas & Mensajes de Feedback
 
 * **Variantes:** `alert="info|success|warning|danger|neutral"`
 * **Borde Lateral:** `<div alert="warning" border="left">...</div>`
@@ -109,7 +121,7 @@ frameworkhtml/
 
 ---
 
-## 🏷️ 4. Badges, Chips & Notificaciones Flotantes
+## 🏷️ 5. Badges, Chips & Notificaciones Flotantes
 
 * **Variantes:** `badge="primary|success|warning|danger|purple"`
 * **Estilos:** `style-type="solid|outline"` y modificador `pill`
@@ -118,7 +130,7 @@ frameworkhtml/
 
 ---
 
-## 🃏 5. Tarjetas y Superficies
+## 🃏 6. Tarjetas y Superficies
 
 * **Modos:** `card="flat|elevated|glass|glow"`
 * **Glassmorphism:** `<article card="glass">...</article>`
@@ -127,7 +139,7 @@ frameworkhtml/
 
 ---
 
-## 🔘 6. Botones Multivariante
+## 🔘 7. Botones Multivariante
 
 * **Variantes:** `variant="primary|secondary|outline|ghost|success|danger|warning|link"`
 * **Efectos:** `glow`, `pill`, `block`, `icon-only`
@@ -136,7 +148,7 @@ frameworkhtml/
 
 ---
 
-## 📝 7. Formularios & Inputs Nativos
+## 📝 8. Formularios & Inputs Nativos
 
 * **Toggle Switches:** `<input type="checkbox" switch checked>`
 * **Checkboxes & Radios:** `<input type="checkbox">` / `<input type="radio">` con checkmark SVG automático.
@@ -146,7 +158,7 @@ frameworkhtml/
 
 ---
 
-## ⚡ 8. Primitivas Flexbox & Stacks
+## ⚡ 9. Primitivas Flexbox & Stacks
 
 * **`layout="stack"`**: Columna vertical con espaciado constante.
 * **`layout="row"`**: Fila horizontal centrada.
@@ -158,7 +170,7 @@ frameworkhtml/
 
 ---
 
-## 📐 9. Primitivas Grid
+## 📐 10. Primitivas Grid
 
 * **`layout="grid" grid="auto-fit" min-col="sm"`**: Grilla auto-responsiva sin media queries.
 * **`cols="1"` a `cols="12"`**: Sistema de columnas fijas.

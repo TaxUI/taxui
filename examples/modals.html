@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Native Modals & Drawers Showcase - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+      min-height: 100vh;
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: rgba(19, 27, 46, 0.5);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #1e293b;
+      color: #a5f3fc;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(165, 243, 252, 0.2);
+    }
+
+    .demo-section {
+      background: rgba(19, 27, 46, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body>
+
+  <div container="md">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
+      <a href="cards.html" class="nav-link">🃏 Cards & Surfaces</a>
+      <a href="badges.html" class="nav-link">🏷️ Badges & Chips</a>
+      <a href="alerts.html" class="nav-link">🔔 Alerts & Feedback</a>
+      <a href="avatars.html" class="nav-link">👤 Avatars</a>
+      <a href="tables.html" class="nav-link">📊 Tables</a>
+      <a href="modals.html" class="nav-link active">🪟 Modals</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Native Modals & Drawers</h1>
+      <p>Modales nativos basados en el estándar HTML5 &lt;dialog&gt;: backdrop blur automático, animaciones de entrada, slots limpios y drawers laterales.</p>
+    </header>
+
+    <!-- Demo 1: Modal Estándar con Slots y Formulario -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Modal Estándar & Slots
+        <span class="section-code">&lt;dialog size="md"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Estructurado con <span class="section-code">modal-header</span>, <span class="section-code">modal-body</span> y <span class="section-code">modal-footer</span>. Se cierra automáticamente con la tecla <strong>Esc</strong>, al hacer click en el fondo o con botones nativos.
+      </p>
+
+      <button variant="primary" onclick="document.getElementById('modal-form').showModal()">
+        Abrir Modal con Formulario
+      </button>
+
+      <!-- Standard Form Modal -->
+      <dialog id="modal-form" size="md" onclick="if (event.target === this) this.close()">
+        <form method="dialog">
+          <header modal-header divided>
+            <h3 modal-title>Crear Nuevo Proyecto</h3>
+            <button modal-close formmethod="dialog" aria-label="Cerrar">×</button>
+          </header>
+
+          <div modal-body layout="stack" gap="md">
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Nombre del Proyecto</label>
+              <input type="text" placeholder="Mi Super App SaaS" required>
+            </div>
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Visibilidad</label>
+              <select>
+                <option>Privado (Solo invitados)</option>
+                <option>Público (Todo el equipo)</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Descripción</label>
+              <textarea rows="3" placeholder="Breve descripción del objetivo..."></textarea>
+            </div>
+          </div>
+
+          <footer modal-footer divided>
+            <button type="button" variant="ghost" onclick="document.getElementById('modal-form').close()">Cancelar</button>
+            <button type="submit" variant="primary">Guardar Proyecto</button>
+          </footer>
+        </form>
+      </dialog>
+    </div>
+
+    <!-- Demo 2: Diálogos de Confirmación Compactos -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Diálogo de Confirmación Destructivo
+        <span class="section-code">size="sm"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Tamaño compacto optimizado para alertas críticas y confirmación de acciones irreversibles.
+      </p>
+
+      <button variant="danger" onclick="document.getElementById('modal-confirm').showModal()">
+        Eliminar Repositorio
+      </button>
+
+      <!-- Confirmation Small Modal -->
+      <dialog id="modal-confirm" size="sm" onclick="if (event.target === this) this.close()">
+        <form method="dialog">
+          <div modal-body layout="stack" gap="md" style="padding-top: 1.5rem; text-align: center;">
+            <div style="width: 48px; height: 48px; background: rgba(239, 68, 68, 0.2); color: #f87171; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 1.5rem;">
+              ⚠️
+            </div>
+            <div>
+              <h3 modal-title style="text-align: center; margin-bottom: 0.35rem;">¿Estás completamente seguro?</h3>
+              <p style="color: var(--color-text-muted); font-size: 0.875rem;">
+                Esta acción es irreversible y eliminará todos los datos, ramas y despliegues asociados.
+              </p>
+            </div>
+          </div>
+
+          <footer modal-footer divided style="justify-content: center; gap: 0.75rem;">
+            <button type="button" variant="secondary" onclick="document.getElementById('modal-confirm').close()">Cancelar</button>
+            <button type="submit" variant="danger">Sí, eliminar todo</button>
+          </footer>
+        </form>
+      </dialog>
+    </div>
+
+    <!-- Demo 3: Modal Glassmorphism con Glow -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Modal Glassmorphism & Glow
+        <span class="section-code">modal="glass" glow</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Superficie de cristal esmerilado con iluminación ambiental de alta fidelidad.
+      </p>
+
+      <button variant="secondary" glow onclick="document.getElementById('modal-glass').showModal()">
+        Abrir Modal Glass Glow ✨
+      </button>
+
+      <!-- Glass Modal -->
+      <dialog id="modal-glass" modal="glass" glow size="md" onclick="if (event.target === this) this.close()">
+        <form method="dialog">
+          <header modal-header divided>
+            <h3 modal-title>✨ Experiencia Premium</h3>
+            <button modal-close formmethod="dialog">×</button>
+          </header>
+          <div modal-body layout="stack" gap="md">
+            <p style="font-size: 0.95rem; color: #cbd5e1;">
+              Los modales con <span class="section-code">modal="glass"</span> utilizan <span class="section-code">backdrop-filter: blur(16px)</span> combinado con bordes finos e iluminación suave.
+            </p>
+            <div alert="info" pill>
+              <p alert-description>Los modales de HTML5 renderizan de forma nativa en el Top Layer.</p>
+            </div>
+          </div>
+          <footer modal-footer divided>
+            <button type="submit" variant="primary" glow>Entendido</button>
+          </footer>
+        </form>
+      </dialog>
+    </div>
+
+    <!-- Demo 4: Drawers Laterales y Bottom Sheets -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        4. Slide-over Drawers & Bottom Sheets
+        <span class="section-code">drawer="right|left|bottom"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Paneles deslizables desde los laterales o desde abajo, ideales para carritos de compras, filtros o menús móviles.
+      </p>
+
+      <div layout="cluster" gap="md">
+        <button variant="outline" onclick="document.getElementById('drawer-right').showModal()">
+          Drawer Derecho →
+        </button>
+        <button variant="outline" onclick="document.getElementById('drawer-bottom').showModal()">
+          Bottom Sheet Móvil ↑
+        </button>
+      </div>
+
+      <!-- Right Drawer -->
+      <dialog id="drawer-right" drawer="right" onclick="if (event.target === this) this.close()">
+        <form method="dialog" style="display: flex; flex-direction: column; height: 100%;">
+          <header modal-header divided>
+            <h3 modal-title>Configuración de Cuenta</h3>
+            <button modal-close formmethod="dialog">×</button>
+          </header>
+          <div modal-body layout="stack" gap="md" style="flex: 1;">
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Tema de la interfaz</label>
+              <select>
+                <option>🌙 Modo Oscuro (Por defecto)</option>
+                <option>☀️ Modo Claro</option>
+                <option>💻 Sincronizado con el sistema</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Notificaciones por Email</label>
+              <label layout="row" align="center" gap="sm">
+                <input type="checkbox" switch checked>
+                <span>Resumen semanal de actividad</span>
+              </label>
+            </div>
+          </div>
+          <footer modal-footer divided>
+            <button type="submit" variant="primary">Guardar Preferencias</button>
+          </footer>
+        </form>
+      </dialog>
+
+      <!-- Bottom Sheet -->
+      <dialog id="drawer-bottom" drawer="bottom" onclick="if (event.target === this) this.close()">
+        <form method="dialog">
+          <div modal-handle></div>
+          <header modal-header>
+            <h3 modal-title>Acciones Rápidas</h3>
+            <button modal-close formmethod="dialog">×</button>
+          </header>
+          <div modal-body layout="stack" gap="sm" style="padding-bottom: 2rem;">
+            <button variant="ghost" style="justify-content: flex-start; width: 100%;">🔗 Compartir enlace del proyecto</button>
+            <button variant="ghost" style="justify-content: flex-start; width: 100%;">📥 Exportar datos como CSV</button>
+            <button variant="ghost" style="justify-content: flex-start; width: 100%; color: #f87171;">🚫 Bloquear acceso público</button>
+          </div>
+        </form>
+      </dialog>
+    </div>
+
+  </div>
+
+</body>
+</html>
