@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es" theme="dark" theme-accent="blue" id="theme-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Scrollbars & Snapping - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: var(--color-surface);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+      background: var(--color-primary-glow);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: var(--color-surface-hover);
+      color: var(--color-primary);
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+
+    .demo-section {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--card-shadow);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .scroll-box {
+      height: 200px;
+      overflow-y: auto;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+    }
+
+    .accent-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .accent-btn:hover {
+      transform: scale(1.15);
+    }
+
+    .accent-btn.active {
+      border-color: var(--color-text);
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div container="lg">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
+      <a href="cards.html" class="nav-link">🃏 Cards & Surfaces</a>
+      <a href="badges.html" class="nav-link">🏷️ Badges & Chips</a>
+      <a href="alerts.html" class="nav-link">🔔 Alerts & Feedback</a>
+      <a href="avatars.html" class="nav-link">👤 Avatars</a>
+      <a href="tables.html" class="nav-link">📊 Tables</a>
+      <a href="modals.html" class="nav-link">🪟 Modals</a>
+      <a href="accordions.html" class="nav-link">📂 Accordions</a>
+      <a href="tooltips.html" class="nav-link">💬 Tooltips</a>
+      <a href="utilities.html" class="nav-link">🛠️ Utilities</a>
+      <a href="themes.html" class="nav-link">🎨 Themes</a>
+      <a href="skeletons.html" class="nav-link">💀 Skeletons</a>
+      <a href="sticky-footer.html" class="nav-link">⚓ Sticky Footer</a>
+      <a href="scrollbars.html" class="nav-link active">📜 Scrollbars</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Custom Scrollbars & Scroll Snapping</h1>
+      <p>Barras de scroll modernas, personalizadas y multiplataforma sin JavaScript: delgadas, invisibles, reactivas al color de acento y con snapping fluido.</p>
+    </header>
+
+    <!-- Controls Bar -->
+    <div class="demo-section" layout="row-responsive" justify="space-between" align="center" gap="md">
+      <div layout="row" align="center" gap="sm">
+        <span style="font-weight: 600; font-size: 0.9rem;">Tema:</span>
+        <div button-group>
+          <button id="theme-dark" variant="primary" onclick="setThemeMode('dark')">🌙 Oscuro</button>
+          <button id="theme-light" variant="ghost" onclick="setThemeMode('light')">☀️ Claro</button>
+        </div>
+      </div>
+
+      <div layout="row" align="center" gap="sm">
+        <span style="font-weight: 600; font-size: 0.9rem;">Acento:</span>
+        <div layout="row" gap="xs">
+          <button class="accent-btn active" style="background: #3b82f6;" title="Blue" onclick="setAccentColor('blue', this)"></button>
+          <button class="accent-btn" style="background: #10b981;" title="Emerald" onclick="setAccentColor('emerald', this)"></button>
+          <button class="accent-btn" style="background: #8b5cf6;" title="Violet" onclick="setAccentColor('violet', this)"></button>
+          <button class="accent-btn" style="background: #f59e0b;" title="Amber" onclick="setAccentColor('amber', this)"></button>
+          <button class="accent-btn" style="background: #f43f5e;" title="Rose" onclick="setAccentColor('rose', this)"></button>
+          <button class="accent-btn" style="background: #06b6d4;" title="Cyan" onclick="setAccentColor('cyan', this)"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 1: Variantes de Barras de Scroll -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Variantes de Scrollbars
+        <span class="section-code">scrollbar="thin|none|accent|track|reveal"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Aplica atributos directamente a cualquier contenedor con scroll vertical u horizontal.
+      </p>
+
+      <div layout="grid" cols="1" cols-md="3" gap="lg">
+        
+        <!-- Default -->
+        <div>
+          <span style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.4rem;">Por Defecto (Sutil y Redondeada)</span>
+          <div class="scroll-box">
+            <div layout="stack" gap="sm">
+              <p style="font-size: 0.85rem; color: var(--color-text-muted);">Esta es la barra estándar de 8px con esquinas redondeadas y fondo transparente.</p>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Bloque de texto 1</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Bloque de texto 2</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Bloque de texto 3</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Bloque de texto 4</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thin -->
+        <div>
+          <span style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.4rem;">Ultra Delgada <code class="section-code">scrollbar="thin"</code></span>
+          <div class="scroll-box" scrollbar="thin">
+            <div layout="stack" gap="sm">
+              <p style="font-size: 0.85rem; color: var(--color-text-muted);">Barra ultra delgada de 4px, perfecta para paneles laterales o cajas de código.</p>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Elemento de lista 1</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Elemento de lista 2</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Elemento de lista 3</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Elemento de lista 4</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accent Color -->
+        <div>
+          <span style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.4rem;">Color de Acento <code class="section-code">scrollbar="accent"</code></span>
+          <div class="scroll-box" scrollbar="accent">
+            <div layout="stack" gap="sm">
+              <p style="font-size: 0.85rem; color: var(--color-text-muted);">Utiliza el color primario de la paleta activa y agrega un brillo glow al pasar el mouse.</p>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Elemento resaltado 1</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Elemento resaltado 2</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Elemento resaltado 3</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Elemento resaltado 4</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Track Inset -->
+        <div>
+          <span style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.4rem;">Pista Visible <code class="section-code">scrollbar="track"</code></span>
+          <div class="scroll-box" scrollbar="track">
+            <div layout="stack" gap="sm">
+              <p style="font-size: 0.85rem; color: var(--color-text-muted);">Muestra la pista de fondo con alto contraste para áreas donde se necesita máxima precisión.</p>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Item 1</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Item 2</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Item 3</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reveal on Hover -->
+        <div>
+          <span style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.4rem;">Aparición al Hover <code class="section-code">scrollbar="reveal"</code></span>
+          <div class="scroll-box" scrollbar="reveal">
+            <div layout="stack" gap="sm">
+              <p style="font-size: 0.85rem; color: var(--color-text-muted);">La barra permanece 100% invisible y sólo aparece cuando el cursor entra en la caja.</p>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Pasa el mouse por aquí...</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Item 2</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Item 3</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hidden / No Scrollbar -->
+        <div>
+          <span style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.4rem;">Oculta <code class="section-code">scrollbar="none"</code></span>
+          <div class="scroll-box" scrollbar="none">
+            <div layout="stack" gap="sm">
+              <p style="font-size: 0.85rem; color: var(--color-text-muted);">Sin barra visible pero con scroll totalmente funcional con rueda o touch.</p>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Desplaza hacia abajo...</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Item 2</div>
+              <div style="height: 60px; background: var(--color-surface); border-radius: var(--radius-sm); padding: 0.5rem; font-size: 0.8rem;">Item 3</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Demo 2: Carrusel Horizontal con Scroll Snapping -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Carrusel Horizontal con Scroll Snapping
+        <span class="section-code">scroll="snap-x"</span>
+        <span class="section-code">snap="start|center"</span>
+        <span class="section-code">scrollbar="none"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Desplaza horizontalmente para experimentar el anclaje magnético instantáneo de las tarjetas.
+      </p>
+
+      <div scroll="snap-x" scrollbar="none" gap="md" style="padding-bottom: 1rem; width: 100%;">
+        
+        <div card surface snap="start" style="min-width: 280px; flex-shrink: 0; padding: 1.25rem;">
+          <span badge="primary" size="sm">Tarjeta 1</span>
+          <h4 style="margin: 0.5rem 0;">Componentes Zero JS</h4>
+          <p style="font-size: 0.85rem; color: var(--color-text-muted);">Sin pesadas librerías de sliders o carruseles, puramente CSS nativo.</p>
+        </div>
+
+        <div card surface snap="start" style="min-width: 280px; flex-shrink: 0; padding: 1.25rem;">
+          <span badge="success" size="sm">Tarjeta 2</span>
+          <h4 style="margin: 0.5rem 0;">Aceleración por GPU</h4>
+          <p style="font-size: 0.85rem; color: var(--color-text-muted);">Transiciones y scroll suave a 60/120 FPS en cualquier dispositivo.</p>
+        </div>
+
+        <div card surface snap="start" style="min-width: 280px; flex-shrink: 0; padding: 1.25rem;">
+          <span badge="warning" size="sm">Tarjeta 3</span>
+          <h4 style="margin: 0.5rem 0;">Soporte Táctil Nativo</h4>
+          <p style="font-size: 0.85rem; color: var(--color-text-muted);">Gesto de swipe natural en iOS Safari y Google Chrome para Android.</p>
+        </div>
+
+        <div card surface snap="start" style="min-width: 280px; flex-shrink: 0; padding: 1.25rem;">
+          <span badge="danger" size="sm">Tarjeta 4</span>
+          <h4 style="margin: 0.5rem 0;">Scrollbar Oculta</h4>
+          <p style="font-size: 0.85rem; color: var(--color-text-muted);">Usa <code class="section-code">scrollbar="none"</code> para una experiencia limpia tipo app móvil.</p>
+        </div>
+
+        <div card surface snap="start" style="min-width: 280px; flex-shrink: 0; padding: 1.25rem;">
+          <span badge="primary" size="sm">Tarjeta 5</span>
+          <h4 style="margin: 0.5rem 0;">Anclaje Magnético</h4>
+          <p style="font-size: 0.85rem; color: var(--color-text-muted);">Las tarjetas se alinean perfectamente en cada parada del scroll.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function setThemeMode(mode) {
+      document.documentElement.setAttribute('theme', mode);
+      document.documentElement.setAttribute('data-theme', mode);
+
+      const btnDark = document.getElementById('theme-dark');
+      const btnLight = document.getElementById('theme-light');
+
+      if (mode === 'dark') {
+        btnDark.setAttribute('variant', 'primary');
+        btnLight.setAttribute('variant', 'ghost');
+      } else {
+        btnDark.setAttribute('variant', 'ghost');
+        btnLight.setAttribute('variant', 'primary');
+      }
+    }
+
+    function setAccentColor(accent, element) {
+      document.documentElement.setAttribute('theme-accent', accent);
+      document.documentElement.setAttribute('accent', accent);
+
+      document.querySelectorAll('.accent-btn').forEach(b => b.classList.remove('active'));
+      element.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

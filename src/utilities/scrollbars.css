@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Custom Scrollbars & Scroll Snapping Utilities
+   Cross-browser, zero-JS custom scrollbars matching dark/light themes and accents.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Global Default Custom Scrollbar
+   Applies modern rounded, non-obtrusive scrollbars to html, body and containers
+   -------------------------------------------------------------------------- */
+html,
+body,
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+::-webkit-scrollbar {
+  width: var(--scrollbar-width, 8px);
+  height: var(--scrollbar-width, 8px);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track, transparent);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   2. Thin Scrollbar (scrollbar="thin" | [scrollbar-thin])
+   Ultra-slim (4px) scrollbar ideal for sidebars, codeboxes and dense cards.
+   -------------------------------------------------------------------------- */
+:where([scrollbar="thin"], [scrollbar-thin], .scrollbar-thin) {
+  scrollbar-width: thin;
+  --scrollbar-width: 4px;
+}
+
+:where([scrollbar="thin"], [scrollbar-thin], .scrollbar-thin)::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+:where([scrollbar="thin"], [scrollbar-thin], .scrollbar-thin)::-webkit-scrollbar-thumb {
+  border: 1px solid transparent;
+}
+
+/* --------------------------------------------------------------------------
+   3. Hidden / Invisible Scrollbar (scrollbar="none|hidden" | [no-scrollbar])
+   Allows full scrolling (touch/wheel/drag) while completely hiding the scrollbar.
+   -------------------------------------------------------------------------- */
+:where(
+  [scrollbar="none"],
+  [scrollbar="hidden"],
+  [no-scrollbar],
+  [scrollbar-none],
+  .no-scrollbar
+) {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+:where(
+  [scrollbar="none"],
+  [scrollbar="hidden"],
+  [no-scrollbar],
+  [scrollbar-none],
+  .no-scrollbar
+)::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. Accent / Primary Color Scrollbar (scrollbar="accent|primary")
+   Ties the thumb directly to the current theme accent color.
+   -------------------------------------------------------------------------- */
+:where([scrollbar="accent"], [scrollbar="primary"], [scrollbar-primary], .scrollbar-primary) {
+  scrollbar-color: var(--color-primary) var(--scrollbar-track);
+}
+
+:where([scrollbar="accent"], [scrollbar="primary"], [scrollbar-primary], .scrollbar-primary)::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+}
+
+:where([scrollbar="accent"], [scrollbar="primary"], [scrollbar-primary], .scrollbar-primary)::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary-hover);
+  box-shadow: 0 0 10px var(--color-primary-glow);
+}
+
+/* --------------------------------------------------------------------------
+   5. Visible Track / Inset (scrollbar="track|inset")
+   Provides a highlighted track background for high-precision scroll areas.
+   -------------------------------------------------------------------------- */
+:where([scrollbar="track"], [scrollbar="inset"], [scrollbar-track]) {
+  scrollbar-color: var(--scrollbar-thumb) var(--color-surface-hover);
+}
+
+:where([scrollbar="track"], [scrollbar="inset"], [scrollbar-track])::-webkit-scrollbar-track {
+  background: var(--color-surface-hover);
+  border-radius: var(--radius-full);
+}
+
+/* --------------------------------------------------------------------------
+   6. Reveal on Hover (scrollbar="reveal" | [scrollbar-reveal])
+   Thumb remains invisible until the user hovers over the container.
+   -------------------------------------------------------------------------- */
+:where([scrollbar="reveal"], [scrollbar-reveal]) {
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease;
+}
+
+:where([scrollbar="reveal"], [scrollbar-reveal]):hover {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+:where([scrollbar="reveal"], [scrollbar-reveal])::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+:where([scrollbar="reveal"], [scrollbar-reveal]):hover::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+}
+
+/* --------------------------------------------------------------------------
+   7. Scroll Behavior & Scroll Snapping Primitives
+   -------------------------------------------------------------------------- */
+:where([scroll="smooth"], [scroll-smooth], .scroll-smooth) {
+  scroll-behavior: smooth;
+}
+
+/* Horizontal Snap Carousel */
+:where([scroll="snap-x"], [snap="x"], .snap-x) {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Vertical Snap Container */
+:where([scroll="snap-y"], [snap="y"], .snap-y) {
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Snap Alignments */
+[snap="start"], [snap-align="start"]   { scroll-snap-align: start; }
+[snap="center"], [snap-align="center"] { scroll-snap-align: center; }
+[snap="end"], [snap-align="end"]       { scroll-snap-align: end; }
+[snap-stop]                            { scroll-snap-stop: always; }
+
+/* Overscroll Behaviors */
+:where([overscroll="contain"]) { overscroll-behavior: contain; }
+:where([overscroll="none"])    { overscroll-behavior: none; }
+:where([overscroll="auto"])    { overscroll-behavior: auto; }

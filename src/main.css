@@ -27,6 +27,7 @@
 
 /* 4. Utilities */
 @import "./utilities/utilities.css";
+@import "./utilities/scrollbars.css";
 
 /* 5. Base Container Helper */
 :where([container], .container) {

@@ -53,6 +53,12 @@ body[data-theme="light"],
   /* Skeletons in Light Mode */
   --skeleton-bg: #e2e8f0;
   --skeleton-shimmer-color: rgba(255, 255, 255, 0.65);
+
+  /* Scrollbars in Light Mode */
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+  --scrollbar-track: transparent;
+  --scrollbar-track-hover: rgba(0, 0, 0, 0.04);
 }
 
 /* --------------------------------------------------------------------------
@@ -106,6 +112,12 @@ body[data-theme="dark"],
   /* Skeletons in Dark Mode */
   --skeleton-bg: #1e293b;
   --skeleton-shimmer-color: rgba(255, 255, 255, 0.08);
+
+  /* Scrollbars in Dark Mode */
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+  --scrollbar-track: transparent;
+  --scrollbar-track-hover: rgba(255, 255, 255, 0.04);
 }
 
 /* --------------------------------------------------------------------------

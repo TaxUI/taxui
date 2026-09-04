@@ -84,4 +84,12 @@
   /* Skeletons & Loading Placeholders */
   --skeleton-bg: #1e293b;
   --skeleton-shimmer-color: rgba(255, 255, 255, 0.08);
+
+  /* Scrollbars */
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+  --scrollbar-track: transparent;
+  --scrollbar-track-hover: rgba(255, 255, 255, 0.04);
+  --scrollbar-width: 8px;
+  --scrollbar-width-thin: 4px;
 }
