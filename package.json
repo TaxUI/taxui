@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Elabsurdo984/taxui.git"
+    "url": "git+https://github.com/TaxUI/taxui.git"
   },
   "keywords": [
     "css",
@@ -38,7 +38,7 @@
   "author": "Elabsurdo984",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Elabsurdo984/taxui/issues"
+    "url": "https://github.com/TaxUI/taxui/issues"
   },
-  "homepage": "https://github.com/Elabsurdo984/taxui#readme"
+  "homepage": "https://github.com/TaxUI/taxui#readme"
 }

@@ -9,7 +9,7 @@ Un framework moderno, declarativo y ultra rápido enfocado en escribir HTML sem�
 ### Vía CDN (jsDelivr / unpkg)
 ```html
 <!-- Bundle Completo Minificado (~14 KB Gzipped) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Elabsurdo984/taxui@1.0.0/dist/taxui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TaxUI/taxui@1.0.0/dist/taxui.min.css">
 ```
 
 ### Vía NPM
@@ -24,10 +24,10 @@ npm install taxui
 ### O sub-módulos independientes
 ```html
 <!-- Solo Layouts -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Elabsurdo984/taxui@1.0.0/dist/taxui-layout.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TaxUI/taxui@1.0.0/dist/taxui-layout.min.css">
 
 <!-- Solo Componentes de UI -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Elabsurdo984/taxui@1.0.0/dist/taxui-components.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TaxUI/taxui@1.0.0/dist/taxui-components.min.css">
 ```
 
 ---

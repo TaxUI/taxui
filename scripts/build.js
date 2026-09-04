@@ -12,7 +12,7 @@ const SRC_DIR = path.join(ROOT_DIR, 'src');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
 const PKG = require(path.join(ROOT_DIR, 'package.json'));
 
-const BANNER = `/*! TaxUI Framework v${PKG.version} | MIT License | https://github.com/Elabsurdo984/taxui */\n`;
+const BANNER = `/*! TaxUI Framework v${PKG.version} | MIT License | https://github.com/TaxUI/taxui */\n`;
 
 /**
  * Minifies raw CSS string
