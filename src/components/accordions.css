@@ -1,0 +1,151 @@
+/* ==========================================================================
+   Accordion & Collapsible Primitives
+   HTML5 <details> & <summary> styling, smooth expansion, custom chevrons & grouping.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base Accordion Container & <details> Item
+   -------------------------------------------------------------------------- */
+:where([accordion], .accordion) {
+  --accordion-bg: var(--color-surface);
+  --accordion-border: var(--color-border);
+  --accordion-radius: var(--radius-lg);
+  --accordion-padding-x: 1.25rem;
+  --accordion-padding-y: 1rem;
+  --accordion-hover-bg: rgba(255, 255, 255, 0.03);
+  --accordion-active-bg: rgba(59, 130, 246, 0.05);
+
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--accordion-border);
+  border-radius: var(--accordion-radius);
+  background-color: var(--accordion-bg);
+  overflow: hidden;
+  width: 100%;
+}
+
+:where(details[accordion-item], [accordion] > details) {
+  border-bottom: 1px solid var(--accordion-border);
+  transition: background-color 0.2s ease;
+}
+
+:where(details[accordion-item]:last-child, [accordion] > details:last-child) {
+  border-bottom: none;
+}
+
+:where(details[accordion-item][open], [accordion] > details[open]) {
+  background-color: var(--accordion-active-bg);
+}
+
+/* --------------------------------------------------------------------------
+   2. Summary Header & Custom Chevron Icon
+   -------------------------------------------------------------------------- */
+:where(details > summary) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-md);
+  padding: var(--accordion-padding-y) var(--accordion-padding-x);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+:where(details > summary)::-webkit-details-marker {
+  display: none;
+}
+
+:where(details > summary):hover {
+  background-color: var(--accordion-hover-bg);
+  color: #38bdf8;
+}
+
+/* Custom CSS Chevron indicator */
+:where(details > summary)::after {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  margin-left: auto;
+  opacity: 0.7;
+}
+
+:where(details[open] > summary)::after {
+  transform: rotate(-135deg);
+  opacity: 1;
+}
+
+/* Left Chevron Modifier */
+:where(details[chevron="left"] > summary)::after,
+:where([accordion][chevron="left"] summary)::after {
+  order: -1;
+  margin-left: 0;
+  margin-right: var(--gap-sm);
+}
+
+/* --------------------------------------------------------------------------
+   3. Accordion Content Body
+   -------------------------------------------------------------------------- */
+:where([accordion-body], [accordion-content]) {
+  padding: var(--accordion-padding-y) var(--accordion-padding-x);
+  padding-top: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   4. Separated / Card Mode (accordion="separated")
+   -------------------------------------------------------------------------- */
+:where([accordion="separated"], .accordion-separated) {
+  border: none;
+  background: transparent;
+  gap: 0.75rem;
+  overflow: visible;
+}
+
+:where([accordion="separated"] > details, details[accordion="card"]) {
+  border: 1px solid var(--accordion-border);
+  border-radius: var(--accordion-radius);
+  background-color: var(--accordion-bg);
+  overflow: hidden;
+}
+
+:where([accordion="separated"] > details[open], details[accordion="card"][open]) {
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   5. Flush / Minimal Mode (accordion="flush")
+   -------------------------------------------------------------------------- */
+:where([accordion="flush"], .accordion-flush) {
+  border-inline: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+:where([accordion="flush"] > details > summary) {
+  padding-inline: 0;
+}
+
+:where([accordion="flush"] [accordion-body]) {
+  padding-inline: 0;
+}
+
+/* --------------------------------------------------------------------------
+   6. Disabled State
+   -------------------------------------------------------------------------- */
+:where(details[disabled], details[aria-disabled="true"]) {
+  opacity: 0.5;
+  pointer-events: none;
+}

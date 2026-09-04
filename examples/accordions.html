@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accordions & Collapsibles Showcase - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+      min-height: 100vh;
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: rgba(19, 27, 46, 0.5);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #1e293b;
+      color: #a5f3fc;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(165, 243, 252, 0.2);
+    }
+
+    .demo-section {
+      background: rgba(19, 27, 46, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body>
+
+  <div container="md">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
+      <a href="cards.html" class="nav-link">🃏 Cards & Surfaces</a>
+      <a href="badges.html" class="nav-link">🏷️ Badges & Chips</a>
+      <a href="alerts.html" class="nav-link">🔔 Alerts & Feedback</a>
+      <a href="avatars.html" class="nav-link">👤 Avatars</a>
+      <a href="tables.html" class="nav-link">📊 Tables</a>
+      <a href="modals.html" class="nav-link">🪟 Modals</a>
+      <a href="accordions.html" class="nav-link active">📂 Accordions</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Accordions & Collapsibles</h1>
+      <p>Paneles colapsables nativos basados en HTML5 &lt;details&gt; y &lt;summary&gt;: sin JavaScript, con chevrons rotatorios automáticos y modos de diseño modernos.</p>
+    </header>
+
+    <!-- Demo 1: Acordeón Estándar Conectado -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Acordeón Estándar Conectado
+        <span class="section-code">&lt;div accordion&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Caja contenedora con bordes redondeados y divisores internos entre preguntas.
+      </p>
+
+      <div accordion>
+        <details open>
+          <summary>¿Qué es este Framework HTML?</summary>
+          <div accordion-body>
+            Es un framework declarativo enfocado en HTML semántico nativo y atributos limpios que eliminan la fatiga de configuración CSS y clases kilométricas.
+          </div>
+        </details>
+        <details>
+          <summary>¿Necesito instalar dependencias de JavaScript?</summary>
+          <div accordion-body>
+            ¡No! Todo el sistema está diseñado para funcionar con primitivas estándar del navegador como <span class="section-code">&lt;details&gt;</span> y <span class="section-code">&lt;dialog&gt;</span>.
+          </div>
+        </details>
+        <details>
+          <summary>¿Es compatible con Tailwind, Bootstrap o React?</summary>
+          <div accordion-body>
+            Totalmente. Al utilizar selectores de baja especificidad con <span class="section-code">:where()</span>, puedes combinarlo o integrarlo con cualquier librería sin conflictos de estilos.
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- Demo 2: Acordeón Mutuamente Excluyente (Single Open) -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Acordeón Excluyente (Cierre Automático)
+        <span class="section-code">&lt;details name="faq-group"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Utiliza el atributo nativo de HTML5 <span class="section-code">name="..."</span> para que al abrir una pestaña, las demás se cierren automáticamente.
+      </p>
+
+      <div accordion>
+        <details name="billing-faq" open>
+          <summary>💳 ¿Cuáles son los métodos de pago aceptados?</summary>
+          <div accordion-body>
+            Aceptamos tarjetas de crédito/débito (Visa, Mastercard, American Express), PayPal y transferencias bancarias internacionales.
+          </div>
+        </details>
+        <details name="billing-faq">
+          <summary>🔄 ¿Puedo cancelar mi suscripción en cualquier momento?</summary>
+          <div accordion-body>
+            Sí, puedes cancelar en un clic desde el panel de control de tu cuenta sin penalizaciones ni preguntas.
+          </div>
+        </details>
+        <details name="billing-faq">
+          <summary>🛡️ ¿Ofrecen garantía de reembolso?</summary>
+          <div accordion-body>
+            Ofrecemos garantía de reembolso total de 30 días si la plataforma no cumple con tus expectativas.
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- Demo 3: Modo Tarjetas Separadas -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Modo Tarjetas Separadas
+        <span class="section-code">accordion="separated"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Cada elemento es una tarjeta flotante independiente con realce visual al abrirse.
+      </p>
+
+      <div accordion="separated">
+        <details name="features-faq" open>
+          <summary>
+            <div layout="row" align="center" gap="sm">
+              <span badge="primary" pill size="sm">Fase 1</span>
+              <span>Tokens de Diseño y Reset</span>
+            </div>
+          </summary>
+          <div accordion-body>
+            Variables CSS modernas, normalización y reset ligero con especificidad cero.
+          </div>
+        </details>
+        <details name="features-faq">
+          <summary>
+            <div layout="row" align="center" gap="sm">
+              <span badge="success" pill size="sm">Fase 2</span>
+              <span>Layout Primitives & Flexbox</span>
+            </div>
+          </summary>
+          <div accordion-body>
+            Sistemas Stacks, Split, Cluster, y Grillas declarativas auto-responsivas.
+          </div>
+        </details>
+        <details name="features-faq">
+          <summary>
+            <div layout="row" align="center" gap="sm">
+              <span badge="purple" pill size="sm">Fase 3</span>
+              <span>Componentes Core Interactivos</span>
+            </div>
+          </summary>
+          <div accordion-body>
+            Botones multivariante, tarjetas glassmorphism, badges, alertas, avatares y modales nativos.
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- Demo 4: Modo Flush y Chevron a la Izquierda -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        4. Modo Flush & Chevron Izquierdo
+        <span class="section-code">accordion="flush" chevron="left"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Diseño minimalista sin bordes exteriores, ideal para barras laterales o pie de página.
+      </p>
+
+      <div accordion="flush" chevron="left">
+        <details>
+          <summary>Términos del Servicio</summary>
+          <div accordion-body>
+            El uso de este framework es totalmente libre y de código abierto bajo licencia MIT.
+          </div>
+        </details>
+        <details>
+          <summary>Política de Privacidad</summary>
+          <div accordion-body>
+            No recopilamos ningún dato de telemetría ni cookies de seguimiento.
+          </div>
+        </details>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
