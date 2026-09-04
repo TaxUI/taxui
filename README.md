@@ -15,7 +15,8 @@ frameworkhtml/
 │   │   └── reset.css       # Reset moderno y normalización
 │   ├── layout/
 │   │   ├── grid.css        # Sistema de Grid declarativo
-│   │   └── flex.css        # Flexbox, Stacks, Split y Clusters
+│   │   ├── flex.css        # Flexbox, Stacks, Split y Clusters
+│   │   └── page.css        # Page shells, Holy Grail, Sticky Footers y barras flotantes
 │   ├── components/
 │   │   ├── buttons.css     # Botones multivariante, glow, loading y grupos
 │   │   ├── cards.css       # Tarjetas, Glassmorphism, elevación y slots
@@ -46,12 +47,49 @@ frameworkhtml/
     ├── tooltips.html       # Showcase de Tooltips Puros en CSS
     ├── utilities.html      # Showcase de Utilidades de Truncado & Aspect Ratio
     ├── themes.html         # Showcase de Sistema de Temas & Dark/Light Mode
-    └── skeletons.html      # Showcase de Skeletons & Placeholders de Carga
+    ├── skeletons.html      # Showcase de Skeletons & Placeholders de Carga
+    └── sticky-footer.html  # Showcase de Sticky Footer, Holy Grail & Page Shells
 ```
 
 ---
 
-## 💀 1. Skeletons & Placeholders de Carga
+## ⚓ 1. Sticky Footer Layout & App Shells
+
+### Sticky Footer Básico
+```html
+<body layout="sticky-footer">
+  <header>Navbar</header>
+  
+  <main>
+    <!-- Crece automáticamente y empuja el footer a la base -->
+    <p>Contenido breve o extenso.</p>
+  </main>
+  
+  <footer>Pie de página siempre al fondo</footer>
+</body>
+```
+
+### Layout Holy Grail (3 Columnas Responsivo)
+```html
+<div layout="holy-grail">
+  <header>Topbar</header>
+  <div page-body>
+    <aside>Sidebar Izquierda</aside>
+    <main>Contenido Principal</main>
+  </div>
+  <footer>Pie de página</footer>
+</div>
+```
+
+### Barras Sticky & Flotantes
+```html
+<header sticky="glass">Barra superior con Blur</header>
+<div action-bar="floating">Tienes cambios sin guardar <button>Guardar</button></div>
+```
+
+---
+
+## 💀 2. Skeletons & Placeholders de Carga
 
 ```html
 <!-- Formas Semánticas con Onda Shimmer Fluida -->
@@ -75,7 +113,7 @@ frameworkhtml/
 
 ---
 
-## 🎨 2. Sistema de Temas & Modo Oscuro/Claro
+## 🎨 3. Sistema de Temas & Modo Oscuro/Claro
 
 ### Modo Global
 ```html
@@ -105,7 +143,7 @@ frameworkhtml/
 
 ---
 
-## 🛠️ 3. Utilidades de Truncado & Aspect Ratio
+## 🛠️ 4. Utilidades de Truncado & Aspect Ratio
 
 * **Truncado 1 Línea:** `<p truncate>...</p>`
 * **Clamping Multilínea:** `<p clamp="2">...</p>` a `<p clamp="6">...</p>`
@@ -114,7 +152,7 @@ frameworkhtml/
 
 ---
 
-## 💬 4. Tooltips Puros en CSS (Zero JS)
+## 💬 5. Tooltips Puros en CSS (Zero JS)
 
 * **Posicionamiento:** `<button tooltip="Texto" tooltip-pos="top|bottom|left|right">`
 * **Variantes de Color:** `tooltip-variant="primary|success|danger|glass"`
@@ -122,7 +160,7 @@ frameworkhtml/
 
 ---
 
-## 📂 5. Acordeones & Colapsables (`<details>`)
+## 📂 6. Acordeones & Colapsables (`<details>`)
 
 * **Acordeón Conectado:** `<div accordion><details><summary>Título</summary><div accordion-body>...</div></details></div>`
 * **Cierre Automático Excluyente:** `<details name="faq-group">`
@@ -130,7 +168,7 @@ frameworkhtml/
 
 ---
 
-## 🪟 6. Modales Nativos & Drawers (`<dialog>`)
+## 🪟 7. Modales Nativos & Drawers (`<dialog>`)
 
 * **Base:** `<dialog size="sm|md|lg|fullscreen">` con apertura nativa `.showModal()` y cierre `Esc`.
 * **Slots:** `<header modal-header divided>`, `<div modal-body>`, `<footer modal-footer divided>`.
@@ -139,7 +177,7 @@ frameworkhtml/
 
 ---
 
-## 📊 7. Tablas de Datos Responsivas
+## 📊 8. Tablas de Datos Responsivas
 
 * **Contenedor:** `<div table-container><table striped>...</table></div>`
 * **Densidades:** `table[density="compact|relaxed"]`
@@ -148,7 +186,7 @@ frameworkhtml/
 
 ---
 
-## 👤 8. Avatares & Grupos de Usuarios
+## 👤 9. Avatares & Grupos de Usuarios
 
 * **Fotos e Iniciales:** `<img avatar src="user.jpg">` o `<div avatar variant="gradient">MD</div>`
 * **Escala de Tamaños:** `size="xs|sm|md|lg|xl|2xl"`
@@ -158,7 +196,7 @@ frameworkhtml/
 
 ---
 
-## 🔔 9. Alertas & Mensajes de Feedback
+## 🔔 10. Alertas & Mensajes de Feedback
 
 * **Variantes:** `alert="info|success|warning|danger|neutral"`
 * **Borde Lateral:** `<div alert="warning" border="left">...</div>`
@@ -167,7 +205,7 @@ frameworkhtml/
 
 ---
 
-## 🏷️ 10. Badges, Chips & Notificaciones Flotantes
+## 🏷️ 11. Badges, Chips & Notificaciones Flotantes
 
 * **Variantes:** `badge="primary|success|warning|danger|purple"`
 * **Estilos:** `style-type="solid|outline"` y modificador `pill`
@@ -176,7 +214,7 @@ frameworkhtml/
 
 ---
 
-## 🃏 11. Tarjetas y Superficies
+## 🃏 12. Tarjetas y Superficies
 
 * **Modos:** `card="flat|elevated|glass|glow"`
 * **Glassmorphism:** `<article card="glass">...</article>`
@@ -185,7 +223,7 @@ frameworkhtml/
 
 ---
 
-## 🔘 12. Botones Multivariante
+## 🔘 13. Botones Multivariante
 
 * **Variantes:** `variant="primary|secondary|outline|ghost|success|danger|warning|link"`
 * **Efectos:** `glow`, `pill`, `block`, `icon-only`
@@ -194,7 +232,7 @@ frameworkhtml/
 
 ---
 
-## 📝 13. Formularios & Inputs Nativos
+## 📝 14. Formularios & Inputs Nativos
 
 * **Toggle Switches:** `<input type="checkbox" switch checked>`
 * **Checkboxes & Radios:** `<input type="checkbox">` / `<input type="radio">` con checkmark SVG automático.
@@ -204,7 +242,7 @@ frameworkhtml/
 
 ---
 
-## ⚡ 14. Primitivas Flexbox & Stacks
+## ⚡ 15. Primitivas Flexbox & Stacks
 
 * **`layout="stack"`**: Columna vertical con espaciado constante.
 * **`layout="row"`**: Fila horizontal centrada.
@@ -216,7 +254,7 @@ frameworkhtml/
 
 ---
 
-## 📐 15. Primitivas Grid
+## 📐 16. Primitivas Grid
 
 * **`layout="grid" grid="auto-fit" min-col="sm"`**: Grilla auto-responsiva sin media queries.
 * **`cols="1"` a `cols="12"`**: Sistema de columnas fijas.

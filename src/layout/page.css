@@ -1,0 +1,203 @@
+/* ==========================================================================
+   Page Layouts, App Shells & Sticky Footer Primitives
+   Declarative, zero-JS page structures, holy grail layouts, and sticky footers.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Sticky Footer Layout (The Classic & Modern Solution)
+   Ensures the footer stays pinned to the bottom of the viewport when content
+   is brief, without overlapping when content overflows.
+   -------------------------------------------------------------------------- */
+:where(
+  [layout="sticky-footer"],
+  [layout="page"],
+  [page-layout],
+  [page-layout="sticky-footer"],
+  .layout-sticky-footer,
+  body[sticky-footer]
+) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Automatically expand main content slot */
+:where(
+  [layout="sticky-footer"],
+  [layout="page"],
+  [page-layout],
+  [page-layout="sticky-footer"],
+  .layout-sticky-footer,
+  body[sticky-footer]
+) > :where(main, [page-content], [page-main], [content], .page-content, .page-main) {
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+/* Footer slot in sticky footer */
+:where(
+  [layout="sticky-footer"],
+  [layout="page"],
+  [page-layout],
+  [page-layout="sticky-footer"],
+  .layout-sticky-footer,
+  body[sticky-footer]
+) > :where(footer, [page-footer], .page-footer) {
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* --------------------------------------------------------------------------
+   2. Holy Grail Layout (Header + Sidebars + Content + Sticky Footer)
+   -------------------------------------------------------------------------- */
+:where([layout="holy-grail"], [holy-grail], .layout-holy-grail) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+:where([layout="holy-grail"], [holy-grail]) > :where(header, [page-header]) {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+:where([layout="holy-grail"], [holy-grail]) > :where([page-body], [holy-grail-body], .page-body) {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  :where([layout="holy-grail"], [holy-grail]) > :where([page-body], [holy-grail-body], .page-body) {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  :where([layout="holy-grail"], [holy-grail]) :where(main, [page-main], .page-main) {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  :where([layout="holy-grail"], [holy-grail]) :where(aside, [page-sidebar], .page-sidebar) {
+    flex: 0 0 var(--sidebar-width, 260px);
+    width: var(--sidebar-width, 260px);
+  }
+
+  :where([layout="holy-grail"], [holy-grail]) :where(aside[sidebar="right"]) {
+    order: 2;
+  }
+}
+
+:where([layout="holy-grail"], [holy-grail]) > :where(footer, [page-footer]) {
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* --------------------------------------------------------------------------
+   3. App Shell Layout (Fixed Sidebar + Topbar + Scrollable Main Content)
+   -------------------------------------------------------------------------- */
+:where([layout="app-shell"], [app-shell], .layout-app-shell) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  :where([layout="app-shell"], [app-shell], .layout-app-shell) {
+    display: grid;
+    grid-template-columns: var(--app-sidebar-width, 280px) 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "sidebar topbar"
+      "sidebar main";
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  :where([layout="app-shell"], [app-shell]) > :where([app-sidebar], aside.app-sidebar) {
+    grid-area: sidebar;
+    overflow-y: auto;
+    border-right: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+  }
+
+  :where([layout="app-shell"], [app-shell]) > :where([app-topbar], header.app-topbar) {
+    grid-area: topbar;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+  }
+
+  :where([layout="app-shell"], [app-shell]) > :where([app-main], main.app-main) {
+    grid-area: main;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Sticky Header & Topbar Helpers
+   -------------------------------------------------------------------------- */
+:where([sticky="top"], [sticky-top], [page-header][sticky]) {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+/* Glassmorphism Header */
+:where([sticky="glass"], [header="glass"]) {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: rgba(var(--card-glass-rgb, 11, 15, 25), 0.8);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* --------------------------------------------------------------------------
+   5. Sticky Bottom Action Bars & Toolbars
+   -------------------------------------------------------------------------- */
+:where([sticky="bottom"], [sticky-bottom], [action-bar]) {
+  position: sticky;
+  bottom: 0;
+  z-index: 30;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: 0.75rem var(--gap-md);
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Floating Action Bar */
+:where([action-bar="floating"]) {
+  position: sticky;
+  bottom: 1.5rem;
+  z-index: 35;
+  margin-inline: auto;
+  max-width: max-content;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   6. Viewport & Safe-Area Utility Classes
+   -------------------------------------------------------------------------- */
+[h-screen]   { min-height: 100vh; }
+[h-dvh]      { min-height: 100dvh; }
+[safe-top]   { padding-top: env(safe-area-inset-top, 0px); }
+[safe-bottom]{ padding-bottom: env(safe-area-inset-bottom, 0px); }

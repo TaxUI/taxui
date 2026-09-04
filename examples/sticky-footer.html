@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es" theme="dark" theme-accent="blue" id="theme-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sticky Footer & Page Shells - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: var(--color-surface);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+      background: var(--color-primary-glow);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: var(--color-surface-hover);
+      color: var(--color-primary);
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+
+    .demo-section {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--card-shadow);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Simulation Viewports */
+    .viewport-mock {
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-lg);
+      height: 480px;
+      overflow-y: auto;
+      background: var(--color-bg);
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <div container="lg">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
+      <a href="cards.html" class="nav-link">🃏 Cards & Surfaces</a>
+      <a href="badges.html" class="nav-link">🏷️ Badges & Chips</a>
+      <a href="alerts.html" class="nav-link">🔔 Alerts & Feedback</a>
+      <a href="avatars.html" class="nav-link">👤 Avatars</a>
+      <a href="tables.html" class="nav-link">📊 Tables</a>
+      <a href="modals.html" class="nav-link">🪟 Modals</a>
+      <a href="accordions.html" class="nav-link">📂 Accordions</a>
+      <a href="tooltips.html" class="nav-link">💬 Tooltips</a>
+      <a href="utilities.html" class="nav-link">🛠️ Utilities</a>
+      <a href="themes.html" class="nav-link">🎨 Themes</a>
+      <a href="skeletons.html" class="nav-link">💀 Skeletons</a>
+      <a href="sticky-footer.html" class="nav-link active">⚓ Sticky Footer</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Sticky Footer & Page Shells</h1>
+      <p>Estructuras completas de página sin JavaScript: mantén el pie de página siempre en la base de la pantalla, crea layouts Holy Grail y barras flotantes.</p>
+    </header>
+
+    <!-- Demo 1: Simulador Interactivo de Sticky Footer -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Layout Sticky Footer
+        <span class="section-code">layout="sticky-footer"</span>
+        <span class="section-code">main</span>
+        <span class="section-code">footer</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Prueba alternar entre poco contenido y mucho contenido. En ambos casos, el footer se comporta a la perfección: queda anclado al fondo cuando hay poco texto, o baja con scroll natural cuando hay mucho contenido.
+      </p>
+
+      <div layout="row" gap="sm" style="margin-bottom: 1rem;">
+        <button id="btn-short" type="button" variant="primary" onclick="toggleContent('short')">📄 Poco Contenido (1 Párrafo)</button>
+        <button id="btn-long" type="button" variant="ghost" onclick="toggleContent('long')">📚 Mucho Contenido (Con Scroll)</button>
+      </div>
+
+      <!-- Live Viewport Container -->
+      <div class="viewport-mock" id="sim-viewport">
+        <div layout="sticky-footer" style="min-height: 100%;">
+          
+          <!-- Header -->
+          <header style="padding: 1rem; background: var(--color-surface); border-bottom: 1px solid var(--color-border);" layout="split">
+            <strong style="color: var(--color-primary); font-size: 1.1rem;">MiSitio.dev</strong>
+            <nav layout="row" gap="sm">
+              <span badge="primary" size="sm">Inicio</span>
+              <span badge="outline" size="sm">Blog</span>
+            </nav>
+          </header>
+
+          <!-- Main Content Slot (Auto Expands) -->
+          <main style="padding: 1.5rem;" layout="stack" gap="md">
+            <h2>Panel Principal de Contenido</h2>
+            <p style="color: var(--color-text-muted); line-height: 1.6;">
+              Este contenedor <code class="section-code">&lt;main&gt;</code> recibe automáticamente la propiedad <code class="section-code">flex: 1 0 auto;</code> para empujar el footer hacia la base de la pantalla, sin importar cuán corto sea este texto.
+            </p>
+
+            <!-- Dynamic content injected here -->
+            <div id="dynamic-content"></div>
+          </main>
+
+          <!-- Footer (Sticky at Bottom) -->
+          <footer style="padding: 1.25rem; background: var(--color-surface); border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted); font-size: 0.85rem;" layout="split">
+            <span>© 2026 Framework HTML. Todos los derechos reservados.</span>
+            <div layout="row" gap="md">
+              <a href="javascript:void(0)" style="color: var(--color-primary); text-decoration: none;">Privacidad</a>
+              <a href="javascript:void(0)" style="color: var(--color-primary); text-decoration: none;">Términos</a>
+            </div>
+          </footer>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 2: Holy Grail Layout (Header + Sidebars + Content + Footer) -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Layout Holy Grail
+        <span class="section-code">layout="holy-grail"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        La clásica estructura de 3 columnas (Sidebar Izquierda + Contenido Central + Sidebar Derecha / Footer) completamente responsiva.
+      </p>
+
+      <div class="viewport-mock" style="height: 420px;">
+        <div layout="holy-grail" style="min-height: 100%;">
+          
+          <!-- Topbar -->
+          <header style="padding: 0.75rem 1.25rem; background: var(--color-surface); border-bottom: 1px solid var(--color-border);" layout="split">
+            <strong>🚀 Dashboard Holy Grail</strong>
+            <span badge="success" size="sm" pill>Online</span>
+          </header>
+
+          <!-- Holy Grail Body -->
+          <div page-body>
+            <!-- Left Sidebar -->
+            <aside style="background: var(--color-surface); border-right: 1px solid var(--color-border); padding: 1.25rem;" layout="stack" gap="sm">
+              <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted);">Menú Principal</span>
+              <button type="button" class="nav-link active" style="text-align: left; cursor: pointer; border-radius: var(--radius-md);" onclick="setActiveSidebar(this)">📊 Estadísticas</button>
+              <button type="button" class="nav-link" style="text-align: left; cursor: pointer; border-radius: var(--radius-md);" onclick="setActiveSidebar(this)">👥 Usuarios</button>
+              <button type="button" class="nav-link" style="text-align: left; cursor: pointer; border-radius: var(--radius-md);" onclick="setActiveSidebar(this)">⚙️ Ajustes</button>
+            </aside>
+
+            <!-- Center Content -->
+            <main style="padding: 1.25rem;" layout="stack" gap="md">
+              <h3>Área de Trabajo Central</h3>
+              <p style="color: var(--color-text-muted); font-size: 0.9rem;">
+                El contenido central crece y ocupa todo el espacio disponible entre las sidebars y el header.
+              </p>
+              <div layout="grid" cols="1" cols-md="2" gap="sm">
+                <div card surface style="padding: 1rem;">
+                  <strong style="color: var(--color-primary);">+1,420</strong>
+                  <p style="font-size: 0.8rem; color: var(--color-text-muted); margin: 0;">Nuevos Registros</p>
+                </div>
+                <div card surface style="padding: 1rem;">
+                  <strong style="color: var(--color-success);">$94,200</strong>
+                  <p style="font-size: 0.8rem; color: var(--color-text-muted); margin: 0;">Ingresos Totales</p>
+                </div>
+              </div>
+            </main>
+          </div>
+
+          <!-- Sticky Footer -->
+          <footer style="padding: 0.75rem 1.25rem; background: var(--color-surface); border-top: 1px solid var(--color-border); font-size: 0.85rem; color: var(--color-text-muted);">
+            Pie de página anclado al fondo
+          </footer>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 3: Barras Flotantes & Sticky Action Bars -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Barras de Acción Sticky & Flotantes
+        <span class="section-code">sticky="bottom"</span>
+        <span class="section-code">action-bar="floating"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Ideales para formularios de guardado, barras de compra en checkout y menús inferiores en móviles.
+      </p>
+
+      <div class="viewport-mock" style="height: 360px;">
+        <div layout="stack" gap="md" style="padding: 1.5rem;">
+          <h3>Formulario con Guardado Fijo</h3>
+          <p style="color: var(--color-text-muted);">
+            Haz scroll dentro de esta ventana para ver cómo la barra inferior se mantiene visible y flotante.
+          </p>
+          <input type="text" placeholder="Nombre completo" value="Matías">
+          <input type="email" placeholder="Correo electrónico" value="matias@ejemplo.com">
+          <textarea rows="4" placeholder="Notas adicionales">Configuración de servidor guardada.</textarea>
+          <div style="height: 200px; background: var(--color-surface); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: var(--color-text-muted);">
+            Contenido largo desplazable...
+          </div>
+
+          <!-- Floating Sticky Action Bar -->
+          <div action-bar="floating" layout="row" align="center" gap="md">
+            <span style="font-size: 0.85rem; font-weight: 500;">Tienes cambios sin guardar</span>
+            <button type="button" variant="primary" size="sm">Guardar Cambios</button>
+            <button type="button" variant="ghost" size="sm">Descartar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleContent(type) {
+      const dynamicBox = document.getElementById('dynamic-content');
+      const btnShort = document.getElementById('btn-short');
+      const btnLong = document.getElementById('btn-long');
+
+      if (type === 'long') {
+        dynamicBox.innerHTML = `
+          <div layout="stack" gap="md" style="margin-top: 1rem;">
+            <div card surface style="padding: 1rem;">
+              <h4>Sección Adicional 1</h4>
+              <p style="color: var(--color-text-muted); font-size: 0.9rem;">Contenido extenso que provoca que la página supere la altura de la ventana y requiera scroll vertical.</p>
+            </div>
+            <div card surface style="padding: 1rem;">
+              <h4>Sección Adicional 2</h4>
+              <p style="color: var(--color-text-muted); font-size: 0.9rem;">El pie de página ahora baja naturalmente con el scroll sin solaparse nunca con el contenido.</p>
+            </div>
+            <div card surface style="padding: 1rem;">
+              <h4>Sección Adicional 3</h4>
+              <p style="color: var(--color-text-muted); font-size: 0.9rem;">Prueba nuevamente volver a 'Poco Contenido' para ver la fijación instantánea.</p>
+            </div>
+          </div>
+        `;
+        btnShort.setAttribute('variant', 'ghost');
+        btnLong.setAttribute('variant', 'primary');
+      } else {
+        dynamicBox.innerHTML = ``;
+        btnShort.setAttribute('variant', 'primary');
+        btnLong.setAttribute('variant', 'ghost');
+      }
+    }
+
+    function setActiveSidebar(el) {
+      const buttons = el.parentElement.querySelectorAll('.nav-link');
+      buttons.forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

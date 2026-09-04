@@ -10,6 +10,7 @@
 /* 2. Layout Primitives */
 @import "./layout/grid.css";
 @import "./layout/flex.css";
+@import "./layout/page.css";
 
 /* 3. Components */
 @import "./components/forms.css";
