@@ -1,2 +1,13 @@
-# Others
+# Dependencies
+node_modules/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Framework notes
 ROADMAP.md

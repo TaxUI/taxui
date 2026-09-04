@@ -1,6 +1,60 @@
-# 🚀 Framework HTML - Declarative HTML & CSS Framework
+# 🚀 TaxUI Framework (v1.0.0) - Declarative HTML & CSS Framework
 
-Un framework moderno, declarativo y ultra rápido enfocado en escribir HTML semántico y atributos limpios para eliminar la fatiga de diseño y no perder tiempo configurando CSS.
+Un framework moderno, declarativo y ultra rápido enfocado en escribir HTML semántico y atributos limpios para eliminar la fatiga de diseño y no perder tiempo configurando CSS. **Zero JavaScript, 100% puro en CSS nativo y acelerado por GPU.**
+
+---
+
+## ⚡ Instalación Rápida
+
+### Vía CDN (jsDelivr / unpkg)
+```html
+<!-- Bundle Completo Minificado (~14 KB Gzipped) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Elabsurdo984/taxui@1.0.0/dist/taxui.min.css">
+```
+
+### Vía NPM
+```bash
+npm install taxui
+```
+```css
+/* Importar en tu CSS principal */
+@import "taxui/dist/taxui.min.css";
+```
+
+### O sub-módulos independientes
+```html
+<!-- Solo Layouts -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Elabsurdo984/taxui@1.0.0/dist/taxui-layout.min.css">
+
+<!-- Solo Componentes de UI -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Elabsurdo984/taxui@1.0.0/dist/taxui-components.min.css">
+```
+
+---
+
+## 🛠️ Pipeline de Build & Minificación
+
+El proyecto incluye un pipeline ultra rápido en Node.js sin dependencias externas:
+
+```bash
+# Compilar y generar todos los bundles en dist/
+npm run build
+
+# Modo desarrollo con auto-recarga en vivo
+npm run watch
+
+# Validar integridad y tamaño de bundles
+npm test
+```
+
+### Métricas de Peso de los Bundles
+| Bundle | Archivo | Minificado | Gzipped | Brotli |
+|---|---|---|---|---|
+| **TaxUI Full Bundle** | `dist/taxui.min.css` | **84.3 KB** | **14.8 KB** | **12.6 KB** |
+| **Base & Themes** | `dist/taxui-base.min.css` | 6.5 KB | 1.6 KB | 1.4 KB |
+| **Layout Primitives** | `dist/taxui-layout.min.css` | 16.0 KB | 2.9 KB | 2.4 KB |
+| **UI Components** | `dist/taxui-components.min.css` | 56.3 KB | 9.8 KB | 8.5 KB |
+| **Utilities & Scrollbars** | `dist/taxui-utilities.min.css` | 5.4 KB | 1.3 KB | 1.1 KB |
 
 ---
 
@@ -8,6 +62,13 @@ Un framework moderno, declarativo y ultra rápido enfocado en escribir HTML sem�
 
 ```text
 frameworkhtml/
+├── dist/                   # Bundles compilados y minificados para producción
+│   ├── taxui.css           # Bundle maestro sin minificar
+│   ├── taxui.min.css       # Bundle maestro minificado para CDN/NPM
+│   ├── taxui-base.min.css
+│   ├── taxui-layout.min.css
+│   ├── taxui-components.min.css
+│   └── taxui-utilities.min.css
 ├── src/
 │   ├── base/
 │   │   ├── variables.css   # Tokens de diseño (gaps, inputs, radios, colores)
@@ -33,24 +94,10 @@ frameworkhtml/
 │   │   ├── utilities.css   # Truncado de texto, line-clamp, aspect-ratios y media-frame
 │   │   └── scrollbars.css  # Barras de scroll personalizadas, ocultas y scroll snapping
 │   └── main.css            # Archivo maestro de importación
-└── examples/
-    ├── flexbox.html        # Showcase de Flexbox & Stacks
-    ├── grid.html           # Showcase de Grid Primitives
-    ├── forms.html          # Showcase de Formularios e Inputs
-    ├── buttons.html        # Showcase de Botones Multivariante
-    ├── cards.html          # Showcase de Tarjetas y Superficies
-    ├── badges.html         # Showcase de Badges, Chips y Notificaciones
-    ├── alerts.html         # Showcase de Alertas y Banners
-    ├── avatars.html        # Showcase de Avatares y Grupos de Usuarios
-    ├── tables.html         # Showcase de Tablas de Datos Responsivas
-    ├── modals.html         # Showcase de Modales y Drawers Nativos
-    ├── accordions.html     # Showcase de Acordeones y Colapsables
-    ├── tooltips.html       # Showcase de Tooltips Puros en CSS
-    ├── utilities.html      # Showcase de Utilidades de Truncado & Aspect Ratio
-    ├── themes.html         # Showcase de Sistema de Temas & Dark/Light Mode
-    ├── skeletons.html      # Showcase de Skeletons & Placeholders de Carga
-    ├── sticky-footer.html  # Showcase de Sticky Footer, Holy Grail & Page Shells
-    └── scrollbars.html     # Showcase de Custom Scrollbars & Scroll Snapping
+├── scripts/
+│   └── build.js            # Engine de compilación, inlining de imports y minificación
+├── package.json            # Configuración NPM de TaxUI
+└── examples/               # 17 páginas interactivas de demostración
 ```
 
 ---

@@ -1,0 +1,44 @@
+{
+  "name": "taxui",
+  "version": "1.0.0",
+  "description": "Modern, ultra-fast declarative HTML & CSS framework with zero JS dependencies",
+  "main": "dist/taxui.css",
+  "style": "dist/taxui.css",
+  "unpkg": "dist/taxui.min.css",
+  "jsdelivr": "dist/taxui.min.css",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "build:modules": "node scripts/build.js --modules",
+    "watch": "node scripts/build.js --watch",
+    "test": "node scripts/build.js --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elabsurdo984/taxui.git"
+  },
+  "keywords": [
+    "css",
+    "framework",
+    "declarative",
+    "html",
+    "zero-js",
+    "design-system",
+    "responsive",
+    "dark-mode",
+    "flexbox",
+    "grid",
+    "ui-kit"
+  ],
+  "author": "Elabsurdo984",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Elabsurdo984/taxui/issues"
+  },
+  "homepage": "https://github.com/Elabsurdo984/taxui#readme"
+}
