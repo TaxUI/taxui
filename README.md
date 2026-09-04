@@ -26,6 +26,8 @@ frameworkhtml/
 │   │   ├── accordions.css  # Acordeones nativos <details>, chevrons y single-open
 │   │   ├── tooltips.css    # Tooltips puros en CSS con flechas y 4 posiciones
 │   │   └── forms.css       # Formularios, switches, checkboxes, selects e input groups
+│   ├── utilities/
+│   │   └── utilities.css   # Truncado de texto, line-clamp, aspect-ratios y media-frame
 │   └── main.css            # Archivo maestro de importación
 └── examples/
     ├── flexbox.html        # Showcase de Flexbox & Stacks
@@ -39,40 +41,53 @@ frameworkhtml/
     ├── tables.html         # Showcase de Tablas de Datos Responsivas
     ├── modals.html         # Showcase de Modales y Drawers Nativos
     ├── accordions.html     # Showcase de Acordeones y Colapsables
-    └── tooltips.html       # Showcase de Tooltips Puros en CSS
+    ├── tooltips.html       # Showcase de Tooltips Puros en CSS
+    └── utilities.html      # Showcase de Utilidades de Truncado & Aspect Ratio
 ```
 
 ---
 
-## 💬 1. Tooltips Puros en CSS (Zero JS)
+## 🛠️ 1. Utilidades de Truncado & Aspect Ratio
 
-### Uso Básico y Posicionamiento
+### Truncado de 1 Línea y Clamping Multilínea
 ```html
-<button tooltip="Mensaje en la parte superior" tooltip-pos="top">Hover</button>
-<button tooltip="Mensaje en la parte inferior" tooltip-pos="bottom">Hover</button>
-<button tooltip="Mensaje a la izquierda" tooltip-pos="left">Hover</button>
-<button tooltip="Mensaje a la derecha" tooltip-pos="right">Hover</button>
+<!-- Truncado de 1 línea con elipsis -->
+<p truncate>Texto excesivamente largo...</p>
+
+<!-- Limitador a 2, 3 o 4 líneas (line-clamp) -->
+<p clamp="2">Resumen corto de dos líneas...</p>
+<p clamp="3">Resumen de artículo de blog limitado a 3 líneas...</p>
 ```
 
-### Variantes Semánticas de Color
+### Balance Tipográfico Moderno
 ```html
-<button tooltip="¡Recomendado!" tooltip-variant="primary">Primary</button>
-<button tooltip="Cambios guardados" tooltip-variant="success">Success</button>
-<button tooltip="Acción irreversible" tooltip-variant="danger">Danger</button>
-<button tooltip="Efecto Glassmorphism" tooltip-variant="glass">Glass ✨</button>
+<!-- Evita palabras huérfanas en encabezados -->
+<h1 text-balance>Título equilibrado automáticamente</h1>
 ```
 
-### Texto Multilínea & Accesibilidad
+### Relaciones de Aspecto & Media Frames
 ```html
-<!-- Texto descriptivo largo con ancho máximo seguro -->
-<button tooltip="Explicación detallada..." tooltip-wrap>Info</button>
+<!-- Contenedor con ratio geométrico fijo -->
+<div media-frame ratio="16:9">
+  <img src="video-cover.jpg" alt="Video">
+</div>
 
-<!-- Totalmente accesible con navegación por teclado mediante :focus-visible -->
+<div media-frame ratio="1:1">...</div>    <!-- Cuadrado -->
+<div media-frame ratio="4:5">...</div>    <!-- Vertical / Retrato -->
+<div media-frame ratio="21:9">...</div>   <!-- Cinema Ultra-Wide -->
 ```
 
 ---
 
-## 📂 2. Acordeones & Colapsables (`<details>`)
+## 💬 2. Tooltips Puros en CSS (Zero JS)
+
+* **Posicionamiento:** `<button tooltip="Texto" tooltip-pos="top|bottom|left|right">`
+* **Variantes de Color:** `tooltip-variant="primary|success|danger|glass"`
+* **Multilínea:** `<button tooltip="..." tooltip-wrap>`
+
+---
+
+## 📂 3. Acordeones & Colapsables (`<details>`)
 
 * **Acordeón Conectado:** `<div accordion><details><summary>Título</summary><div accordion-body>...</div></details></div>`
 * **Cierre Automático Excluyente:** `<details name="faq-group">`
@@ -80,7 +95,7 @@ frameworkhtml/
 
 ---
 
-## 🪟 3. Modales Nativos & Drawers (`<dialog>`)
+## 🪟 4. Modales Nativos & Drawers (`<dialog>`)
 
 * **Base:** `<dialog size="sm|md|lg|fullscreen">` con apertura nativa `.showModal()` y cierre `Esc`.
 * **Slots:** `<header modal-header divided>`, `<div modal-body>`, `<footer modal-footer divided>`.
@@ -89,7 +104,7 @@ frameworkhtml/
 
 ---
 
-## 📊 4. Tablas de Datos Responsivas
+## 📊 5. Tablas de Datos Responsivas
 
 * **Contenedor:** `<div table-container><table striped>...</table></div>`
 * **Densidades:** `table[density="compact|relaxed"]`
@@ -98,7 +113,7 @@ frameworkhtml/
 
 ---
 
-## 👤 5. Avatares & Grupos de Usuarios
+## 👤 6. Avatares & Grupos de Usuarios
 
 * **Fotos e Iniciales:** `<img avatar src="user.jpg">` o `<div avatar variant="gradient">MD</div>`
 * **Escala de Tamaños:** `size="xs|sm|md|lg|xl|2xl"`
@@ -108,7 +123,7 @@ frameworkhtml/
 
 ---
 
-## 🔔 6. Alertas & Mensajes de Feedback
+## 🔔 7. Alertas & Mensajes de Feedback
 
 * **Variantes:** `alert="info|success|warning|danger|neutral"`
 * **Borde Lateral:** `<div alert="warning" border="left">...</div>`
@@ -117,7 +132,7 @@ frameworkhtml/
 
 ---
 
-## 🏷️ 7. Badges, Chips & Notificaciones Flotantes
+## 🏷️ 8. Badges, Chips & Notificaciones Flotantes
 
 * **Variantes:** `badge="primary|success|warning|danger|purple"`
 * **Estilos:** `style-type="solid|outline"` y modificador `pill`
@@ -126,7 +141,7 @@ frameworkhtml/
 
 ---
 
-## 🃏 8. Tarjetas y Superficies
+## 🃏 9. Tarjetas y Superficies
 
 * **Modos:** `card="flat|elevated|glass|glow"`
 * **Glassmorphism:** `<article card="glass">...</article>`
@@ -135,7 +150,7 @@ frameworkhtml/
 
 ---
 
-## 🔘 9. Botones Multivariante
+## 🔘 10. Botones Multivariante
 
 * **Variantes:** `variant="primary|secondary|outline|ghost|success|danger|warning|link"`
 * **Efectos:** `glow`, `pill`, `block`, `icon-only`
@@ -144,7 +159,7 @@ frameworkhtml/
 
 ---
 
-## 📝 10. Formularios & Inputs Nativos
+## 📝 11. Formularios & Inputs Nativos
 
 * **Toggle Switches:** `<input type="checkbox" switch checked>`
 * **Checkboxes & Radios:** `<input type="checkbox">` / `<input type="radio">` con checkmark SVG automático.
@@ -154,7 +169,7 @@ frameworkhtml/
 
 ---
 
-## ⚡ 11. Primitivas Flexbox & Stacks
+## ⚡ 12. Primitivas Flexbox & Stacks
 
 * **`layout="stack"`**: Columna vertical con espaciado constante.
 * **`layout="row"`**: Fila horizontal centrada.
@@ -166,7 +181,7 @@ frameworkhtml/
 
 ---
 
-## 📐 12. Primitivas Grid
+## 📐 13. Primitivas Grid
 
 * **`layout="grid" grid="auto-fit" min-col="sm"`**: Grilla auto-responsiva sin media queries.
 * **`cols="1"` a `cols="12"`**: Sistema de columnas fijas.

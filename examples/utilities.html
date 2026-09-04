@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography & Aspect Ratio Utilities - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+      min-height: 100vh;
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: rgba(19, 27, 46, 0.5);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #1e293b;
+      color: #a5f3fc;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(165, 243, 252, 0.2);
+    }
+
+    .demo-section {
+      background: rgba(19, 27, 46, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .sample-box {
+      background: #0f172a;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+  </style>
+</head>
+<body>
+
+  <div container="lg">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
+      <a href="cards.html" class="nav-link">🃏 Cards & Surfaces</a>
+      <a href="badges.html" class="nav-link">🏷️ Badges & Chips</a>
+      <a href="alerts.html" class="nav-link">🔔 Alerts & Feedback</a>
+      <a href="avatars.html" class="nav-link">👤 Avatars</a>
+      <a href="tables.html" class="nav-link">📊 Tables</a>
+      <a href="modals.html" class="nav-link">🪟 Modals</a>
+      <a href="accordions.html" class="nav-link">📂 Accordions</a>
+      <a href="tooltips.html" class="nav-link">💬 Tooltips</a>
+      <a href="utilities.html" class="nav-link active">🛠️ Utilities</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Typography & Aspect Ratio Utilities</h1>
+      <p>Utilidades declarativas de alto rendimiento: truncado elipsis de una línea, limitador multilínea (line-clamp), balance de texto y relaciones de aspecto.</p>
+    </header>
+
+    <!-- Demo 1: Truncado de Una Línea vs Clamping Multilínea -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Truncado de Texto & Clamping Multilínea
+        <span class="section-code">[truncate]</span>
+        <span class="section-code">clamp="1|2|3|4"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Corta textos largos con puntos suspensivos automáticamente según el número de líneas deseadas.
+      </p>
+
+      <div layout="grid" cols="1" cols-md="3" gap="md">
+        <!-- 1 Line Truncate -->
+        <div class="sample-box">
+          <strong style="color: #38bdf8; font-size: 0.85rem; display: block; margin-bottom: 0.5rem;">
+            [truncate] (1 línea continua)
+          </strong>
+          <p truncate style="color: var(--color-text-muted); font-size: 0.9rem; margin: 0;">
+            https://github.com/Elabsurdo984/taxui/blob/master/src/components/very-long-nested-directory-structure-file-name.css
+          </p>
+        </div>
+
+        <!-- 2 Lines Clamp -->
+        <div class="sample-box">
+          <strong style="color: #a855f7; font-size: 0.85rem; display: block; margin-bottom: 0.5rem;">
+            clamp="2" (Máximo 2 líneas)
+          </strong>
+          <p clamp="2" style="color: var(--color-text-muted); font-size: 0.9rem; margin: 0;">
+            Este párrafo de descripción contiene varias oraciones detalladas, pero se cortará de forma limpia y elegante en exactamente dos líneas sin desbordar el contenedor.
+          </p>
+        </div>
+
+        <!-- 3 Lines Clamp -->
+        <div class="sample-box">
+          <strong style="color: #34d399; font-size: 0.85rem; display: block; margin-bottom: 0.5rem;">
+            clamp="3" (Máximo 3 líneas)
+          </strong>
+          <p clamp="3" style="color: var(--color-text-muted); font-size: 0.9rem; margin: 0;">
+            Ideal para resúmenes de artículos de blog o tarjetas de noticias donde deseas que todas las tarjetas de una fila compartan exactamente la misma altura visual aunque el texto original sea mucho más extenso.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 2: Balance Tipográfico -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Balance Tipográfico
+        <span class="section-code">[text-balance]</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Equilibra las líneas de los encabezados para evitar palabras huérfanas en la última línea.
+      </p>
+
+      <div layout="grid" cols="1" cols-md="2" gap="md">
+        <div class="sample-box">
+          <span badge="warning" size="sm" pill style="margin-bottom: 0.5rem;">Sin balance (Por defecto)</span>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0;">
+            Construye interfaces web modernas mucho más rápido sin fatiga de CSS
+          </h3>
+        </div>
+
+        <div class="sample-box">
+          <span badge="success" size="sm" pill style="margin-bottom: 0.5rem;">Con [text-balance]</span>
+          <h3 text-balance style="font-size: 1.25rem; font-weight: 700; margin: 0; color: #38bdf8;">
+            Construye interfaces web modernas mucho más rápido sin fatiga de CSS
+          </h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 3: Relaciones de Aspecto & Media Frames -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Aspect Ratios & Media Frames
+        <span class="section-code">ratio="16:9|1:1|4:5|21:9|4:3"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Fija proporciones geométricas precisas en imágenes, videos y contenedores con <span class="section-code">[media-frame]</span>.
+      </p>
+
+      <div layout="grid" cols="2" cols-md="4" gap="md">
+        <!-- 1:1 Square -->
+        <div>
+          <strong style="color: #94a3b8; font-size: 0.85rem; display: block; margin-bottom: 0.35rem;">ratio="1:1" (Square)</strong>
+          <div media-frame ratio="1:1">
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop" alt="Abstract 3D Shape">
+          </div>
+        </div>
+
+        <!-- 4:5 Portrait -->
+        <div>
+          <strong style="color: #94a3b8; font-size: 0.85rem; display: block; margin-bottom: 0.35rem;">ratio="4:5" (Portrait)</strong>
+          <div media-frame ratio="4:5">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&auto=format&fit=crop" alt="Architecture">
+          </div>
+        </div>
+
+        <!-- 4:3 Photo -->
+        <div>
+          <strong style="color: #94a3b8; font-size: 0.85rem; display: block; margin-bottom: 0.35rem;">ratio="4:3" (Photo)</strong>
+          <div media-frame ratio="4:3">
+            <img src="https://images.unsplash.com/photo-1572756317709-fe9c15ced298?q=80&w=867&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Art Pattern">
+          </div>
+        </div>
+
+        <!-- 16:9 Video -->
+        <div>
+          <strong style="color: #94a3b8; font-size: 0.85rem; display: block; margin-bottom: 0.35rem;">ratio="16:9" (Video)</strong>
+          <div media-frame ratio="16:9">
+            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop" alt="Tech Setup">
+          </div>
+        </div>
+      </div>
+
+      <!-- 21:9 Cinema Banner -->
+      <div style="margin-top: 1.5rem;">
+        <strong style="color: #94a3b8; font-size: 0.85rem; display: block; margin-bottom: 0.35rem;">ratio="21:9" (Cinema Ultra-Wide)</strong>
+        <div media-frame ratio="21:9">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop" alt="Hardware Chip Circuit">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

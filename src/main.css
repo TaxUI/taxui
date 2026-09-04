@@ -22,7 +22,10 @@
 @import "./components/accordions.css";
 @import "./components/tooltips.css";
 
-/* 4. Base Container Helper */
+/* 4. Utilities */
+@import "./utilities/utilities.css";
+
+/* 5. Base Container Helper */
 :where([container], .container) {
   width: 100%;
   margin-inline: auto;

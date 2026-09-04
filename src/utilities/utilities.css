@@ -1,0 +1,125 @@
+/* ==========================================================================
+   Typography, Truncation & Aspect Ratio Utilities
+   Zero-runtime text clamping, text-wrap balancing, aspect ratios & media framing.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Single-Line Text Truncation
+   -------------------------------------------------------------------------- */
+:where([truncate], [text-truncate], .truncate) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   2. Multi-Line Text Clamping (clamp="1" to "6")
+   -------------------------------------------------------------------------- */
+:where([clamp], [line-clamp]) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+:where([clamp="1"], [line-clamp="1"]) { -webkit-line-clamp: 1; line-clamp: 1; }
+:where([clamp="2"], [line-clamp="2"]) { -webkit-line-clamp: 2; line-clamp: 2; }
+:where([clamp="3"], [line-clamp="3"]) { -webkit-line-clamp: 3; line-clamp: 3; }
+:where([clamp="4"], [line-clamp="4"]) { -webkit-line-clamp: 4; line-clamp: 4; }
+:where([clamp="5"], [line-clamp="5"]) { -webkit-line-clamp: 5; line-clamp: 5; }
+:where([clamp="6"], [line-clamp="6"]) { -webkit-line-clamp: 6; line-clamp: 6; }
+
+/* --------------------------------------------------------------------------
+   3. Modern Text Wrapping & Word Breaks
+   -------------------------------------------------------------------------- */
+:where([text-balance]) {
+  text-wrap: balance;
+}
+
+:where([text-pretty]) {
+  text-wrap: pretty;
+}
+
+:where([text-nowrap]) {
+  white-space: nowrap;
+}
+
+:where([break-words]) {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* --------------------------------------------------------------------------
+   4. Aspect Ratio Modifiers (ratio="16:9|1:1|4:5|4:3|21:9|golden")
+   -------------------------------------------------------------------------- */
+:where([ratio="square"], [ratio="1:1"], [aspect="square"], [aspect="1:1"]) {
+  aspect-ratio: 1 / 1;
+}
+
+:where([ratio="video"], [ratio="16:9"], [aspect="video"], [aspect="16:9"]) {
+  aspect-ratio: 16 / 9;
+}
+
+:where([ratio="portrait"], [ratio="4:5"], [aspect="portrait"], [aspect="4:5"]) {
+  aspect-ratio: 4 / 5;
+}
+
+:where([ratio="photo"], [ratio="4:3"], [aspect="photo"], [aspect="4:3"]) {
+  aspect-ratio: 4 / 3;
+}
+
+:where([ratio="cinema"], [ratio="21:9"], [aspect="cinema"], [aspect="21:9"]) {
+  aspect-ratio: 21 / 9;
+}
+
+:where([ratio="golden"], [aspect="golden"]) {
+  aspect-ratio: 1.618 / 1;
+}
+
+/* --------------------------------------------------------------------------
+   5. Object Fit & Position Utilities
+   -------------------------------------------------------------------------- */
+:where([fit="cover"], img[fit="cover"], video[fit="cover"]) {
+  object-fit: cover;
+}
+
+:where([fit="contain"], img[fit="contain"], video[fit="contain"]) {
+  object-fit: contain;
+}
+
+:where([fit="fill"], img[fit="fill"], video[fit="fill"]) {
+  object-fit: fill;
+}
+
+:where([fit="none"], img[fit="none"], video[fit="none"]) {
+  object-fit: none;
+}
+
+:where([fit="scale-down"], img[fit="scale-down"], video[fit="scale-down"]) {
+  object-fit: scale-down;
+}
+
+/* Object Position */
+:where([fit-pos="center"]) { object-position: center; }
+:where([fit-pos="top"])    { object-position: top; }
+:where([fit-pos="bottom"]) { object-position: bottom; }
+:where([fit-pos="left"])   { object-position: left; }
+:where([fit-pos="right"])  { object-position: right; }
+
+/* --------------------------------------------------------------------------
+   6. Media Frame Helper ([media-frame])
+   Containers that lock children (img, video, iframe) to 100% width/height & aspect ratio
+   -------------------------------------------------------------------------- */
+:where([media-frame]) {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+}
+
+:where([media-frame] > img, [media-frame] > video, [media-frame] > iframe) {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
