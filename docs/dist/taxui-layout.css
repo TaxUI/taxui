@@ -1,0 +1,653 @@
+/*! TaxUI Framework v1.0.0 | MIT License | https://github.com/Elabsurdo984/taxui */
+/* ==========================================================================
+   Grid Layout Primitives
+   Declarative, powerful and zero-CSS-headache grid system.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Core Grid Container
+   -------------------------------------------------------------------------- */
+:where([layout="grid"], [grid], .grid) {
+  display: grid;
+  gap: var(--grid-gap, var(--gap-md));
+  width: 100%;
+}
+
+/* Inline Grid */
+:where([layout="inline-grid"], [inline-grid], .inline-grid) {
+  display: inline-grid;
+  gap: var(--grid-gap, var(--gap-md));
+}
+
+/* --------------------------------------------------------------------------
+   2. Auto-Responsive Columns (No media queries required)
+   Adapts automatically from 1 to N columns based on minimum card width.
+   -------------------------------------------------------------------------- */
+:where([grid="auto"], [grid="auto-fit"], [auto-fit]) {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--grid-min-col, 260px)), 1fr));
+}
+
+:where([grid="auto-fill"], [auto-fill]) {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--grid-min-col, 260px)), 1fr));
+}
+
+/* Column Min-Width Presets */
+:where([min-col="2xs"]) { --grid-min-col: var(--min-col-2xs); } /* 120px */
+:where([min-col="xs"])  { --grid-min-col: var(--min-col-xs); }  /* 180px */
+:where([min-col="sm"])  { --grid-min-col: var(--min-col-sm); }  /* 240px */
+:where([min-col="md"])  { --grid-min-col: var(--min-col-md); }  /* 300px */
+:where([min-col="lg"])  { --grid-min-col: var(--min-col-lg); }  /* 380px */
+:where([min-col="xl"])  { --grid-min-col: var(--min-col-xl); }  /* 480px */
+
+/* --------------------------------------------------------------------------
+   3. Explicit Column Layouts (cols="1" to cols="12")
+   -------------------------------------------------------------------------- */
+:where([cols="1"])  { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+:where([cols="2"])  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+:where([cols="3"])  { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+:where([cols="4"])  { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+:where([cols="5"])  { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+:where([cols="6"])  { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+:where([cols="7"])  { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+:where([cols="8"])  { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+:where([cols="9"])  { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+:where([cols="10"]) { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+:where([cols="11"]) { grid-template-columns: repeat(11, minmax(0, 1fr)); }
+:where([cols="12"]) { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+
+/* Preset Layout Patterns (Sidebar / Dashboard / Asymmetrical) */
+:where([cols="sidebar-left"], [cols="sidebar"]) {
+  grid-template-columns: minmax(220px, 280px) 1fr;
+}
+:where([cols="sidebar-right"]) {
+  grid-template-columns: 1fr minmax(220px, 280px);
+}
+:where([cols="auto-1fr"]) {
+  grid-template-columns: auto 1fr;
+}
+:where([cols="1fr-auto"]) {
+  grid-template-columns: 1fr auto;
+}
+:where([cols="golden-left"]) {
+  grid-template-columns: 1.618fr 1fr;
+}
+:where([cols="golden-right"]) {
+  grid-template-columns: 1fr 1.618fr;
+}
+
+/* --------------------------------------------------------------------------
+   4. Responsive Column Breakpoints
+   - sm: >= 640px
+   - md: >= 768px
+   - lg: >= 1024px
+   - xl: >= 1280px
+   -------------------------------------------------------------------------- */
+@media (min-width: 640px) {
+  [cols-sm="1"]  { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  [cols-sm="2"]  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  [cols-sm="3"]  { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  [cols-sm="4"]  { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  [cols-sm="6"]  { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  [cols-sm="12"] { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  [cols-sm="sidebar-left"] { grid-template-columns: minmax(200px, 260px) 1fr; }
+  [cols-sm="sidebar-right"] { grid-template-columns: 1fr minmax(200px, 260px); }
+}
+
+@media (min-width: 768px) {
+  [cols-md="1"]  { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  [cols-md="2"]  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  [cols-md="3"]  { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  [cols-md="4"]  { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  [cols-md="5"]  { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  [cols-md="6"]  { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  [cols-md="12"] { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  [cols-md="sidebar-left"] { grid-template-columns: minmax(220px, 280px) 1fr; }
+  [cols-md="sidebar-right"] { grid-template-columns: 1fr minmax(220px, 280px); }
+}
+
+@media (min-width: 1024px) {
+  [cols-lg="1"]  { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  [cols-lg="2"]  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  [cols-lg="3"]  { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  [cols-lg="4"]  { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  [cols-lg="5"]  { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  [cols-lg="6"]  { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  [cols-lg="8"]  { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  [cols-lg="12"] { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  [cols-lg="sidebar-left"] { grid-template-columns: minmax(240px, 300px) 1fr; }
+  [cols-lg="sidebar-right"] { grid-template-columns: 1fr minmax(240px, 300px); }
+}
+
+@media (min-width: 1280px) {
+  [cols-xl="1"]  { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  [cols-xl="2"]  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  [cols-xl="3"]  { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  [cols-xl="4"]  { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  [cols-xl="5"]  { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  [cols-xl="6"]  { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  [cols-xl="8"]  { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  [cols-xl="12"] { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+}
+
+/* --------------------------------------------------------------------------
+   5. Gap Modifiers
+   -------------------------------------------------------------------------- */
+:where([gap="none"]) { gap: var(--gap-none); }
+:where([gap="3xs"])  { gap: var(--gap-3xs); }
+:where([gap="2xs"])  { gap: var(--gap-2xs); }
+:where([gap="xs"])   { gap: var(--gap-xs); }
+:where([gap="sm"])   { gap: var(--gap-sm); }
+:where([gap="md"])   { gap: var(--gap-md); }
+:where([gap="lg"])   { gap: var(--gap-lg); }
+:where([gap="xl"])   { gap: var(--gap-xl); }
+:where([gap="2xl"])  { gap: var(--gap-2xl); }
+:where([gap="3xl"])  { gap: var(--gap-3xl); }
+
+/* Horizontal Gap */
+:where([gap-x="none"]) { column-gap: var(--gap-none); }
+:where([gap-x="3xs"])  { column-gap: var(--gap-3xs); }
+:where([gap-x="2xs"])  { column-gap: var(--gap-2xs); }
+:where([gap-x="xs"])   { column-gap: var(--gap-xs); }
+:where([gap-x="sm"])   { column-gap: var(--gap-sm); }
+:where([gap-x="md"])   { column-gap: var(--gap-md); }
+:where([gap-x="lg"])   { column-gap: var(--gap-lg); }
+:where([gap-x="xl"])   { column-gap: var(--gap-xl); }
+:where([gap-x="2xl"])  { column-gap: var(--gap-2xl); }
+:where([gap-x="3xl"])  { column-gap: var(--gap-3xl); }
+
+/* Vertical Gap */
+:where([gap-y="none"]) { row-gap: var(--gap-none); }
+:where([gap-y="3xs"])  { row-gap: var(--gap-3xs); }
+:where([gap-y="2xs"])  { row-gap: var(--gap-2xs); }
+:where([gap-y="xs"])   { row-gap: var(--gap-xs); }
+:where([gap-y="sm"])   { row-gap: var(--gap-sm); }
+:where([gap-y="md"])   { row-gap: var(--gap-md); }
+:where([gap-y="lg"])   { row-gap: var(--gap-lg); }
+:where([gap-y="xl"])   { row-gap: var(--gap-xl); }
+:where([gap-y="2xl"])  { row-gap: var(--gap-2xl); }
+:where([gap-y="3xl"])  { row-gap: var(--gap-3xl); }
+
+/* --------------------------------------------------------------------------
+   6. Alignment & Flow Controls
+   -------------------------------------------------------------------------- */
+:where([align="start"])    { align-items: start; }
+:where([align="center"])   { align-items: center; }
+:where([align="end"])      { align-items: end; }
+:where([align="stretch"])  { align-items: stretch; }
+:where([align="baseline"]) { align-items: baseline; }
+
+:where([justify="start"])   { justify-items: start; }
+:where([justify="center"])  { justify-items: center; }
+:where([justify="end"])     { justify-items: end; }
+:where([justify="stretch"]) { justify-items: stretch; }
+
+:where([place="center"]) { place-items: center; }
+
+/* Grid Auto Flow */
+:where([flow="row"])          { grid-auto-flow: row; }
+:where([flow="col"], [flow="column"]) { grid-auto-flow: column; }
+:where([flow="dense"], [dense])       { grid-auto-flow: dense; }
+:where([flow="row-dense"])    { grid-auto-flow: row dense; }
+:where([flow="col-dense"])    { grid-auto-flow: column dense; }
+
+/* Subgrid support */
+:where([grid="subgrid"], [subgrid]) {
+  grid-template-columns: subgrid;
+}
+
+/* --------------------------------------------------------------------------
+   7. Item Placement & Spanning (Apply to direct child elements)
+   -------------------------------------------------------------------------- */
+/* Column Spanning */
+[span="1"]    { grid-column: span 1 / span 1; }
+[span="2"]    { grid-column: span 2 / span 2; }
+[span="3"]    { grid-column: span 3 / span 3; }
+[span="4"]    { grid-column: span 4 / span 4; }
+[span="5"]    { grid-column: span 5 / span 5; }
+[span="6"]    { grid-column: span 6 / span 6; }
+[span="7"]    { grid-column: span 7 / span 7; }
+[span="8"]    { grid-column: span 8 / span 8; }
+[span="9"]    { grid-column: span 9 / span 9; }
+[span="10"]   { grid-column: span 10 / span 10; }
+[span="11"]   { grid-column: span 11 / span 11; }
+[span="12"]   { grid-column: span 12 / span 12; }
+[span="full"] { grid-column: 1 / -1; }
+
+/* Row Spanning */
+[span-row="1"]    { grid-row: span 1 / span 1; }
+[span-row="2"]    { grid-row: span 2 / span 2; }
+[span-row="3"]    { grid-row: span 3 / span 3; }
+[span-row="4"]    { grid-row: span 4 / span 4; }
+[span-row="5"]    { grid-row: span 5 / span 5; }
+[span-row="6"]    { grid-row: span 6 / span 6; }
+[span-row="full"] { grid-row: 1 / -1; }
+
+/* Start / End Positions */
+[col-start="1"]  { grid-column-start: 1; }
+[col-start="2"]  { grid-column-start: 2; }
+[col-start="3"]  { grid-column-start: 3; }
+[col-start="4"]  { grid-column-start: 4; }
+[col-start="5"]  { grid-column-start: 5; }
+[col-start="6"]  { grid-column-start: 6; }
+[col-start="7"]  { grid-column-start: 7; }
+[col-start="8"]  { grid-column-start: 8; }
+[col-start="9"]  { grid-column-start: 9; }
+[col-start="10"] { grid-column-start: 10; }
+[col-start="11"] { grid-column-start: 11; }
+[col-start="12"] { grid-column-start: 12; }
+[col-start="auto"] { grid-column-start: auto; }
+
+/* Responsive Spans (sm, md, lg, xl) */
+@media (min-width: 640px) {
+  [span-sm="1"]    { grid-column: span 1 / span 1; }
+  [span-sm="2"]    { grid-column: span 2 / span 2; }
+  [span-sm="3"]    { grid-column: span 3 / span 3; }
+  [span-sm="4"]    { grid-column: span 4 / span 4; }
+  [span-sm="6"]    { grid-column: span 6 / span 6; }
+  [span-sm="full"] { grid-column: 1 / -1; }
+}
+
+@media (min-width: 768px) {
+  [span-md="1"]    { grid-column: span 1 / span 1; }
+  [span-md="2"]    { grid-column: span 2 / span 2; }
+  [span-md="3"]    { grid-column: span 3 / span 3; }
+  [span-md="4"]    { grid-column: span 4 / span 4; }
+  [span-md="6"]    { grid-column: span 6 / span 6; }
+  [span-md="8"]    { grid-column: span 8 / span 8; }
+  [span-md="full"] { grid-column: 1 / -1; }
+}
+
+@media (min-width: 1024px) {
+  [span-lg="1"]    { grid-column: span 1 / span 1; }
+  [span-lg="2"]    { grid-column: span 2 / span 2; }
+  [span-lg="3"]    { grid-column: span 3 / span 3; }
+  [span-lg="4"]    { grid-column: span 4 / span 4; }
+  [span-lg="6"]    { grid-column: span 6 / span 6; }
+  [span-lg="8"]    { grid-column: span 8 / span 8; }
+  [span-lg="full"] { grid-column: 1 / -1; }
+}
+
+@media (min-width: 1280px) {
+  [span-xl="1"]    { grid-column: span 1 / span 1; }
+  [span-xl="2"]    { grid-column: span 2 / span 2; }
+  [span-xl="3"]    { grid-column: span 3 / span 3; }
+  [span-xl="4"]    { grid-column: span 4 / span 4; }
+  [span-xl="6"]    { grid-column: span 6 / span 6; }
+  [span-xl="8"]    { grid-column: span 8 / span 8; }
+  [span-xl="12"]   { grid-column: span 12 / span 12; }
+  [span-xl="full"] { grid-column: 1 / -1; }
+}
+
+/* ==========================================================================
+   Flexbox & Stack Layout Primitives
+   Declarative, intuitive horizontal & vertical alignment without custom CSS.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Stack (Vertical Layout / Column)
+   -------------------------------------------------------------------------- */
+:where([layout="stack"], [layout="col"], [layout="column"], [stack], .stack) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap, var(--gap-md));
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   2. Row (Horizontal Layout)
+   -------------------------------------------------------------------------- */
+:where([layout="row"], [row], .row) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--grid-gap, var(--gap-md));
+  width: 100%;
+}
+
+/* Inline Flex Containers */
+:where([layout="inline-row"], [inline-row]) {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--grid-gap, var(--gap-md));
+}
+
+:where([layout="inline-stack"], [inline-stack]) {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--grid-gap, var(--gap-md));
+}
+
+/* --------------------------------------------------------------------------
+   3. Specialized Layout Primitives (High Frequency Patterns)
+   -------------------------------------------------------------------------- */
+
+/* Split: Space between items (Navbar, Card Headers, Action bars) */
+:where([layout="split"], [split]) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--grid-gap, var(--gap-md));
+  width: 100%;
+}
+
+/* Center: Absolute perfect centering (Heroes, Empty states, Loaders) */
+:where([layout="center"], [center]) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  gap: var(--grid-gap, var(--gap-md));
+}
+
+/* Cluster: Ideal for tags, badges, button groups with wrapping */
+:where([layout="cluster"], [cluster]) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--grid-gap, var(--gap-sm));
+}
+
+/* Responsive Row-to-Stack (Row on tablet/desktop, Stack on mobile) */
+:where([layout="row-responsive"], [layout="stack-mobile"], [responsive-stack]) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap, var(--gap-md));
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  :where([layout="row-responsive"], [layout="stack-mobile"], [responsive-stack]) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Flex Wrapping & Direction Modifiers
+   -------------------------------------------------------------------------- */
+:where([wrap="wrap"], [wrap])       { flex-wrap: wrap; }
+:where([wrap="nowrap"], [nowrap])   { flex-wrap: nowrap; }
+:where([wrap="reverse"])            { flex-wrap: wrap-reverse; }
+
+:where([direction="row"])           { flex-direction: row; }
+:where([direction="row-reverse"])   { flex-direction: row-reverse; }
+:where([direction="col"], [direction="column"]) { flex-direction: column; }
+:where([direction="col-reverse"])   { flex-direction: column-reverse; }
+
+/* Responsive Directions */
+@media (min-width: 640px) {
+  [direction-sm="row"]    { flex-direction: row; }
+  [direction-sm="column"], [direction-sm="col"] { flex-direction: column; }
+}
+
+@media (min-width: 768px) {
+  [direction-md="row"]    { flex-direction: row; }
+  [direction-md="column"], [direction-md="col"] { flex-direction: column; }
+}
+
+@media (min-width: 1024px) {
+  [direction-lg="row"]    { flex-direction: row; }
+  [direction-lg="column"], [direction-lg="col"] { flex-direction: column; }
+}
+
+/* --------------------------------------------------------------------------
+   5. Alignment Controls
+   -------------------------------------------------------------------------- */
+/* Align items (cross axis) */
+:where([align="start"], [align-items="start"])       { align-items: flex-start; }
+:where([align="center"], [align-items="center"])     { align-items: center; }
+:where([align="end"], [align-items="end"])           { align-items: flex-end; }
+:where([align="stretch"], [align-items="stretch"])   { align-items: stretch; }
+:where([align="baseline"], [align-items="baseline"]) { align-items: baseline; }
+
+/* Justify content (main axis) */
+:where([justify="start"], [justify-content="start"])     { justify-content: flex-start; }
+:where([justify="center"], [justify-content="center"])   { justify-content: center; }
+:where([justify="end"], [justify-content="end"])         { justify-content: flex-end; }
+:where([justify="between"], [justify-content="between"]) { justify-content: space-between; }
+:where([justify="around"], [justify-content="around"])   { justify-content: space-around; }
+:where([justify="evenly"], [justify-content="evenly"])   { justify-content: space-evenly; }
+
+/* --------------------------------------------------------------------------
+   6. Child Modifiers (Flex items)
+   -------------------------------------------------------------------------- */
+/* Sizing & Growth */
+[flex="1"]       { flex: 1 1 0%; }
+[flex="auto"]    { flex: 1 1 auto; }
+[flex="initial"] { flex: 0 1 auto; }
+[flex="none"]    { flex: none; }
+
+[grow="1"], [grow] { flex-grow: 1; }
+[grow="0"]         { flex-grow: 0; }
+
+[shrink="0"], [no-shrink] { flex-shrink: 0; }
+[shrink="1"]              { flex-shrink: 1; }
+
+/* Self Alignment */
+[align-self="auto"]     { align-self: auto; }
+[align-self="start"]    { align-self: flex-start; }
+[align-self="center"]   { align-self: center; }
+[align-self="end"]      { align-self: flex-end; }
+[align-self="stretch"]  { align-self: stretch; }
+[align-self="baseline"] { align-self: baseline; }
+
+/* Smart Pushing (Auto-margins) */
+[push="right"], [push="end"]     { margin-left: auto; }
+[push="left"], [push="start"]    { margin-right: auto; }
+[push="top"]                     { margin-bottom: auto; }
+[push="bottom"]                  { margin-top: auto; }
+[push="x"], [push="center-x"]    { margin-inline: auto; }
+[push="y"], [push="center-y"]    { margin-block: auto; }
+[push="center"]                  { margin: auto; }
+
+/* Height / Fullscreen helpers */
+[full-height] { min-height: 100%; }
+[full-screen] { min-height: 100vh; }
+
+/* ==========================================================================
+   Page Layouts, App Shells & Sticky Footer Primitives
+   Declarative, zero-JS page structures, holy grail layouts, and sticky footers.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Sticky Footer Layout (The Classic & Modern Solution)
+   Ensures the footer stays pinned to the bottom of the viewport when content
+   is brief, without overlapping when content overflows.
+   -------------------------------------------------------------------------- */
+:where(
+  [layout="sticky-footer"],
+  [layout="page"],
+  [page-layout],
+  [page-layout="sticky-footer"],
+  .layout-sticky-footer,
+  body[sticky-footer]
+) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Automatically expand main content slot */
+:where(
+  [layout="sticky-footer"],
+  [layout="page"],
+  [page-layout],
+  [page-layout="sticky-footer"],
+  .layout-sticky-footer,
+  body[sticky-footer]
+) > :where(main, [page-content], [page-main], [content], .page-content, .page-main) {
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+/* Footer slot in sticky footer */
+:where(
+  [layout="sticky-footer"],
+  [layout="page"],
+  [page-layout],
+  [page-layout="sticky-footer"],
+  .layout-sticky-footer,
+  body[sticky-footer]
+) > :where(footer, [page-footer], .page-footer) {
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* --------------------------------------------------------------------------
+   2. Holy Grail Layout (Header + Sidebars + Content + Sticky Footer)
+   -------------------------------------------------------------------------- */
+:where([layout="holy-grail"], [holy-grail], .layout-holy-grail) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+:where([layout="holy-grail"], [holy-grail]) > :where(header, [page-header]) {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+:where([layout="holy-grail"], [holy-grail]) > :where([page-body], [holy-grail-body], .page-body) {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  :where([layout="holy-grail"], [holy-grail]) > :where([page-body], [holy-grail-body], .page-body) {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  :where([layout="holy-grail"], [holy-grail]) :where(main, [page-main], .page-main) {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  :where([layout="holy-grail"], [holy-grail]) :where(aside, [page-sidebar], .page-sidebar) {
+    flex: 0 0 var(--sidebar-width, 260px);
+    width: var(--sidebar-width, 260px);
+  }
+
+  :where([layout="holy-grail"], [holy-grail]) :where(aside[sidebar="right"]) {
+    order: 2;
+  }
+}
+
+:where([layout="holy-grail"], [holy-grail]) > :where(footer, [page-footer]) {
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* --------------------------------------------------------------------------
+   3. App Shell Layout (Fixed Sidebar + Topbar + Scrollable Main Content)
+   -------------------------------------------------------------------------- */
+:where([layout="app-shell"], [app-shell], .layout-app-shell) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  :where([layout="app-shell"], [app-shell], .layout-app-shell) {
+    display: grid;
+    grid-template-columns: var(--app-sidebar-width, 280px) 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "sidebar topbar"
+      "sidebar main";
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  :where([layout="app-shell"], [app-shell]) > :where([app-sidebar], aside.app-sidebar) {
+    grid-area: sidebar;
+    overflow-y: auto;
+    border-right: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+  }
+
+  :where([layout="app-shell"], [app-shell]) > :where([app-topbar], header.app-topbar) {
+    grid-area: topbar;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+  }
+
+  :where([layout="app-shell"], [app-shell]) > :where([app-main], main.app-main) {
+    grid-area: main;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Sticky Header & Topbar Helpers
+   -------------------------------------------------------------------------- */
+:where([sticky="top"], [sticky-top], [page-header][sticky]) {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+/* Glassmorphism Header */
+:where([sticky="glass"], [header="glass"]) {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: rgba(var(--card-glass-rgb, 11, 15, 25), 0.8);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* --------------------------------------------------------------------------
+   5. Sticky Bottom Action Bars & Toolbars
+   -------------------------------------------------------------------------- */
+:where([sticky="bottom"], [sticky-bottom], [action-bar]) {
+  position: sticky;
+  bottom: 0;
+  z-index: 30;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: 0.75rem var(--gap-md);
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Floating Action Bar */
+:where([action-bar="floating"]) {
+  position: sticky;
+  bottom: 1.5rem;
+  z-index: 35;
+  margin-inline: auto;
+  max-width: max-content;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   6. Viewport & Safe-Area Utility Classes
+   -------------------------------------------------------------------------- */
+[h-screen]   { min-height: 100vh; }
+[h-dvh]      { min-height: 100dvh; }
+[safe-top]   { padding-top: env(safe-area-inset-top, 0px); }
+[safe-bottom]{ padding-bottom: env(safe-area-inset-bottom, 0px); }

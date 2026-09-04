@@ -1,0 +1,296 @@
+/*! TaxUI Framework v1.0.0 | MIT License | https://github.com/Elabsurdo984/taxui */
+/* ==========================================================================
+   Typography, Truncation & Aspect Ratio Utilities
+   Zero-runtime text clamping, text-wrap balancing, aspect ratios & media framing.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Single-Line Text Truncation
+   -------------------------------------------------------------------------- */
+:where([truncate], [text-truncate], .truncate) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   2. Multi-Line Text Clamping (clamp="1" to "6")
+   -------------------------------------------------------------------------- */
+:where([clamp], [line-clamp]) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+:where([clamp="1"], [line-clamp="1"]) { -webkit-line-clamp: 1; line-clamp: 1; }
+:where([clamp="2"], [line-clamp="2"]) { -webkit-line-clamp: 2; line-clamp: 2; }
+:where([clamp="3"], [line-clamp="3"]) { -webkit-line-clamp: 3; line-clamp: 3; }
+:where([clamp="4"], [line-clamp="4"]) { -webkit-line-clamp: 4; line-clamp: 4; }
+:where([clamp="5"], [line-clamp="5"]) { -webkit-line-clamp: 5; line-clamp: 5; }
+:where([clamp="6"], [line-clamp="6"]) { -webkit-line-clamp: 6; line-clamp: 6; }
+
+/* --------------------------------------------------------------------------
+   3. Modern Text Wrapping & Word Breaks
+   -------------------------------------------------------------------------- */
+:where([text-balance]) {
+  text-wrap: balance;
+}
+
+:where([text-pretty]) {
+  text-wrap: pretty;
+}
+
+:where([text-nowrap]) {
+  white-space: nowrap;
+}
+
+:where([break-words]) {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* --------------------------------------------------------------------------
+   4. Aspect Ratio Modifiers (ratio="16:9|1:1|4:5|4:3|21:9|golden")
+   -------------------------------------------------------------------------- */
+:where([ratio="square"], [ratio="1:1"], [aspect="square"], [aspect="1:1"]) {
+  aspect-ratio: 1 / 1;
+}
+
+:where([ratio="video"], [ratio="16:9"], [aspect="video"], [aspect="16:9"]) {
+  aspect-ratio: 16 / 9;
+}
+
+:where([ratio="portrait"], [ratio="4:5"], [aspect="portrait"], [aspect="4:5"]) {
+  aspect-ratio: 4 / 5;
+}
+
+:where([ratio="photo"], [ratio="4:3"], [aspect="photo"], [aspect="4:3"]) {
+  aspect-ratio: 4 / 3;
+}
+
+:where([ratio="cinema"], [ratio="21:9"], [aspect="cinema"], [aspect="21:9"]) {
+  aspect-ratio: 21 / 9;
+}
+
+:where([ratio="golden"], [aspect="golden"]) {
+  aspect-ratio: 1.618 / 1;
+}
+
+/* --------------------------------------------------------------------------
+   5. Object Fit & Position Utilities
+   -------------------------------------------------------------------------- */
+:where([fit="cover"], img[fit="cover"], video[fit="cover"]) {
+  object-fit: cover;
+}
+
+:where([fit="contain"], img[fit="contain"], video[fit="contain"]) {
+  object-fit: contain;
+}
+
+:where([fit="fill"], img[fit="fill"], video[fit="fill"]) {
+  object-fit: fill;
+}
+
+:where([fit="none"], img[fit="none"], video[fit="none"]) {
+  object-fit: none;
+}
+
+:where([fit="scale-down"], img[fit="scale-down"], video[fit="scale-down"]) {
+  object-fit: scale-down;
+}
+
+/* Object Position */
+:where([fit-pos="center"]) { object-position: center; }
+:where([fit-pos="top"])    { object-position: top; }
+:where([fit-pos="bottom"]) { object-position: bottom; }
+:where([fit-pos="left"])   { object-position: left; }
+:where([fit-pos="right"])  { object-position: right; }
+
+/* --------------------------------------------------------------------------
+   6. Media Frame Helper ([media-frame])
+   Containers that lock children (img, video, iframe) to 100% width/height & aspect ratio
+   -------------------------------------------------------------------------- */
+:where([media-frame]) {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+}
+
+:where([media-frame] > img, [media-frame] > video, [media-frame] > iframe) {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Custom Scrollbars & Scroll Snapping Utilities
+   Cross-browser, zero-JS custom scrollbars matching dark/light themes and accents.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Global Default Custom Scrollbar
+   Applies modern rounded, non-obtrusive scrollbars to html, body and containers
+   -------------------------------------------------------------------------- */
+html,
+body,
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+::-webkit-scrollbar {
+  width: var(--scrollbar-width, 8px);
+  height: var(--scrollbar-width, 8px);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track, transparent);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   2. Thin Scrollbar (scrollbar="thin" | [scrollbar-thin])
+   Ultra-slim (4px) scrollbar ideal for sidebars, codeboxes and dense cards.
+   -------------------------------------------------------------------------- */
+:where([scrollbar="thin"], [scrollbar-thin], .scrollbar-thin) {
+  scrollbar-width: thin;
+  --scrollbar-width: 4px;
+}
+
+:where([scrollbar="thin"], [scrollbar-thin], .scrollbar-thin)::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+:where([scrollbar="thin"], [scrollbar-thin], .scrollbar-thin)::-webkit-scrollbar-thumb {
+  border: 1px solid transparent;
+}
+
+/* --------------------------------------------------------------------------
+   3. Hidden / Invisible Scrollbar (scrollbar="none|hidden" | [no-scrollbar])
+   Allows full scrolling (touch/wheel/drag) while completely hiding the scrollbar.
+   -------------------------------------------------------------------------- */
+:where(
+  [scrollbar="none"],
+  [scrollbar="hidden"],
+  [no-scrollbar],
+  [scrollbar-none],
+  .no-scrollbar
+) {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+:where(
+  [scrollbar="none"],
+  [scrollbar="hidden"],
+  [no-scrollbar],
+  [scrollbar-none],
+  .no-scrollbar
+)::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. Accent / Primary Color Scrollbar (scrollbar="accent|primary")
+   Ties the thumb directly to the current theme accent color.
+   -------------------------------------------------------------------------- */
+:where([scrollbar="accent"], [scrollbar="primary"], [scrollbar-primary], .scrollbar-primary) {
+  scrollbar-color: var(--color-primary) var(--scrollbar-track);
+}
+
+:where([scrollbar="accent"], [scrollbar="primary"], [scrollbar-primary], .scrollbar-primary)::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+}
+
+:where([scrollbar="accent"], [scrollbar="primary"], [scrollbar-primary], .scrollbar-primary)::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary-hover);
+  box-shadow: 0 0 10px var(--color-primary-glow);
+}
+
+/* --------------------------------------------------------------------------
+   5. Visible Track / Inset (scrollbar="track|inset")
+   Provides a highlighted track background for high-precision scroll areas.
+   -------------------------------------------------------------------------- */
+:where([scrollbar="track"], [scrollbar="inset"], [scrollbar-track]) {
+  scrollbar-color: var(--scrollbar-thumb) var(--color-surface-hover);
+}
+
+:where([scrollbar="track"], [scrollbar="inset"], [scrollbar-track])::-webkit-scrollbar-track {
+  background: var(--color-surface-hover);
+  border-radius: var(--radius-full);
+}
+
+/* --------------------------------------------------------------------------
+   6. Reveal on Hover (scrollbar="reveal" | [scrollbar-reveal])
+   Thumb remains invisible until the user hovers over the container.
+   -------------------------------------------------------------------------- */
+:where([scrollbar="reveal"], [scrollbar-reveal]) {
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease;
+}
+
+:where([scrollbar="reveal"], [scrollbar-reveal]):hover {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+:where([scrollbar="reveal"], [scrollbar-reveal])::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+:where([scrollbar="reveal"], [scrollbar-reveal]):hover::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+}
+
+/* --------------------------------------------------------------------------
+   7. Scroll Behavior & Scroll Snapping Primitives
+   -------------------------------------------------------------------------- */
+:where([scroll="smooth"], [scroll-smooth], .scroll-smooth) {
+  scroll-behavior: smooth;
+}
+
+/* Horizontal Snap Carousel */
+:where([scroll="snap-x"], [snap="x"], .snap-x) {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Vertical Snap Container */
+:where([scroll="snap-y"], [snap="y"], .snap-y) {
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Snap Alignments */
+[snap="start"], [snap-align="start"]   { scroll-snap-align: start; }
+[snap="center"], [snap-align="center"] { scroll-snap-align: center; }
+[snap="end"], [snap-align="end"]       { scroll-snap-align: end; }
+[snap-stop]                            { scroll-snap-stop: always; }
+
+/* Overscroll Behaviors */
+:where([overscroll="contain"]) { overscroll-behavior: contain; }
+:where([overscroll="none"])    { overscroll-behavior: none; }
+:where([overscroll="auto"])    { overscroll-behavior: auto; }

@@ -171,6 +171,15 @@ function build() {
   const tmpPath = path.join(DIST_DIR, '_tmp_entry.css');
   if (fs.existsSync(tmpPath)) fs.unlinkSync(tmpPath);
 
+  // Copy dist to docs/dist so docs/ is fully self-contained for GitHub Pages
+  const docsDist = path.join(ROOT_DIR, 'docs', 'dist');
+  if (!fs.existsSync(docsDist)) fs.mkdirSync(docsDist, { recursive: true });
+  for (const file of fs.readdirSync(DIST_DIR)) {
+    if (file.endsWith('.css')) {
+      fs.copyFileSync(path.join(DIST_DIR, file), path.join(docsDist, file));
+    }
+  }
+
   // Print results table
   console.log('\n\x1b[32m%s\x1b[0m', '✅ Build completed successfully!\n');
   console.table(results);
