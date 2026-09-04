@@ -20,6 +20,7 @@
 @import "./components/tables.css";
 @import "./components/modals.css";
 @import "./components/accordions.css";
+@import "./components/tooltips.css";
 
 /* 4. Base Container Helper */
 :where([container], .container) {

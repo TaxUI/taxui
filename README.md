@@ -24,6 +24,7 @@ frameworkhtml/
 │   │   ├── tables.css      # Tablas responsivas, scroll horizontal y stacked cards
 │   │   ├── modals.css      # Modales nativos HTML5 <dialog>, drawers y bottom sheets
 │   │   ├── accordions.css  # Acordeones nativos <details>, chevrons y single-open
+│   │   ├── tooltips.css    # Tooltips puros en CSS con flechas y 4 posiciones
 │   │   └── forms.css       # Formularios, switches, checkboxes, selects e input groups
 │   └── main.css            # Archivo maestro de importación
 └── examples/
@@ -37,50 +38,49 @@ frameworkhtml/
     ├── avatars.html        # Showcase de Avatares y Grupos de Usuarios
     ├── tables.html         # Showcase de Tablas de Datos Responsivas
     ├── modals.html         # Showcase de Modales y Drawers Nativos
-    └── accordions.html     # Showcase de Acordeones y Colapsables
+    ├── accordions.html     # Showcase de Acordeones y Colapsables
+    └── tooltips.html       # Showcase de Tooltips Puros en CSS
 ```
 
 ---
 
-## 📂 1. Acordeones & Colapsables (`<details>`)
+## 💬 1. Tooltips Puros en CSS (Zero JS)
 
-### Acordeón Estándar Conectado
+### Uso Básico y Posicionamiento
 ```html
-<div accordion>
-  <details open>
-    <summary>¿Qué es este Framework?</summary>
-    <div accordion-body>
-      Un framework declarativo con atributos limpios y cero fatiga de CSS.
-    </div>
-  </details>
-  <details>
-    <summary>¿Requiere JavaScript?</summary>
-    <div accordion-body>
-      ¡No! Funciona 100% nativo con HTML5.
-    </div>
-  </details>
-</div>
+<button tooltip="Mensaje en la parte superior" tooltip-pos="top">Hover</button>
+<button tooltip="Mensaje en la parte inferior" tooltip-pos="bottom">Hover</button>
+<button tooltip="Mensaje a la izquierda" tooltip-pos="left">Hover</button>
+<button tooltip="Mensaje a la derecha" tooltip-pos="right">Hover</button>
 ```
 
-### Cierre Automático Excluyente (`name="..."`)
+### Variantes Semánticas de Color
 ```html
-<div accordion>
-  <!-- Al abrir uno, los demás del mismo grupo se cierran automáticamente -->
-  <details name="faq-group" open><summary>Pregunta 1</summary>...</details>
-  <details name="faq-group"><summary>Pregunta 2</summary>...</details>
-</div>
+<button tooltip="¡Recomendado!" tooltip-variant="primary">Primary</button>
+<button tooltip="Cambios guardados" tooltip-variant="success">Success</button>
+<button tooltip="Acción irreversible" tooltip-variant="danger">Danger</button>
+<button tooltip="Efecto Glassmorphism" tooltip-variant="glass">Glass ✨</button>
 ```
 
-### Modos de Diseño
+### Texto Multilínea & Accesibilidad
 ```html
-<div accordion="separated">...</div>  <!-- Tarjetas flotantes independientes -->
-<div accordion="flush">...</div>      <!-- Minimalista sin bordes exteriores -->
-<details chevron="left">...</div>     <!-- Chevron a la izquierda -->
+<!-- Texto descriptivo largo con ancho máximo seguro -->
+<button tooltip="Explicación detallada..." tooltip-wrap>Info</button>
+
+<!-- Totalmente accesible con navegación por teclado mediante :focus-visible -->
 ```
 
 ---
 
-## 🪟 2. Modales Nativos & Drawers (`<dialog>`)
+## 📂 2. Acordeones & Colapsables (`<details>`)
+
+* **Acordeón Conectado:** `<div accordion><details><summary>Título</summary><div accordion-body>...</div></details></div>`
+* **Cierre Automático Excluyente:** `<details name="faq-group">`
+* **Modos de Diseño:** `accordion="separated"` (tarjetas) y `accordion="flush"` (minimalista).
+
+---
+
+## 🪟 3. Modales Nativos & Drawers (`<dialog>`)
 
 * **Base:** `<dialog size="sm|md|lg|fullscreen">` con apertura nativa `.showModal()` y cierre `Esc`.
 * **Slots:** `<header modal-header divided>`, `<div modal-body>`, `<footer modal-footer divided>`.
@@ -89,7 +89,7 @@ frameworkhtml/
 
 ---
 
-## 📊 3. Tablas de Datos Responsivas
+## 📊 4. Tablas de Datos Responsivas
 
 * **Contenedor:** `<div table-container><table striped>...</table></div>`
 * **Densidades:** `table[density="compact|relaxed"]`
@@ -98,7 +98,7 @@ frameworkhtml/
 
 ---
 
-## 👤 4. Avatares & Grupos de Usuarios
+## 👤 5. Avatares & Grupos de Usuarios
 
 * **Fotos e Iniciales:** `<img avatar src="user.jpg">` o `<div avatar variant="gradient">MD</div>`
 * **Escala de Tamaños:** `size="xs|sm|md|lg|xl|2xl"`
@@ -108,7 +108,7 @@ frameworkhtml/
 
 ---
 
-## 🔔 5. Alertas & Mensajes de Feedback
+## 🔔 6. Alertas & Mensajes de Feedback
 
 * **Variantes:** `alert="info|success|warning|danger|neutral"`
 * **Borde Lateral:** `<div alert="warning" border="left">...</div>`
@@ -117,7 +117,7 @@ frameworkhtml/
 
 ---
 
-## 🏷️ 6. Badges, Chips & Notificaciones Flotantes
+## 🏷️ 7. Badges, Chips & Notificaciones Flotantes
 
 * **Variantes:** `badge="primary|success|warning|danger|purple"`
 * **Estilos:** `style-type="solid|outline"` y modificador `pill`
@@ -126,7 +126,7 @@ frameworkhtml/
 
 ---
 
-## 🃏 7. Tarjetas y Superficies
+## 🃏 8. Tarjetas y Superficies
 
 * **Modos:** `card="flat|elevated|glass|glow"`
 * **Glassmorphism:** `<article card="glass">...</article>`
@@ -135,7 +135,7 @@ frameworkhtml/
 
 ---
 
-## 🔘 8. Botones Multivariante
+## 🔘 9. Botones Multivariante
 
 * **Variantes:** `variant="primary|secondary|outline|ghost|success|danger|warning|link"`
 * **Efectos:** `glow`, `pill`, `block`, `icon-only`
@@ -144,7 +144,7 @@ frameworkhtml/
 
 ---
 
-## 📝 9. Formularios & Inputs Nativos
+## 📝 10. Formularios & Inputs Nativos
 
 * **Toggle Switches:** `<input type="checkbox" switch checked>`
 * **Checkboxes & Radios:** `<input type="checkbox">` / `<input type="radio">` con checkmark SVG automático.
@@ -154,7 +154,7 @@ frameworkhtml/
 
 ---
 
-## ⚡ 10. Primitivas Flexbox & Stacks
+## ⚡ 11. Primitivas Flexbox & Stacks
 
 * **`layout="stack"`**: Columna vertical con espaciado constante.
 * **`layout="row"`**: Fila horizontal centrada.
@@ -166,7 +166,7 @@ frameworkhtml/
 
 ---
 
-## 📐 11. Primitivas Grid
+## 📐 12. Primitivas Grid
 
 * **`layout="grid" grid="auto-fit" min-col="sm"`**: Grilla auto-responsiva sin media queries.
 * **`cols="1"` a `cols="12"`**: Sistema de columnas fijas.

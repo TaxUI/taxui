@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pure CSS Tooltips Showcase - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+      min-height: 100vh;
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: rgba(19, 27, 46, 0.5);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #1e293b;
+      color: #a5f3fc;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(165, 243, 252, 0.2);
+    }
+
+    .demo-section {
+      background: rgba(19, 27, 46, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body>
+
+  <div container="md">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
+      <a href="cards.html" class="nav-link">🃏 Cards & Surfaces</a>
+      <a href="badges.html" class="nav-link">🏷️ Badges & Chips</a>
+      <a href="alerts.html" class="nav-link">🔔 Alerts & Feedback</a>
+      <a href="avatars.html" class="nav-link">👤 Avatars</a>
+      <a href="tables.html" class="nav-link">📊 Tables</a>
+      <a href="modals.html" class="nav-link">🪟 Modals</a>
+      <a href="accordions.html" class="nav-link">📂 Accordions</a>
+      <a href="tooltips.html" class="nav-link active">💬 Tooltips</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Pure CSS Tooltips</h1>
+      <p>Mensajes emergentes 100% en CSS puro sin JavaScript: flechas direccionales, 4 posiciones, variantes de color y soporte de accesibilidad por foco y teclado.</p>
+    </header>
+
+    <!-- Demo 1: Posiciones Direccionales -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Posicionamiento en 4 Direcciones
+        <span class="section-code">tooltip-pos="top|bottom|left|right"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Pasa el cursor o navega con la tecla <strong>Tab</strong> sobre los botones para ver las flechas en acción.
+      </p>
+
+      <div layout="cluster" justify="center" gap="lg">
+        <button variant="secondary" tooltip="Mensaje en la parte superior" tooltip-pos="top">
+          ↑ Arriba (Top)
+        </button>
+
+        <button variant="secondary" tooltip="Mensaje en la parte inferior" tooltip-pos="bottom">
+          ↓ Abajo (Bottom)
+        </button>
+
+        <button variant="secondary" tooltip="Mensaje a la izquierda" tooltip-pos="left">
+          ← Izquierda (Left)
+        </button>
+
+        <button variant="secondary" tooltip="Mensaje a la derecha" tooltip-pos="right">
+          → Derecha (Right)
+        </button>
+      </div>
+    </div>
+
+    <!-- Demo 2: Variantes Semánticas de Color -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Variantes Semánticas de Color
+        <span class="section-code">tooltip-variant="primary|success|danger|glass"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Adapta el color del tooltip según la intención o estilo visual del componente.
+      </p>
+
+      <div layout="cluster" justify="center" gap="md">
+        <button variant="primary" tooltip="¡Acción recomendada!" tooltip-variant="primary">
+          Primary Tooltip
+        </button>
+
+        <button variant="success" tooltip="Cambios guardados con éxito" tooltip-variant="success">
+          Success Tooltip
+        </button>
+
+        <button variant="danger" tooltip="¡Cuidado! Esta acción es destructiva" tooltip-variant="danger">
+          Danger Tooltip
+        </button>
+
+        <button variant="outline" tooltip="Efecto de cristal esmerilado con blur" tooltip-variant="glass">
+          Glass Tooltip ✨
+        </button>
+      </div>
+    </div>
+
+    <!-- Demo 3: Texto Multilínea y Descripciones Largas -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Tooltips Multilínea
+        <span class="section-code">tooltip-wrap</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Con el modificador <span class="section-code">tooltip-wrap</span>, el texto se ajusta automáticamente en varias líneas con ancho máximo seguro.
+      </p>
+
+      <div layout="row" justify="center">
+        <button variant="ghost" tooltip="Este es un tooltip largo y explicativo que se divide automáticamente en varias líneas para una lectura cómoda." tooltip-wrap tooltip-pos="top">
+          ℹ️ Pasa el cursor para ver tooltip largo con wrap
+        </button>
+      </div>
+    </div>
+
+    <!-- Demo 4: Barra de Herramientas Interactiva (Toolbar) -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        4. Barra de Acciones / Toolbar con Tooltips
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Patrón común en editores y dashboards: botones con iconos y tooltips descriptivos.
+      </p>
+
+      <div layout="row" justify="center">
+        <div style="background: rgba(15, 23, 42, 0.8); padding: 0.4rem; border-radius: var(--radius-lg); border: 1px solid var(--color-border);" layout="row" gap="xs">
+          <button icon-only variant="ghost" tooltip="Cortar (Ctrl+X)" tooltip-pos="top">
+            ✂️
+          </button>
+          <button icon-only variant="ghost" tooltip="Copiar (Ctrl+C)" tooltip-pos="top">
+            📋
+          </button>
+          <button icon-only variant="ghost" tooltip="Pegar (Ctrl+V)" tooltip-pos="top">
+            📌
+          </button>
+          <div style="width: 1px; height: 24px; background: var(--color-border); margin-block: auto;"></div>
+          <button icon-only variant="ghost" tooltip="Descargar archivo .zip" tooltip-variant="primary" tooltip-pos="top">
+            📥
+          </button>
+          <button icon-only variant="ghost" tooltip="Eliminar selección" tooltip-variant="danger" tooltip-pos="top">
+            🗑️
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

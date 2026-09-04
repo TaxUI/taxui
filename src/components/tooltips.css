@@ -1,0 +1,233 @@
+/* ==========================================================================
+   Pure CSS Tooltip Primitives
+   Zero JavaScript, accessible hover & focus-visible tooltips with multi-positioning and variants.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base Tooltip Trigger Container
+   -------------------------------------------------------------------------- */
+:where([tooltip], [data-tooltip]) {
+  --tooltip-bg: #0f172a;
+  --tooltip-color: #f8fafc;
+  --tooltip-border: rgba(255, 255, 255, 0.12);
+  --tooltip-radius: var(--radius-md);
+  --tooltip-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --tooltip-arrow-size: 5px;
+  --tooltip-offset: 8px;
+
+  position: relative;
+}
+
+:where(span[tooltip], a[tooltip], span[data-tooltip], a[data-tooltip]) {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   2. Tooltip Bubble (::after) & Arrow (::before)
+   -------------------------------------------------------------------------- */
+:where([tooltip], [data-tooltip])::after {
+  content: attr(tooltip);
+  position: absolute;
+  z-index: 100;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.35;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--tooltip-radius);
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-color);
+  border: 1px solid var(--tooltip-border);
+  box-shadow: var(--tooltip-shadow);
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.18s;
+}
+
+:where([data-tooltip]:not([tooltip]))::after {
+  content: attr(data-tooltip);
+}
+
+:where([tooltip], [data-tooltip])::before {
+  content: "";
+  position: absolute;
+  z-index: 101;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease, transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.18s;
+}
+
+/* --------------------------------------------------------------------------
+   3. Trigger States (Hover & Focus-Visible)
+   -------------------------------------------------------------------------- */
+:where([tooltip], [data-tooltip]):hover::after,
+:where([tooltip], [data-tooltip]):hover::before,
+:where([tooltip], [data-tooltip]):focus-visible::after,
+:where([tooltip], [data-tooltip]):focus-visible::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --------------------------------------------------------------------------
+   4. Positioning (Top, Bottom, Left, Right)
+   -------------------------------------------------------------------------- */
+
+/* Top Position (Default or tooltip-pos="top") */
+:where([tooltip-pos="top"])::after,
+:where([tooltip]:not([tooltip-pos]))::after,
+:where([data-tooltip]:not([tooltip-pos]))::after {
+  bottom: calc(100% + var(--tooltip-offset));
+  top: auto;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%) translateY(4px);
+}
+
+:where([tooltip-pos="top"])::before,
+:where([tooltip]:not([tooltip-pos]))::before,
+:where([data-tooltip]:not([tooltip-pos]))::before {
+  bottom: calc(100% + var(--tooltip-offset) - var(--tooltip-arrow-size));
+  top: auto;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%) translateY(4px);
+  border-width: var(--tooltip-arrow-size) var(--tooltip-arrow-size) 0 var(--tooltip-arrow-size);
+  border-color: var(--tooltip-bg) transparent transparent transparent;
+}
+
+:where([tooltip-pos="top"]):hover::after,
+:where([tooltip-pos="top"]):focus-visible::after,
+:where([tooltip]:not([tooltip-pos])):hover::after,
+:where([tooltip]:not([tooltip-pos])):focus-visible::after,
+:where([data-tooltip]:not([tooltip-pos])):hover::after,
+:where([data-tooltip]:not([tooltip-pos])):focus-visible::after,
+:where([tooltip-pos="top"]):hover::before,
+:where([tooltip-pos="top"]):focus-visible::before,
+:where([tooltip]:not([tooltip-pos])):hover::before,
+:where([tooltip]:not([tooltip-pos])):focus-visible::before,
+:where([data-tooltip]:not([tooltip-pos])):hover::before,
+:where([data-tooltip]:not([tooltip-pos])):focus-visible::before {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Bottom Position */
+:where([tooltip-pos="bottom"])::after {
+  top: calc(100% + var(--tooltip-offset));
+  bottom: auto;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+:where([tooltip-pos="bottom"])::before {
+  top: calc(100% + var(--tooltip-offset) - var(--tooltip-arrow-size));
+  bottom: auto;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%) translateY(-4px);
+  border-width: 0 var(--tooltip-arrow-size) var(--tooltip-arrow-size) var(--tooltip-arrow-size);
+  border-color: transparent transparent var(--tooltip-bg) transparent;
+}
+
+:where([tooltip-pos="bottom"]):hover::after,
+:where([tooltip-pos="bottom"]):focus-visible::after,
+:where([tooltip-pos="bottom"]):hover::before,
+:where([tooltip-pos="bottom"]):focus-visible::before {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Left Position */
+:where([tooltip-pos="left"])::after {
+  right: calc(100% + var(--tooltip-offset));
+  left: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%) translateX(4px);
+}
+
+:where([tooltip-pos="left"])::before {
+  right: calc(100% + var(--tooltip-offset) - var(--tooltip-arrow-size));
+  left: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%) translateX(4px);
+  border-width: var(--tooltip-arrow-size) 0 var(--tooltip-arrow-size) var(--tooltip-arrow-size);
+  border-color: transparent transparent transparent var(--tooltip-bg);
+}
+
+:where([tooltip-pos="left"]):hover::after,
+:where([tooltip-pos="left"]):focus-visible::after,
+:where([tooltip-pos="left"]):hover::before,
+:where([tooltip-pos="left"]):focus-visible::before {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Right Position */
+:where([tooltip-pos="right"])::after {
+  left: calc(100% + var(--tooltip-offset));
+  right: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%) translateX(-4px);
+}
+
+:where([tooltip-pos="right"])::before {
+  left: calc(100% + var(--tooltip-offset) - var(--tooltip-arrow-size));
+  right: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%) translateX(-4px);
+  border-width: var(--tooltip-arrow-size) var(--tooltip-arrow-size) var(--tooltip-arrow-size) 0;
+  border-color: transparent var(--tooltip-bg) transparent transparent;
+}
+
+:where([tooltip-pos="right"]):hover::after,
+:where([tooltip-pos="right"]):focus-visible::after,
+:where([tooltip-pos="right"]):hover::before,
+:where([tooltip-pos="right"]):focus-visible::before {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* --------------------------------------------------------------------------
+   5. Color Variants (tooltip-variant="primary|danger|success|glass")
+   -------------------------------------------------------------------------- */
+:where([tooltip-variant="primary"]) {
+  --tooltip-bg: var(--color-primary);
+  --tooltip-color: #ffffff;
+}
+
+:where([tooltip-variant="danger"]) {
+  --tooltip-bg: var(--color-danger);
+  --tooltip-color: #ffffff;
+}
+
+:where([tooltip-variant="success"]) {
+  --tooltip-bg: var(--color-success);
+  --tooltip-color: #ffffff;
+}
+
+:where([tooltip-variant="glass"]) {
+  --tooltip-bg: rgba(19, 27, 46, 0.85);
+  --tooltip-border: rgba(255, 255, 255, 0.15);
+}
+
+:where([tooltip-variant="glass"])::after {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* --------------------------------------------------------------------------
+   6. Multiline / Text Wrap (tooltip-wrap)
+   -------------------------------------------------------------------------- */
+:where([tooltip-wrap])::after {
+  white-space: normal;
+  width: max-content;
+  max-width: 240px;
+  text-align: center;
+}
