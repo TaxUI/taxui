@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Tables Showcase - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 75%);
+      min-height: 100vh;
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: rgba(19, 27, 46, 0.5);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: #1e293b;
+      color: #a5f3fc;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(165, 243, 252, 0.2);
+    }
+
+    .demo-section {
+      background: rgba(19, 27, 46, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body>
+
+  <div container="lg">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
+      <a href="cards.html" class="nav-link">🃏 Cards & Surfaces</a>
+      <a href="badges.html" class="nav-link">🏷️ Badges & Chips</a>
+      <a href="alerts.html" class="nav-link">🔔 Alerts & Feedback</a>
+      <a href="avatars.html" class="nav-link">👤 Avatars</a>
+      <a href="tables.html" class="nav-link active">📊 Tables</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Responsive Data Tables</h1>
+      <p>Tablas declarativas listas para producción: scroll horizontal seguro, filas cebra, densidades, alineación numérica y vista apilada en tarjetas móviles.</p>
+    </header>
+
+    <!-- Demo 1: Tabla Completa con Contenedor de Scroll y Filas Cebra -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Tabla Estándar con Filas Cebra y Hover
+        <span class="section-code">&lt;div table-container&gt; &lt;table striped&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Contenedor con scroll horizontal automático que evita el desbordamiento de la página.
+      </p>
+
+      <div table-container>
+        <table striped>
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Rol</th>
+              <th>Estado</th>
+              <th>Email</th>
+              <th align="right">Último Acceso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div layout="row" align="center" gap="sm">
+                  <div avatar size="sm" variant="gradient">MD</div>
+                  <strong>Matías Dev</strong>
+                </div>
+              </td>
+              <td>Lead Frontend Engineer</td>
+              <td><span badge="success" pill size="sm">Activo</span></td>
+              <td style="color: var(--color-text-muted);">matias@taxui.dev</td>
+              <td align="right" style="color: var(--color-text-muted);">Hace 2 min</td>
+            </tr>
+            <tr selected>
+              <td>
+                <div layout="row" align="center" gap="sm">
+                  <div avatar size="sm" variant="primary">AI</div>
+                  <strong>Antigravity Core</strong>
+                </div>
+              </td>
+              <td>System Architect</td>
+              <td><span badge="primary" pill size="sm">En Progreso</span></td>
+              <td style="color: var(--color-text-muted);">bot@ai.dev</td>
+              <td align="right" style="color: var(--color-text-muted);">Hace 10 seg</td>
+            </tr>
+            <tr>
+              <td>
+                <div layout="row" align="center" gap="sm">
+                  <div avatar size="sm" variant="purple">JS</div>
+                  <strong>Julia Silva</strong>
+                </div>
+              </td>
+              <td>Product Designer</td>
+              <td><span badge="warning" pill size="sm">Ausente</span></td>
+              <td style="color: var(--color-text-muted);">julia@empresa.com</td>
+              <td align="right" style="color: var(--color-text-muted);">Ayer</td>
+            </tr>
+            <tr>
+              <td>
+                <div layout="row" align="center" gap="sm">
+                  <div avatar size="sm" variant="secondary">LR</div>
+                  <strong>Lucas Rossi</strong>
+                </div>
+              </td>
+              <td>QA Tester</td>
+              <td><span badge="danger" pill size="sm">Inactivo</span></td>
+              <td style="color: var(--color-text-muted);">lucas@test.com</td>
+              <td align="right" style="color: var(--color-text-muted);">Hace 5 días</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Demo 2: Densidades Compacta vs Relajada -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Presets de Densidad
+        <span class="section-code">density="compact|relaxed"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Adapta el espacio vertical según el tipo de pantalla: financiera/densa o marketing/espaciosa.
+      </p>
+
+      <div layout="grid" cols="1" cols-lg="2" gap="lg">
+        <!-- Compact Table -->
+        <div>
+          <strong style="color: #94a3b8; font-size: 0.85rem; display: block; margin-bottom: 0.5rem;">
+            Vista Compacta (density="compact"):
+          </strong>
+          <div table-container>
+            <table density="compact">
+              <thead>
+                <tr>
+                  <th>Símbolo</th>
+                  <th>Precio</th>
+                  <th align="right">24h %</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>BTC/USD</strong></td>
+                  <td numeric>$64,320.00</td>
+                  <td align="right" style="color: #34d399;">+3.45%</td>
+                </tr>
+                <tr>
+                  <td><strong>ETH/USD</strong></td>
+                  <td numeric>$3,480.50</td>
+                  <td align="right" style="color: #34d399;">+1.82%</td>
+                </tr>
+                <tr>
+                  <td><strong>SOL/USD</strong></td>
+                  <td numeric>$142.10</td>
+                  <td align="right" style="color: #f87171;">-2.14%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Relaxed Table -->
+        <div>
+          <strong style="color: #94a3b8; font-size: 0.85rem; display: block; margin-bottom: 0.5rem;">
+            Vista Relajada (density="relaxed"):
+          </strong>
+          <div table-container>
+            <table density="relaxed">
+              <thead>
+                <tr>
+                  <th>Plan</th>
+                  <th>Almacenamiento</th>
+                  <th align="right">Precio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong style="color: #38bdf8;">Developer</strong></td>
+                  <td>25 GB SSD</td>
+                  <td align="right"><strong>$15/mes</strong></td>
+                </tr>
+                <tr>
+                  <td><strong style="color: #c084fc;">Team Pro</strong></td>
+                  <td>100 GB SSD</td>
+                  <td align="right"><strong>$49/mes</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 3: Tabla Responsiva en Móviles (Card Stacking) -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Vista de Tarjetas Móviles Automática
+        <span class="section-code">&lt;table responsive="stack"&gt;</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        En pantallas móviles (&lt;640px) cada fila se transforma en una tarjeta con sus etiquetas <span class="section-code">data-label="..."</span> automáticamente. (¡Redimensiona tu ventana para verlo en vivo!).
+      </p>
+
+      <table responsive="stack">
+        <thead>
+          <tr>
+            <th>Factura</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+            <th>Estado</th>
+            <th align="right">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Factura"><strong>#INV-2026-001</strong></td>
+            <td data-label="Cliente">Acme Corp</td>
+            <td data-label="Fecha">01 Sep 2026</td>
+            <td data-label="Monto" numeric><strong>$1,250.00 USD</strong></td>
+            <td data-label="Estado"><span badge="success" pill size="sm">Pagada</span></td>
+            <td data-label="Acciones" align="right">
+              <button variant="outline" size="sm">Descargar</button>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Factura"><strong>#INV-2026-002</strong></td>
+            <td data-label="Cliente">Global Tech Inc</td>
+            <td data-label="Fecha">03 Sep 2026</td>
+            <td data-label="Monto" numeric><strong>$840.00 USD</strong></td>
+            <td data-label="Estado"><span badge="warning" pill size="sm">Pendiente</span></td>
+            <td data-label="Acciones" align="right">
+              <button variant="primary" size="sm">Pagar</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td data-label="Resumen" colspan="3"><strong>Total Facturado</strong></td>
+            <td data-label="Total" numeric><strong>$2,090.00 USD</strong></td>
+            <td data-label="Info" colspan="2" align="right" style="color: var(--color-text-muted); font-weight: 400;">2 facturas emitidas</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+
+</body>
+</html>

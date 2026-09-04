@@ -1,0 +1,221 @@
+/* ==========================================================================
+   Responsive Data Tables Primitives
+   Scrollable containers, striped, hover highlight, density presets & mobile card stacking.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Responsive Table Container (Horizontal Scroll & Overflow Control)
+   -------------------------------------------------------------------------- */
+:where([table-container], [table-responsive], .table-responsive) {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   2. Base Table Element
+   -------------------------------------------------------------------------- */
+:where(table, [table], .table) {
+  --table-cell-padding-y: 0.875rem;
+  --table-cell-padding-x: 1rem;
+  --table-border-color: var(--color-border);
+  --table-hover-bg: rgba(59, 130, 246, 0.08);
+  --table-stripe-bg: rgba(255, 255, 255, 0.02);
+  --table-head-bg: rgba(15, 23, 42, 0.75);
+
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  caption-side: bottom;
+}
+
+/* Caption */
+:where(table) caption {
+  padding: 0.75rem 1rem;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+/* --------------------------------------------------------------------------
+   3. Table Headers & Rows
+   -------------------------------------------------------------------------- */
+:where(thead) {
+  background-color: var(--table-head-bg);
+  border-bottom: 1px solid var(--table-border-color);
+}
+
+:where(th) {
+  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+:where(td) {
+  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
+  border-bottom: 1px solid var(--table-border-color);
+  vertical-align: middle;
+}
+
+:where(tbody tr:last-child td) {
+  border-bottom: none;
+}
+
+/* Table Footers */
+:where(tfoot) {
+  background-color: var(--table-head-bg);
+  border-top: 2px solid var(--table-border-color);
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+:where(tfoot td) {
+  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
+}
+
+/* --------------------------------------------------------------------------
+   4. Table Variations: Striped, Hover & Bordered
+   -------------------------------------------------------------------------- */
+
+/* Hover Rows */
+:where(table:not([hover="false"]) tbody tr, table[hover] tbody tr) {
+  transition: background-color 0.15s ease;
+}
+
+:where(table:not([hover="false"]) tbody tr:hover, table[hover] tbody tr:hover) {
+  background-color: var(--table-hover-bg);
+}
+
+/* Striped Rows */
+:where(table[striped], table[table="striped"], .table-striped) tbody tr:nth-child(even) {
+  background-color: var(--table-stripe-bg);
+}
+
+/* Bordered Table */
+:where(table[bordered], table[table="bordered"], .table-bordered) th,
+:where(table[bordered], table[table="bordered"], .table-bordered) td {
+  border-inline: 1px solid var(--table-border-color);
+}
+
+/* Sticky Header */
+:where(table[sticky-header], [table-container][sticky-header]) thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: #0f172a;
+}
+
+/* Active / Selected Row */
+:where(tbody tr[active], tbody tr[selected]) {
+  background-color: rgba(59, 130, 246, 0.15) !important;
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   5. Density Presets (Compact, Relaxed)
+   -------------------------------------------------------------------------- */
+:where(table[density="compact"], table[compact], .table-compact) {
+  --table-cell-padding-y: 0.45rem;
+  --table-cell-padding-x: 0.75rem;
+  font-size: 0.8125rem;
+}
+
+:where(table[density="relaxed"], table[relaxed], .table-relaxed) {
+  --table-cell-padding-y: 1.25rem;
+  --table-cell-padding-x: 1.25rem;
+  font-size: 0.9375rem;
+}
+
+/* --------------------------------------------------------------------------
+   6. Column & Cell Alignment Helpers
+   -------------------------------------------------------------------------- */
+:where(th[align="right"], td[align="right"], [numeric]) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(th[align="center"], td[align="center"]) {
+  text-align: center;
+}
+
+:where(th[align="left"], td[align="left"]) {
+  text-align: left;
+}
+
+:where(td[truncate], th[truncate]) {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   7. Mobile Responsive Stacked Card View (<table responsive="stack">)
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  :where(table[responsive="stack"], table[table="stacked"], .table-stacked) {
+    display: block;
+    width: 100%;
+    border: none;
+  }
+
+  :where(table[responsive="stack"], table[table="stacked"], .table-stacked) thead {
+    display: none; /* Hide regular header on stacked mobile view */
+  }
+
+  :where(table[responsive="stack"], table[table="stacked"], .table-stacked) tbody,
+  :where(table[responsive="stack"], table[table="stacked"], .table-stacked) tfoot {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    width: 100%;
+  }
+
+  :where(table[responsive="stack"], table[table="stacked"], .table-stacked) tbody tr,
+  :where(table[responsive="stack"], table[table="stacked"], .table-stacked) tfoot tr {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--table-border-color);
+    border-radius: var(--radius-md);
+  }
+
+  :where(table[responsive="stack"], table[table="stacked"], .table-stacked) td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.45rem 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+    font-size: 0.875rem;
+    text-align: right;
+  }
+
+  :where(table[responsive="stack"], table[table="stacked"], .table-stacked) td:last-child {
+    border-bottom: none;
+  }
+
+  /* Insert data-label as title on the left */
+  :where(table[responsive="stack"], table[table="stacked"], .table-stacked) td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: #94a3b8;
+    text-align: left;
+    margin-right: 1rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+}

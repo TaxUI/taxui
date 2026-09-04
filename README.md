@@ -21,6 +21,7 @@ frameworkhtml/
 │   │   ├── badges.css      # Badges semánticos, chips removibles y notificaciones
 │   │   ├── alerts.css      # Alertas, callouts con borde lateral y banners
 │   │   ├── avatars.css     # Avatares, estados de presencia y grupos apilados
+│   │   ├── tables.css      # Tablas responsivas, scroll horizontal y stacked cards
 │   │   └── forms.css       # Formularios, switches, checkboxes, selects e input groups
 │   └── main.css            # Archivo maestro de importación
 └── examples/
@@ -31,57 +32,75 @@ frameworkhtml/
     ├── cards.html          # Showcase de Tarjetas y Superficies
     ├── badges.html         # Showcase de Badges, Chips y Notificaciones
     ├── alerts.html         # Showcase de Alertas y Banners
-    └── avatars.html        # Showcase de Avatares y Grupos de Usuarios
+    ├── avatars.html        # Showcase de Avatares y Grupos de Usuarios
+    └── tables.html         # Showcase de Tablas de Datos Responsivas
 ```
 
 ---
 
-## 👤 1. Avatares & Grupos de Usuarios
+## 📊 1. Tablas de Datos Responsivas
 
-### Fotos e Iniciales Automáticas
+### Contenedor de Scroll y Filas Cebra
 ```html
-<!-- Avatar con imagen -->
-<img avatar src="usuario.jpg" alt="Foto">
-
-<!-- Avatar con iniciales centradas -->
-<div avatar variant="gradient">MD</div>
-<div avatar variant="primary">AI</div>
-```
-
-### Escala de Tamaños y Formas
-```html
-<!-- Tamaños de 24px a 80px -->
-<div avatar size="xs">XS</div>
-<div avatar size="md">MD</div>
-<div avatar size="2xl">2XL</div>
-
-<!-- Formas -->
-<div avatar shape="circle">...</div>   <!-- Círculo (Default) -->
-<div avatar shape="rounded">...</div>  <!-- Bordes redondeados -->
-<div avatar shape="square">...</div>   <!-- Cuadrado suave -->
-```
-
-### Estados de Presencia
-```html
-<div avatar status="online" pulse>...</div>
-<div avatar status="busy">...</div>
-<div avatar status="away">...</div>
-<div avatar status="offline">...</div>
-```
-
-### Grupos de Avatares Apilados
-```html
-<div avatar-group>
-  <img avatar src="user1.jpg">
-  <img avatar src="user2.jpg">
-  <div avatar variant="gradient">MD</div>
-  <div avatar variant="secondary">+5</div>
+<div table-container>
+  <table striped>
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Rol</th>
+        <th align="right">Último Acceso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr selected>
+        <td>Matías Dev</td>
+        <td>Admin</td>
+        <td align="right">Hace 2 min</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 ```
 
+### Densidades de Espaciado
+```html
+<table density="compact">...</table>  <!-- Ideal para dashboards financieros densos -->
+<table density="relaxed">...</table>  <!-- Ideal para vistas modernas de SaaS -->
+```
+
+### Vista Automática de Tarjetas en Móviles (`< 640px`)
+```html
+<table responsive="stack">
+  <thead>
+    <tr>
+      <th>Factura</th>
+      <th>Monto</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Factura">#INV-001</td>
+      <td data-label="Monto" numeric>$1,250.00</td>
+      <td data-label="Estado"><span badge="success">Pagada</span></td>
+    </tr>
+  </tbody>
+</table>
+```
+
 ---
 
-## 🔔 2. Alertas & Mensajes de Feedback
+## 👤 2. Avatares & Grupos de Usuarios
+
+* **Fotos e Iniciales:** `<img avatar src="user.jpg">` o `<div avatar variant="gradient">MD</div>`
+* **Escala de Tamaños:** `size="xs|sm|md|lg|xl|2xl"`
+* **Formas:** `shape="circle|rounded|square"`
+* **Estados de Presencia:** `status="online|busy|away|offline" pulse`
+* **Grupos Apilados:** `<div avatar-group><img avatar ...><div avatar variant="secondary">+5</div></div>`
+
+---
+
+## 🔔 3. Alertas & Mensajes de Feedback
 
 * **Variantes:** `alert="info|success|warning|danger|neutral"`
 * **Borde Lateral:** `<div alert="warning" border="left">...</div>`
@@ -90,7 +109,7 @@ frameworkhtml/
 
 ---
 
-## 🏷️ 3. Badges, Chips & Notificaciones Flotantes
+## 🏷️ 4. Badges, Chips & Notificaciones Flotantes
 
 * **Variantes:** `badge="primary|success|warning|danger|purple"`
 * **Estilos:** `style-type="solid|outline"` y modificador `pill`
@@ -99,7 +118,7 @@ frameworkhtml/
 
 ---
 
-## 🃏 4. Tarjetas y Superficies
+## 🃏 5. Tarjetas y Superficies
 
 * **Modos:** `card="flat|elevated|glass|glow"`
 * **Glassmorphism:** `<article card="glass">...</article>`
@@ -108,7 +127,7 @@ frameworkhtml/
 
 ---
 
-## 🔘 5. Botones Multivariante
+## 🔘 6. Botones Multivariante
 
 * **Variantes:** `variant="primary|secondary|outline|ghost|success|danger|warning|link"`
 * **Efectos:** `glow`, `pill`, `block`, `icon-only`
@@ -117,7 +136,7 @@ frameworkhtml/
 
 ---
 
-## 📝 6. Formularios & Inputs Nativos
+## 📝 7. Formularios & Inputs Nativos
 
 * **Toggle Switches:** `<input type="checkbox" switch checked>`
 * **Checkboxes & Radios:** `<input type="checkbox">` / `<input type="radio">` con checkmark SVG automático.
@@ -127,7 +146,7 @@ frameworkhtml/
 
 ---
 
-## ⚡ 7. Primitivas Flexbox & Stacks
+## ⚡ 8. Primitivas Flexbox & Stacks
 
 * **`layout="stack"`**: Columna vertical con espaciado constante.
 * **`layout="row"`**: Fila horizontal centrada.
@@ -139,7 +158,7 @@ frameworkhtml/
 
 ---
 
-## 📐 8. Primitivas Grid
+## 📐 9. Primitivas Grid
 
 * **`layout="grid" grid="auto-fit" min-col="sm"`**: Grilla auto-responsiva sin media queries.
 * **`cols="1"` a `cols="12"`**: Sistema de columnas fijas.
