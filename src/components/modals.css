@@ -9,10 +9,10 @@
 :where(dialog, [modal], .modal) {
   --modal-max-width: 540px;
   --modal-padding: 1.5rem;
-  --modal-bg: #131b2e;
+  --modal-bg: var(--color-surface);
   --modal-border: var(--color-border);
   --modal-radius: var(--radius-xl);
-  --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--color-border);
 
   margin: auto;
   padding: 0;
@@ -34,7 +34,7 @@
    2. Backdrop Styling & Blur
    -------------------------------------------------------------------------- */
 :where(dialog)::backdrop {
-  background-color: rgba(11, 15, 25, 0.75);
+  background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -88,15 +88,15 @@
    5. Glassmorphism & Glow Modal Modifiers
    -------------------------------------------------------------------------- */
 :where(dialog[modal="glass"], dialog[glass]) {
-  background: rgba(19, 27, 46, 0.75);
+  background: rgba(var(--card-glass-rgb, 19, 27, 46), 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--color-border);
 }
 
 :where(dialog[modal="glow"], dialog[glow]) {
-  box-shadow: 0 0 35px -5px rgba(56, 189, 248, 0.25), 0 25px 50px -12px rgba(0, 0, 0, 0.8);
-  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 35px -5px var(--color-primary-glow), 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border-color: var(--color-primary);
 }
 
 /* --------------------------------------------------------------------------
@@ -117,7 +117,7 @@
 :where([modal-title]) {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-text);
   margin: 0;
   line-height: 1.3;
 }
@@ -138,8 +138,8 @@
 }
 
 :where([modal-close]:hover) {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--color-text);
+  background-color: var(--color-surface-hover);
 }
 
 :where([modal-body]) {
@@ -154,7 +154,7 @@
   justify-content: flex-end;
   gap: var(--gap-sm);
   padding: var(--modal-padding);
-  background-color: rgba(15, 23, 42, 0.4);
+  background-color: var(--color-surface-hover);
 }
 
 :where([modal-footer][divided]) {

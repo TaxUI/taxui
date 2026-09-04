@@ -7,9 +7,9 @@
    1. Base Badge & Chip Container
    -------------------------------------------------------------------------- */
 :where([badge], .badge, [chip], .chip) {
-  --badge-bg: rgba(59, 130, 246, 0.15);
-  --badge-color: #60a5fa;
-  --badge-border: rgba(59, 130, 246, 0.3);
+  --badge-bg: var(--color-primary-glow, rgba(59, 130, 246, 0.15));
+  --badge-color: var(--color-primary, #60a5fa);
+  --badge-border: var(--color-primary, rgba(59, 130, 246, 0.3));
   --badge-glow: transparent;
 
   display: inline-flex;
@@ -36,60 +36,60 @@
    2. Badge Color Variants (Subtle Modern Style by Default)
    -------------------------------------------------------------------------- */
 
-/* Primary / Blue (Default) */
+/* Primary / Dynamic Accent */
 :where([badge="primary"], [variant="primary"][badge], [chip="primary"]) {
-  --badge-bg: rgba(59, 130, 246, 0.15);
-  --badge-color: #60a5fa;
-  --badge-border: rgba(59, 130, 246, 0.3);
-  --badge-glow: 0 0 10px rgba(59, 130, 246, 0.2);
+  --badge-bg: var(--color-primary-glow, rgba(59, 130, 246, 0.15));
+  --badge-color: var(--color-primary, #60a5fa);
+  --badge-border: var(--color-primary, rgba(59, 130, 246, 0.3));
+  --badge-glow: 0 0 10px var(--color-primary-glow, rgba(59, 130, 246, 0.2));
 }
 
 /* Secondary / Neutral */
 :where([badge="secondary"], [badge="neutral"], [variant="secondary"][badge], [chip="secondary"]) {
-  --badge-bg: rgba(148, 163, 184, 0.15);
-  --badge-color: #cbd5e1;
-  --badge-border: rgba(148, 163, 184, 0.25);
+  --badge-bg: var(--color-surface-hover);
+  --badge-color: var(--color-text-muted);
+  --badge-border: var(--color-border);
   --badge-glow: none;
 }
 
 /* Success / Green */
 :where([badge="success"], [variant="success"][badge], [chip="success"]) {
-  --badge-bg: rgba(16, 185, 129, 0.15);
-  --badge-color: #34d399;
-  --badge-border: rgba(16, 185, 129, 0.3);
-  --badge-glow: 0 0 10px rgba(16, 185, 129, 0.2);
+  --badge-bg: var(--color-success-bg, rgba(16, 185, 129, 0.15));
+  --badge-color: var(--color-success);
+  --badge-border: var(--color-success-border, rgba(16, 185, 129, 0.3));
+  --badge-glow: 0 0 10px var(--color-success-bg);
 }
 
 /* Danger / Red */
 :where([badge="danger"], [badge="error"], [variant="danger"][badge], [chip="danger"]) {
-  --badge-bg: rgba(239, 68, 68, 0.15);
-  --badge-color: #f87171;
-  --badge-border: rgba(239, 68, 68, 0.3);
-  --badge-glow: 0 0 10px rgba(239, 68, 68, 0.2);
+  --badge-bg: var(--color-danger-bg, rgba(239, 68, 68, 0.15));
+  --badge-color: var(--color-danger);
+  --badge-border: var(--color-danger-border, rgba(239, 68, 68, 0.3));
+  --badge-glow: 0 0 10px var(--color-danger-bg);
 }
 
 /* Warning / Amber */
 :where([badge="warning"], [variant="warning"][badge], [chip="warning"]) {
-  --badge-bg: rgba(245, 158, 11, 0.15);
-  --badge-color: #fbbf24;
-  --badge-border: rgba(245, 158, 11, 0.3);
-  --badge-glow: 0 0 10px rgba(245, 158, 11, 0.2);
+  --badge-bg: var(--color-warning-bg, rgba(245, 158, 11, 0.15));
+  --badge-color: var(--color-warning);
+  --badge-border: var(--color-warning-border, rgba(245, 158, 11, 0.3));
+  --badge-glow: 0 0 10px var(--color-warning-bg);
 }
 
 /* Purple / Violet */
 :where([badge="purple"], [chip="purple"]) {
   --badge-bg: rgba(168, 85, 247, 0.15);
-  --badge-color: #c084fc;
+  --badge-color: #a855f7;
   --badge-border: rgba(168, 85, 247, 0.3);
   --badge-glow: 0 0 10px rgba(168, 85, 247, 0.2);
 }
 
 /* Pink / Rose */
 :where([badge="pink"], [chip="pink"]) {
-  --badge-bg: rgba(236, 72, 153, 0.15);
-  --badge-color: #f472b6;
-  --badge-border: rgba(236, 72, 153, 0.3);
-  --badge-glow: 0 0 10px rgba(236, 72, 153, 0.2);
+  --badge-bg: rgba(244, 63, 94, 0.15);
+  --badge-color: #f43f5e;
+  --badge-border: rgba(244, 63, 94, 0.3);
+  --badge-glow: 0 0 10px rgba(244, 63, 94, 0.2);
 }
 
 /* --------------------------------------------------------------------------
@@ -100,8 +100,8 @@
 :where([badge][style-type="solid"], [chip][style-type="solid"], [badge-solid]) {
   color: #ffffff !important;
 }
-:where([badge="primary"][style-type="solid"], [badge-solid="primary"]) { background-color: var(--color-primary); border-color: var(--color-primary); }
-:where([badge="secondary"][style-type="solid"], [badge-solid="secondary"]) { background-color: var(--color-surface); border-color: var(--color-border); }
+:where([badge="primary"][style-type="solid"], [badge-solid="primary"]) { background-color: var(--color-primary); border-color: var(--color-primary); color: var(--color-primary-text, #ffffff) !important; }
+:where([badge="secondary"][style-type="solid"], [badge-solid="secondary"]) { background-color: var(--color-surface); border-color: var(--color-border); color: var(--color-text) !important; }
 :where([badge="success"][style-type="solid"], [badge-solid="success"]) { background-color: var(--color-success); border-color: var(--color-success); }
 :where([badge="danger"][style-type="solid"], [badge-solid="danger"]) { background-color: var(--color-danger); border-color: var(--color-danger); }
 :where([badge="warning"][style-type="solid"], [badge-solid="warning"]) { background-color: var(--color-warning); color: #0b0f19 !important; border-color: var(--color-warning); }

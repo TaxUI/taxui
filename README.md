@@ -11,6 +11,7 @@ frameworkhtml/
 ├── src/
 │   ├── base/
 │   │   ├── variables.css   # Tokens de diseño (gaps, inputs, radios, colores)
+│   │   ├── themes.css      # Sistema de temas (dark/light, acentos y scoped surfaces)
 │   │   └── reset.css       # Reset moderno y normalización
 │   ├── layout/
 │   │   ├── grid.css        # Sistema de Grid declarativo
@@ -42,44 +43,52 @@ frameworkhtml/
     ├── modals.html         # Showcase de Modales y Drawers Nativos
     ├── accordions.html     # Showcase de Acordeones y Colapsables
     ├── tooltips.html       # Showcase de Tooltips Puros en CSS
-    └── utilities.html      # Showcase de Utilidades de Truncado & Aspect Ratio
+    ├── utilities.html      # Showcase de Utilidades de Truncado & Aspect Ratio
+    └── themes.html         # Showcase de Sistema de Temas & Dark/Light Mode
 ```
 
 ---
 
-## 🛠️ 1. Utilidades de Truncado & Aspect Ratio
+## 🎨 1. Sistema de Temas & Modo Oscuro/Claro
 
-### Truncado de 1 Línea y Clamping Multilínea
+### Modo Global
 ```html
-<!-- Truncado de 1 línea con elipsis -->
-<p truncate>Texto excesivamente largo...</p>
-
-<!-- Limitador a 2, 3 o 4 líneas (line-clamp) -->
-<p clamp="2">Resumen corto de dos líneas...</p>
-<p clamp="3">Resumen de artículo de blog limitado a 3 líneas...</p>
+<html theme="dark">   <!-- Modo Oscuro -->
+<html theme="light">  <!-- Modo Claro -->
 ```
 
-### Balance Tipográfico Moderno
+### Paletas de Colores de Acento
 ```html
-<!-- Evita palabras huérfanas en encabezados -->
-<h1 text-balance>Título equilibrado automáticamente</h1>
+<!-- Cambia el color primario y estados hover/focus dinámicamente -->
+<html theme-accent="blue">      <!-- Azul Moderno (Default) -->
+<html theme-accent="emerald">   <!-- Verde Esmeralda -->
+<html theme-accent="violet">    <!-- Violeta / Púrpura -->
+<html theme-accent="amber">     <!-- Ámbar / Naranja Cálido -->
+<html theme-accent="rose">      <!-- Rosa / Magenta -->
+<html theme-accent="cyan">      <!-- Cian Eléctrico -->
 ```
 
-### Relaciones de Aspecto & Media Frames
+### Superficies Anidadas (Scoped Surfaces)
 ```html
-<!-- Contenedor con ratio geométrico fijo -->
-<div media-frame ratio="16:9">
-  <img src="video-cover.jpg" alt="Video">
+<!-- Incrusta una tarjeta en modo claro dentro de un layout oscuro -->
+<div card="elevated" theme="light">
+  <h3>Documento Claro</h3>
+  <button variant="primary">Imprimir</button>
 </div>
-
-<div media-frame ratio="1:1">...</div>    <!-- Cuadrado -->
-<div media-frame ratio="4:5">...</div>    <!-- Vertical / Retrato -->
-<div media-frame ratio="21:9">...</div>   <!-- Cinema Ultra-Wide -->
 ```
 
 ---
 
-## 💬 2. Tooltips Puros en CSS (Zero JS)
+## 🛠️ 2. Utilidades de Truncado & Aspect Ratio
+
+* **Truncado 1 Línea:** `<p truncate>...</p>`
+* **Clamping Multilínea:** `<p clamp="2">...</p>` a `<p clamp="6">...</p>`
+* **Balance Tipográfico:** `<h1 text-balance>...</h1>`
+* **Media Frames & Ratios:** `<div media-frame ratio="16:9|1:1|4:5|21:9"><img ...></div>`
+
+---
+
+## 💬 3. Tooltips Puros en CSS (Zero JS)
 
 * **Posicionamiento:** `<button tooltip="Texto" tooltip-pos="top|bottom|left|right">`
 * **Variantes de Color:** `tooltip-variant="primary|success|danger|glass"`
@@ -87,7 +96,7 @@ frameworkhtml/
 
 ---
 
-## 📂 3. Acordeones & Colapsables (`<details>`)
+## 📂 4. Acordeones & Colapsables (`<details>`)
 
 * **Acordeón Conectado:** `<div accordion><details><summary>Título</summary><div accordion-body>...</div></details></div>`
 * **Cierre Automático Excluyente:** `<details name="faq-group">`
@@ -95,7 +104,7 @@ frameworkhtml/
 
 ---
 
-## 🪟 4. Modales Nativos & Drawers (`<dialog>`)
+## 🪟 5. Modales Nativos & Drawers (`<dialog>`)
 
 * **Base:** `<dialog size="sm|md|lg|fullscreen">` con apertura nativa `.showModal()` y cierre `Esc`.
 * **Slots:** `<header modal-header divided>`, `<div modal-body>`, `<footer modal-footer divided>`.
@@ -104,7 +113,7 @@ frameworkhtml/
 
 ---
 
-## 📊 5. Tablas de Datos Responsivas
+## 📊 6. Tablas de Datos Responsivas
 
 * **Contenedor:** `<div table-container><table striped>...</table></div>`
 * **Densidades:** `table[density="compact|relaxed"]`
@@ -113,7 +122,7 @@ frameworkhtml/
 
 ---
 
-## 👤 6. Avatares & Grupos de Usuarios
+## 👤 7. Avatares & Grupos de Usuarios
 
 * **Fotos e Iniciales:** `<img avatar src="user.jpg">` o `<div avatar variant="gradient">MD</div>`
 * **Escala de Tamaños:** `size="xs|sm|md|lg|xl|2xl"`
@@ -123,7 +132,7 @@ frameworkhtml/
 
 ---
 
-## 🔔 7. Alertas & Mensajes de Feedback
+## 🔔 8. Alertas & Mensajes de Feedback
 
 * **Variantes:** `alert="info|success|warning|danger|neutral"`
 * **Borde Lateral:** `<div alert="warning" border="left">...</div>`
@@ -132,7 +141,7 @@ frameworkhtml/
 
 ---
 
-## 🏷️ 8. Badges, Chips & Notificaciones Flotantes
+## 🏷️ 9. Badges, Chips & Notificaciones Flotantes
 
 * **Variantes:** `badge="primary|success|warning|danger|purple"`
 * **Estilos:** `style-type="solid|outline"` y modificador `pill`
@@ -141,7 +150,7 @@ frameworkhtml/
 
 ---
 
-## 🃏 9. Tarjetas y Superficies
+## 🃏 10. Tarjetas y Superficies
 
 * **Modos:** `card="flat|elevated|glass|glow"`
 * **Glassmorphism:** `<article card="glass">...</article>`
@@ -150,7 +159,7 @@ frameworkhtml/
 
 ---
 
-## 🔘 10. Botones Multivariante
+## 🔘 11. Botones Multivariante
 
 * **Variantes:** `variant="primary|secondary|outline|ghost|success|danger|warning|link"`
 * **Efectos:** `glow`, `pill`, `block`, `icon-only`
@@ -159,7 +168,7 @@ frameworkhtml/
 
 ---
 
-## 📝 11. Formularios & Inputs Nativos
+## 📝 12. Formularios & Inputs Nativos
 
 * **Toggle Switches:** `<input type="checkbox" switch checked>`
 * **Checkboxes & Radios:** `<input type="checkbox">` / `<input type="radio">` con checkmark SVG automático.
@@ -169,7 +178,7 @@ frameworkhtml/
 
 ---
 
-## ⚡ 12. Primitivas Flexbox & Stacks
+## ⚡ 13. Primitivas Flexbox & Stacks
 
 * **`layout="stack"`**: Columna vertical con espaciado constante.
 * **`layout="row"`**: Fila horizontal centrada.
@@ -181,7 +190,7 @@ frameworkhtml/
 
 ---
 
-## 📐 13. Primitivas Grid
+## 📐 14. Primitivas Grid
 
 * **`layout="grid" grid="auto-fit" min-col="sm"`**: Grilla auto-responsiva sin media queries.
 * **`cols="1"` a `cols="12"`**: Sistema de columnas fijas.

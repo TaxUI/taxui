@@ -2,8 +2,9 @@
    Main Framework Entry Point
    ========================================================================== */
 
-/* 1. Base Tokens & Reset */
+/* 1. Base Tokens, Themes & Reset */
 @import "./base/variables.css";
+@import "./base/themes.css";
 @import "./base/reset.css";
 
 /* 2. Layout Primitives */

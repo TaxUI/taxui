@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es" theme="dark" theme-accent="blue" id="theme-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Themes & Dark/Light Mode Showcase - Framework HTML</title>
+  <link rel="stylesheet" href="../src/main.css">
+  <style>
+    body {
+      padding-block: 2.5rem;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .demo-nav {
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+      background: var(--color-surface);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+      background: var(--color-primary-glow);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-header p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-inline: auto;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background: var(--color-surface-hover);
+      color: var(--color-primary);
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+
+    .demo-section {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--card-shadow);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .accent-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .accent-btn:hover {
+      transform: scale(1.15);
+    }
+
+    .accent-btn.active {
+      border-color: var(--color-text);
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div container="lg">
+
+    <!-- Navigation between examples -->
+    <nav class="demo-nav" layout="cluster" justify="center" gap="sm">
+      <a href="flexbox.html" class="nav-link">⚡ Flexbox & Stacks</a>
+      <a href="grid.html" class="nav-link">📐 Grid Primitives</a>
+      <a href="forms.html" class="nav-link">📝 Forms & Inputs</a>
+      <a href="buttons.html" class="nav-link">🔘 Buttons</a>
+      <a href="cards.html" class="nav-link">🃏 Cards & Surfaces</a>
+      <a href="badges.html" class="nav-link">🏷️ Badges & Chips</a>
+      <a href="alerts.html" class="nav-link">🔔 Alerts & Feedback</a>
+      <a href="avatars.html" class="nav-link">👤 Avatars</a>
+      <a href="tables.html" class="nav-link">📊 Tables</a>
+      <a href="modals.html" class="nav-link">🪟 Modals</a>
+      <a href="accordions.html" class="nav-link">📂 Accordions</a>
+      <a href="tooltips.html" class="nav-link">💬 Tooltips</a>
+      <a href="utilities.html" class="nav-link">🛠️ Utilities</a>
+      <a href="themes.html" class="nav-link active">🎨 Themes</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="demo-header">
+      <h1>Theme System & Dark / Light Mode</h1>
+      <p>Control de temas declarativo: alterna entre modo oscuro y claro de forma global o anidada, y personaliza la paleta de colores de acento en tiempo real.</p>
+    </header>
+
+    <!-- Demo 1: Selector en Vivo de Modo y Acento -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        1. Control en Tiempo Real
+        <span class="section-code">theme="dark|light"</span>
+        <span class="section-code">theme-accent="blue|emerald|violet|amber|rose|cyan"</span>
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Haz clic en los botones para cambiar instantáneamente el tema y el color primario de toda la interfaz.
+      </p>
+
+      <div layout="row-responsive" justify="space-between" align="center" gap="lg">
+        <!-- Dark / Light Toggle -->
+        <div layout="row" align="center" gap="sm">
+          <span style="font-weight: 600; font-size: 0.95rem;">Modo de Color:</span>
+          <div button-group>
+            <button id="btn-dark" variant="primary" onclick="setTheme('dark')">🌙 Oscuro</button>
+            <button id="btn-light" variant="ghost" onclick="setTheme('light')">☀️ Claro</button>
+          </div>
+        </div>
+
+        <!-- Accent Palette Selector -->
+        <div layout="row" align="center" gap="sm">
+          <span style="font-weight: 600; font-size: 0.95rem;">Color de Acento:</span>
+          <div layout="row" gap="xs">
+            <button class="accent-btn active" style="background: #3b82f6;" title="Blue" onclick="setAccent('blue', this)"></button>
+            <button class="accent-btn" style="background: #10b981;" title="Emerald" onclick="setAccent('emerald', this)"></button>
+            <button class="accent-btn" style="background: #8b5cf6;" title="Violet" onclick="setAccent('violet', this)"></button>
+            <button class="accent-btn" style="background: #f59e0b;" title="Amber" onclick="setAccent('amber', this)"></button>
+            <button class="accent-btn" style="background: #f43f5e;" title="Rose" onclick="setAccent('rose', this)"></button>
+            <button class="accent-btn" style="background: #06b6d4;" title="Cyan" onclick="setAccent('cyan', this)"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 2: Temas Anidados / Scoped Themes (Luz en Oscuridad y viceversa) -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        2. Temas Anidados / Scoped Surfaces
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Puedes forzar que una tarjeta específica use tema claro u oscuro independientemente del tema de la página usando <span class="section-code">theme="light"</span> o <span class="section-code">theme="dark"</span>.
+      </p>
+
+      <div layout="grid" cols="1" cols-md="2" gap="md">
+        <!-- Scoped Light Card -->
+        <div theme="light" style="padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--color-border); box-shadow: var(--card-shadow);">
+          <span badge="primary" size="sm" pill style="margin-bottom: 0.5rem;">Contenedor con theme="light"</span>
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0 0 0.5rem 0;">Superficie en Modo Claro</h3>
+          <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+            Esta tarjeta siempre tiene fondo blanco puro y texto oscuro legible, ideal para recibos o previsualizaciones de documentos impresos.
+          </p>
+          <div layout="row" gap="sm">
+            <button variant="primary">Botón Principal</button>
+            <button variant="outline">Secundario</button>
+          </div>
+        </div>
+
+        <!-- Scoped Dark Card -->
+        <div theme="dark" style="padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--color-border); box-shadow: var(--card-shadow);">
+          <span badge="primary" size="sm" pill style="margin-bottom: 0.5rem;">Contenedor con theme="dark"</span>
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0 0 0.5rem 0;">Superficie en Modo Oscuro</h3>
+          <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+            Esta tarjeta mantiene contraste oscuro profundo con bordes sutiles, ideal para paneles de código, consolas o reproductores multimedia.
+          </p>
+          <div layout="row" gap="sm">
+            <button variant="primary">Botón Principal</button>
+            <button variant="outline">Secundario</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo 3: Componentes Reactivos al Tema -->
+    <div class="demo-section">
+      <h2 class="section-title">
+        3. Componentes Reactivos al Tema y Acento
+      </h2>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+        Todos los componentes del framework se adaptan automáticamente a los tokens de color.
+      </p>
+
+      <div layout="grid" cols="1" cols-md="2" gap="lg">
+        <!-- Forms & Inputs -->
+        <div layout="stack" gap="md">
+          <label style="font-size: 0.85rem; font-weight: 600;">Input con Acento:</label>
+          <input type="text" placeholder="Escribe algo aquí..." value="taxui-framework@theme.dev">
+
+          <div layout="row" align="center" justify="space-between">
+            <span style="font-size: 0.9rem; font-weight: 500;">Interruptor de Notificaciones:</span>
+            <input type="checkbox" switch checked>
+          </div>
+        </div>
+
+        <!-- Badges & Alerts -->
+        <div layout="stack" gap="md">
+          <div layout="cluster" gap="xs">
+            <span badge="primary">Primary</span>
+            <span badge="success">Success</span>
+            <span badge="warning">Warning</span>
+            <span badge="danger">Danger</span>
+          </div>
+
+          <div alert="info" border="left">
+            <span alert-icon>ℹ️</span>
+            <div>
+              <strong alert-title>Información del Sistema</strong>
+              <p alert-description>Los tokens CSS calculan automáticamente los contrastes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function setTheme(mode) {
+      document.documentElement.setAttribute('theme', mode);
+      document.documentElement.setAttribute('data-theme', mode);
+
+      const btnDark = document.getElementById('btn-dark');
+      const btnLight = document.getElementById('btn-light');
+
+      if (mode === 'dark') {
+        btnDark.setAttribute('variant', 'primary');
+        btnLight.setAttribute('variant', 'ghost');
+      } else {
+        btnDark.setAttribute('variant', 'ghost');
+        btnLight.setAttribute('variant', 'primary');
+      }
+    }
+
+    function setAccent(accent, element) {
+      document.documentElement.setAttribute('theme-accent', accent);
+      document.documentElement.setAttribute('accent', accent);
+
+      document.querySelectorAll('.accent-btn').forEach(b => b.classList.remove('active'));
+      element.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

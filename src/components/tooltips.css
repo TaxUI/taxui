@@ -7,11 +7,11 @@
    1. Base Tooltip Trigger Container
    -------------------------------------------------------------------------- */
 :where([tooltip], [data-tooltip]) {
-  --tooltip-bg: #0f172a;
-  --tooltip-color: #f8fafc;
-  --tooltip-border: rgba(255, 255, 255, 0.12);
+  --tooltip-bg: var(--color-surface-elevated, #1e293b);
+  --tooltip-color: var(--color-text, #f8fafc);
+  --tooltip-border: var(--color-border);
   --tooltip-radius: var(--radius-md);
-  --tooltip-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --tooltip-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--color-border);
   --tooltip-arrow-size: 5px;
   --tooltip-offset: 8px;
 
@@ -125,7 +125,7 @@
   transform: translateX(-50%) translateY(-4px);
 }
 
-:where([tooltip-pos="bottom"])::before {
+:where([tooltip-pos="bottom"]):before {
   top: calc(100% + var(--tooltip-offset) - var(--tooltip-arrow-size));
   bottom: auto;
   left: 50%;
@@ -213,8 +213,8 @@
 }
 
 :where([tooltip-variant="glass"]) {
-  --tooltip-bg: rgba(19, 27, 46, 0.85);
-  --tooltip-border: rgba(255, 255, 255, 0.15);
+  --tooltip-bg: rgba(var(--card-glass-rgb, 19, 27, 46), 0.85);
+  --tooltip-border: var(--color-border);
 }
 
 :where([tooltip-variant="glass"])::after {
