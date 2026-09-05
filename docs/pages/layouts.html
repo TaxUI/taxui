@@ -13,9 +13,11 @@
   <!-- Canonical URL -->
   <link rel="canonical" href="https://taxui.github.io/taxui/pages/layouts.html">
   
-  <!-- Favicon & Icons -->
-  <link rel="icon" type="image/png" href="../assets/favicon.png">
-  <link rel="apple-touch-icon" href="../assets/logo.png">
+  <!-- Favicon & Touch Icons for Search Engines -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/logo.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/logo.png">
+  <link rel="shortcut icon" href="../favicon.ico">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -31,23 +33,32 @@
   <meta name="twitter:description" content="Sticky Footer & Page Layouts - TaxUI declarative HTML & CSS framework. Zero JS, pure native CSS.">
   <meta name="twitter:image" content="https://taxui.github.io/taxui/assets/logo.png">
 
-  <!-- Schema.org JSON-LD Structured Data for Search Engines -->
+  <!-- Schema.org WebSite & Application Structured Data for Google Site Names -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "TaxUI",
-    "headline": "Sticky Footer & Page Layouts — TaxUI Documentation",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "TaxUI",
+      "alternateName": ["TaxUI Framework", "TaxUI Docs"],
+      "url": "https://taxui.github.io/taxui/"
     },
-    "description": "Modern declarative HTML & CSS framework with zero JavaScript dependencies.",
-    "url": "https://taxui.github.io/taxui/pages/layouts.html"
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "TaxUI",
+      "headline": "Sticky Footer & Page Layouts — TaxUI Documentation",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Modern declarative HTML & CSS framework with zero JavaScript dependencies.",
+      "url": "https://taxui.github.io/taxui/pages/layouts.html"
+    }
+  ]
   </script>
 
   <!-- Stylesheets -->
