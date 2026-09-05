@@ -30,7 +30,7 @@ Add the single stylesheet to the `<head>` of your HTML document:
 
 Or install via **NPM**:
 ```bash
-npm install taxui
+npm install @taxui/taxui
 ```
 ---
 

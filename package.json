@@ -1,5 +1,5 @@
 {
-  "name": "taxui",
+  "name": "@taxui/taxui",
   "version": "1.0.0",
   "description": "Modern, ultra-fast declarative HTML & CSS framework with zero JS dependencies",
   "main": "dist/taxui.min.css",
