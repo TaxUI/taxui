@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" theme="dark" theme-accent="blue">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buttons & Groups — TaxUI Documentation</title>
+  <meta name="description" content="Buttons & Groups - TaxUI Declarative HTML & CSS Framework">
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="stylesheet" href="../dist/taxui.min.css">
+  <link rel="stylesheet" href="../css/docs.css">
+</head>
+<body layout="app-shell">
+
+  <!-- TOPBAR / HEADER -->
+  <header page-header sticky="glass" app-topbar style="padding: 0.75rem 1.5rem;">
+    <div layout="split">
+      <div layout="row" gap="md">
+        <a href="../index.html" layout="row" gap="sm" style="text-decoration: none; color: inherit;">
+          <img src="../assets/logo.png" alt="TaxUI Logo" style="width: 32px; height: 32px; border-radius: 8px;">
+          <span style="font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em;">Tax<span style="color: var(--color-primary);">UI</span></span>
+          <span badge="primary" pill style="font-size: 0.7rem; padding: 0.1rem 0.45rem;">v1.0.0</span>
+        </a>
+      </div>
+
+      <!-- Search Bar -->
+      <div style="max-width: 320px; width: 100%;" id="search-container">
+        <div input-icon="left" size="sm">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input type="search" placeholder="Search pages... (Ctrl+K)" id="docs-search" oninput="filterDocs(this.value)" size="sm">
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div layout="row" gap="md" style="align-items: center;">
+        <div layout="row" gap="xs" style="display: flex; align-items: center;">
+          <button class="accent-btn accent-blue" onclick="setAccent('blue')" aria-label="Blue Accent"></button>
+          <button class="accent-btn accent-emerald" onclick="setAccent('emerald')" aria-label="Emerald Accent"></button>
+          <button class="accent-btn accent-violet" onclick="setAccent('violet')" aria-label="Violet Accent"></button>
+          <button class="accent-btn accent-amber" onclick="setAccent('amber')" aria-label="Amber Accent"></button>
+          <button class="accent-btn accent-rose" onclick="setAccent('rose')" aria-label="Rose Accent"></button>
+          <button class="accent-btn accent-cyan" onclick="setAccent('cyan')" aria-label="Cyan Accent"></button>
+        </div>
+
+        <button class="docs-header-btn" onclick="toggleTheme()" id="theme-toggle-btn" aria-label="Toggle dark and light mode">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+        </button>
+
+        <a href="https://github.com/TaxUI/taxui" target="_blank" rel="noopener" class="docs-header-btn" aria-label="GitHub Repository">
+          <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+<aside app-sidebar style="padding: 1.25rem 1rem;" scrollbar="thin" id="docs-sidebar">
+    <nav layout="stack" gap="none">
+      <div class="docs-nav-heading">Getting Started</div>
+      <a href="../index.html" class="docs-nav-link">🚀 Overview & Quickstart</a>
+      <a href="installation.html" class="docs-nav-link">📦 Installation & CDN</a>
+      <div class="docs-nav-heading">Layout Primitives</div>
+      <a href="grid.html" class="docs-nav-link">📐 Grid System</a>
+      <a href="flexbox.html" class="docs-nav-link">⚡ Flexbox & Stacks</a>
+      <a href="layouts.html" class="docs-nav-link">⚓ Sticky Footer & Shells</a>
+      <div class="docs-nav-heading">Theming & Colors</div>
+      <a href="theming.html" class="docs-nav-link">🎨 Dark/Light Modes</a>
+      <div class="docs-nav-heading">Components</div>
+      <a href="buttons.html" class="docs-nav-link active">🔘 Buttons & Groups</a>
+      <a href="cards.html" class="docs-nav-link">🃏 Cards & Surfaces</a>
+      <a href="forms.html" class="docs-nav-link">📝 Forms & Switches</a>
+      <a href="badges.html" class="docs-nav-link">🏷️ Badges & Chips</a>
+      <a href="modals.html" class="docs-nav-link">🪟 Modals & Drawers</a>
+      <a href="accordions.html" class="docs-nav-link">📂 Accordions & Collapse</a>
+      <a href="tooltips.html" class="docs-nav-link">💬 Tooltips (Zero JS)</a>
+      <a href="skeletons.html" class="docs-nav-link">💀 Skeletons & Shimmer</a>
+      <a href="tables.html" class="docs-nav-link">📊 Responsive Tables</a>
+      <a href="avatars.html" class="docs-nav-link">👤 Avatars & Groups</a>
+      <a href="alerts.html" class="docs-nav-link">🔔 Alerts & Banners</a>
+      <div class="docs-nav-heading">Utilities</div>
+      <a href="scrollbars.html" class="docs-nav-link">📜 Scrollbars & Snapping</a>
+      <a href="typography.html" class="docs-nav-link">✂️ Truncate & Aspect Ratio</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main app-main style="padding: 2rem 2.5rem; max-width: 1080px; margin-inline: auto;" scrollbar="thin">
+
+    <section style="margin-bottom: 3.5rem;">
+      <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem;">🔘 Buttons &amp; Button Groups</h1>
+      <p style="color: var(--color-text-muted); margin-bottom: 2rem;">
+        Multi-variant interactive buttons with GPU-accelerated glow, pill borders, animated loading spinners, and radio segmented controls.
+      </p>
+
+      <div class="preview-box">
+        <div class="preview-header"><span>Live Preview: Button Variants</span></div>
+        <div class="preview-body">
+          <div layout="stack" gap="md">
+            <div layout="row" gap="sm" style="flex-wrap: wrap;">
+              <button variant="primary">Primary</button>
+              <button variant="primary" glow>Primary Glow</button>
+              <button variant="secondary">Secondary</button>
+              <button variant="outline">Outline</button>
+              <button variant="ghost">Ghost</button>
+              <button variant="success">Success</button>
+              <button variant="danger">Danger</button>
+              <button variant="primary" pill>Pill Button</button>
+              <button variant="primary" loading>Loading</button>
+            </div>
+
+            <div button-group>
+              <label><input type="radio" name="plan-demo" checked><span>Monthly</span></label>
+              <label><input type="radio" name="plan-demo"><span>Yearly (Save 20%)</span></label>
+              <label><input type="radio" name="plan-demo"><span>Lifetime</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="code-container">
+          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
+          <pre><code>&lt;<span class="token-tag">button</span> <span class="token-attr">variant</span>=<span class="token-val">"primary"</span> <span class="token-attr">glow</span>&gt;Primary Glow&lt;/<span class="token-tag">button</span>&gt;
+&lt;<span class="token-tag">button</span> <span class="token-attr">variant</span>=<span class="token-val">"outline"</span>&gt;Outline&lt;/<span class="token-tag">button</span>&gt;
+&lt;<span class="token-tag">button</span> <span class="token-attr">variant</span>=<span class="token-val">"primary"</span> <span class="token-attr">loading</span>&gt;Save&lt;/<span class="token-tag">button</span>&gt;
+
+&lt;!-- Segmented Control / Button Group --&gt;
+&lt;<span class="token-tag">div</span> <span class="token-attr">button-group</span>&gt;
+  &lt;<span class="token-tag">label</span>&gt;&lt;<span class="token-tag">input</span> <span class="token-attr">type</span>=<span class="token-val">"radio"</span> <span class="token-attr">name</span>=<span class="token-val">"plan"</span> <span class="token-attr">checked</span>&gt;&lt;<span class="token-tag">span</span>&gt;Monthly&lt;/<span class="token-tag">span</span>&gt;&lt;/<span class="token-tag">label</span>&gt;
+  &lt;<span class="token-tag">label</span>&gt;&lt;<span class="token-tag">input</span> <span class="token-attr">type</span>=<span class="token-val">"radio"</span> <span class="token-attr">name</span>=<span class="token-val">"plan"</span>&gt;&lt;<span class="token-tag">span</span>&gt;Yearly&lt;/<span class="token-tag">span</span>&gt;&lt;/<span class="token-tag">label</span>&gt;
+&lt;/<span class="token-tag">div</span>&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted);">
+      <div layout="stack" gap="xs" style="align-items: center;">
+        <div layout="row" gap="sm">
+          <img src="../assets/logo.png" alt="TaxUI Logo" style="width: 24px; height: 24px; border-radius: 6px;">
+          <strong>TaxUI Framework</strong>
+        </div>
+        <p style="font-size: 0.85rem;">Released under the MIT License • Built with zero JavaScript runtime dependencies.</p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="../js/docs.js"></script>
+</body>
+</html>

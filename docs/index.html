@@ -3,146 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TaxUI — Modern Declarative HTML & CSS Framework</title>
-  <meta name="description" content="TaxUI is a lightweight, zero-JS declarative HTML & CSS framework. Build modern, responsive, dark-mode ready interfaces with pure semantic attributes.">
+  <title>Overview & Quickstart — TaxUI Documentation</title>
+  <meta name="description" content="Overview & Quickstart - TaxUI Declarative HTML & CSS Framework">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="dist/taxui.min.css">
-  
-  <style>
-    /* Custom Documentation Page Enhancements */
-    :root {
-      --sidebar-w: 270px;
-    }
-    
-    .docs-nav-link {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.45rem 0.75rem;
-      border-radius: var(--radius-sm);
-      color: var(--color-text-muted);
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 500;
-      transition: all 0.15s ease;
-    }
-    
-    .docs-nav-link:hover {
-      background-color: var(--color-surface-hover);
-      color: var(--color-text);
-      transform: translateX(3px);
-    }
-    
-    .docs-nav-link.active {
-      background-color: var(--color-primary-glow);
-      color: var(--color-primary);
-      font-weight: 600;
-      border-left: 3px solid var(--color-primary);
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-
-    .docs-nav-heading {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-text-subtle);
-      margin-top: 1.25rem;
-      margin-bottom: 0.4rem;
-      padding-left: 0.75rem;
-    }
-
-    /* Live Preview Box */
-    .preview-box {
-      border: 1px solid var(--color-border);
-      background-color: var(--color-surface);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      margin-block: 1.25rem;
-    }
-
-    .preview-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.6rem 1rem;
-      background-color: var(--color-bg);
-      border-bottom: 1px solid var(--color-border);
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--color-text-muted);
-    }
-
-    .preview-body {
-      padding: 1.5rem;
-      background-color: var(--color-surface);
-    }
-
-    .code-container {
-      position: relative;
-      background-color: #0b0f19;
-      border-top: 1px solid var(--color-border);
-      padding: 1rem 1.25rem;
-      overflow-x: auto;
-    }
-
-    .code-container pre {
-      margin: 0;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.85rem;
-      color: #e2e8f0;
-      line-height: 1.5;
-    }
-
-    .copy-btn {
-      position: absolute;
-      top: 0.6rem;
-      right: 0.75rem;
-      padding: 0.25rem 0.55rem;
-      font-size: 0.75rem;
-    }
-
-    .token-tag { color: #f43f5e; }
-    .token-attr { color: #38bdf8; }
-    .token-val { color: #a3e635; }
-    .token-comment { color: #64748b; }
-    .token-keyword { color: #c084fc; }
-
-    /* Props Table */
-    .props-table th {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--color-text-muted);
-    }
-
-    .props-table code {
-      background-color: var(--color-surface-hover);
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      font-size: 0.82rem;
-      color: var(--color-primary);
-    }
-
-    /* Accent color switcher dots */
-    .accent-btn {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 2px solid transparent;
-      cursor: pointer;
-      transition: transform 0.15s ease, border-color 0.15s ease;
-    }
-    .accent-btn:hover { transform: scale(1.2); }
-    .accent-btn.active { border-color: #ffffff; transform: scale(1.2); }
-    .accent-blue { background-color: #3b82f6; }
-    .accent-emerald { background-color: #10b981; }
-    .accent-violet { background-color: #8b5cf6; }
-    .accent-amber { background-color: #f59e0b; }
-    .accent-rose { background-color: #f43f5e; }
-    .accent-cyan { background-color: #06b6d4; }
-  </style>
+  <link rel="stylesheet" href="css/docs.css">
 </head>
 <body layout="app-shell">
 
@@ -157,84 +22,72 @@
         </a>
       </div>
 
-      <!-- Quick Search Bar (Desktop) -->
+      <!-- Search Bar -->
       <div style="max-width: 320px; width: 100%;" id="search-container">
         <div input-icon="left" size="sm">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-          <input type="search" placeholder="Search documentation... (Ctrl+K)" id="docs-search" oninput="filterDocs(this.value)" size="sm">
+          <input type="search" placeholder="Search pages... (Ctrl+K)" id="docs-search" oninput="filterDocs(this.value)" size="sm">
         </div>
       </div>
 
-      <!-- Theme & Accent Switcher Controls -->
-      <div layout="row" gap="md">
-        <!-- Accent Palette Switcher -->
-        <div layout="row" gap="xs" style="display: flex;">
-          <button class="accent-btn accent-blue active" onclick="setAccent('blue')" tooltip="Blue" tooltip-pos="bottom"></button>
-          <button class="accent-btn accent-emerald" onclick="setAccent('emerald')" tooltip="Emerald" tooltip-pos="bottom"></button>
-          <button class="accent-btn accent-violet" onclick="setAccent('violet')" tooltip="Violet" tooltip-pos="bottom"></button>
-          <button class="accent-btn accent-amber" onclick="setAccent('amber')" tooltip="Amber" tooltip-pos="bottom"></button>
-          <button class="accent-btn accent-rose" onclick="setAccent('rose')" tooltip="Rose" tooltip-pos="bottom"></button>
-          <button class="accent-btn accent-cyan" onclick="setAccent('cyan')" tooltip="Cyan" tooltip-pos="bottom"></button>
+      <!-- Controls -->
+      <div layout="row" gap="md" style="align-items: center;">
+        <div layout="row" gap="xs" style="display: flex; align-items: center;">
+          <button class="accent-btn accent-blue" onclick="setAccent('blue')" aria-label="Blue Accent"></button>
+          <button class="accent-btn accent-emerald" onclick="setAccent('emerald')" aria-label="Emerald Accent"></button>
+          <button class="accent-btn accent-violet" onclick="setAccent('violet')" aria-label="Violet Accent"></button>
+          <button class="accent-btn accent-amber" onclick="setAccent('amber')" aria-label="Amber Accent"></button>
+          <button class="accent-btn accent-rose" onclick="setAccent('rose')" aria-label="Rose Accent"></button>
+          <button class="accent-btn accent-cyan" onclick="setAccent('cyan')" aria-label="Cyan Accent"></button>
         </div>
 
-        <!-- Dark / Light Mode Toggle -->
-        <button icon-only size="sm" variant="ghost" onclick="toggleTheme()" id="theme-toggle-btn" tooltip="Toggle Dark/Light Mode" tooltip-pos="bottom">
-          <svg id="theme-sun-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width: 1.15rem; height: 1.15rem;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        <button class="docs-header-btn" onclick="toggleTheme()" id="theme-toggle-btn" aria-label="Toggle dark and light mode">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
         </button>
 
-        <!-- GitHub Repository Link -->
-        <a href="https://github.com/TaxUI/taxui" target="_blank" rel="noopener" button variant="outline" size="sm" style="text-decoration: none;">
-          <svg fill="currentColor" viewBox="0 0 24 24" style="width: 1rem; height: 1rem;"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path></svg>
-          GitHub
+        <a href="https://github.com/TaxUI/taxui" target="_blank" rel="noopener" class="docs-header-btn" aria-label="GitHub Repository">
+          <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- SIDEBAR NAVIGATION -->
-  <aside app-sidebar style="padding: 1.25rem 1rem;" scrollbar="thin" id="docs-sidebar">
+<aside app-sidebar style="padding: 1.25rem 1rem;" scrollbar="thin" id="docs-sidebar">
     <nav layout="stack" gap="none">
-      
       <div class="docs-nav-heading">Getting Started</div>
-      <a href="#overview" class="docs-nav-link active" onclick="setActiveLink(this)">🚀 Overview</a>
-      <a href="#installation" class="docs-nav-link" onclick="setActiveLink(this)">📦 Installation & CDN</a>
-      <a href="#quickstart" class="docs-nav-link" onclick="setActiveLink(this)">⚡ HTML Boilerplate</a>
-
+      <a href="index.html" class="docs-nav-link active">🚀 Overview & Quickstart</a>
+      <a href="pages/installation.html" class="docs-nav-link">📦 Installation & CDN</a>
       <div class="docs-nav-heading">Layout Primitives</div>
-      <a href="#layout-grid" class="docs-nav-link" onclick="setActiveLink(this)">📐 Grid System</a>
-      <a href="#layout-flex" class="docs-nav-link" onclick="setActiveLink(this)">⚡ Flexbox & Stacks</a>
-      <a href="#layout-page" class="docs-nav-link" onclick="setActiveLink(this)">⚓ Sticky Footer & Shells</a>
-
+      <a href="pages/grid.html" class="docs-nav-link">📐 Grid System</a>
+      <a href="pages/flexbox.html" class="docs-nav-link">⚡ Flexbox & Stacks</a>
+      <a href="pages/layouts.html" class="docs-nav-link">⚓ Sticky Footer & Shells</a>
       <div class="docs-nav-heading">Theming & Colors</div>
-      <a href="#theme-system" class="docs-nav-link" onclick="setActiveLink(this)">🎨 Dark/Light Modes</a>
-      <a href="#accent-palettes" class="docs-nav-link" onclick="setActiveLink(this)">🌈 Accent Palettes</a>
-      <a href="#scoped-surfaces" class="docs-nav-link" onclick="setActiveLink(this)">🔲 Scoped Surfaces</a>
-
+      <a href="pages/theming.html" class="docs-nav-link">🎨 Dark/Light Modes</a>
       <div class="docs-nav-heading">Components</div>
-      <a href="#comp-buttons" class="docs-nav-link" onclick="setActiveLink(this)">🔘 Buttons & Groups</a>
-      <a href="#comp-cards" class="docs-nav-link" onclick="setActiveLink(this)">🃏 Cards & Surfaces</a>
-      <a href="#comp-forms" class="docs-nav-link" onclick="setActiveLink(this)">📝 Forms, Inputs & Switches</a>
-      <a href="#comp-badges" class="docs-nav-link" onclick="setActiveLink(this)">🏷️ Badges & Chips</a>
-      <a href="#comp-modals" class="docs-nav-link" onclick="setActiveLink(this)">🪟 Modals & Drawers</a>
-      <a href="#comp-accordions" class="docs-nav-link" onclick="setActiveLink(this)">📂 Accordions & Collapse</a>
-      <a href="#comp-tooltips" class="docs-nav-link" onclick="setActiveLink(this)">💬 Tooltips (Zero JS)</a>
-      <a href="#comp-skeletons" class="docs-nav-link" onclick="setActiveLink(this)">💀 Skeletons & Shimmer</a>
-      <a href="#comp-tables" class="docs-nav-link" onclick="setActiveLink(this)">📊 Responsive Tables</a>
-      <a href="#comp-avatars" class="docs-nav-link" onclick="setActiveLink(this)">👤 Avatars & Groups</a>
-      <a href="#comp-alerts" class="docs-nav-link" onclick="setActiveLink(this)">🔔 Alerts & Banners</a>
-
+      <a href="pages/buttons.html" class="docs-nav-link">🔘 Buttons & Groups</a>
+      <a href="pages/cards.html" class="docs-nav-link">🃏 Cards & Surfaces</a>
+      <a href="pages/forms.html" class="docs-nav-link">📝 Forms & Switches</a>
+      <a href="pages/badges.html" class="docs-nav-link">🏷️ Badges & Chips</a>
+      <a href="pages/modals.html" class="docs-nav-link">🪟 Modals & Drawers</a>
+      <a href="pages/accordions.html" class="docs-nav-link">📂 Accordions & Collapse</a>
+      <a href="pages/tooltips.html" class="docs-nav-link">💬 Tooltips (Zero JS)</a>
+      <a href="pages/skeletons.html" class="docs-nav-link">💀 Skeletons & Shimmer</a>
+      <a href="pages/tables.html" class="docs-nav-link">📊 Responsive Tables</a>
+      <a href="pages/avatars.html" class="docs-nav-link">👤 Avatars & Groups</a>
+      <a href="pages/alerts.html" class="docs-nav-link">🔔 Alerts & Banners</a>
       <div class="docs-nav-heading">Utilities</div>
-      <a href="#util-scrollbars" class="docs-nav-link" onclick="setActiveLink(this)">📜 Scrollbars & Snapping</a>
-      <a href="#util-typography" class="docs-nav-link" onclick="setActiveLink(this)">✂️ Truncate & Aspect Ratio</a>
-
+      <a href="pages/scrollbars.html" class="docs-nav-link">📜 Scrollbars & Snapping</a>
+      <a href="pages/typography.html" class="docs-nav-link">✂️ Truncate & Aspect Ratio</a>
     </nav>
   </aside>
 
-  <!-- MAIN DOCUMENTATION CONTENT -->
+  <!-- MAIN CONTENT -->
   <main app-main style="padding: 2rem 2.5rem; max-width: 1080px; margin-inline: auto;" scrollbar="thin">
-    
+
     <!-- HERO HEADER SECTION -->
-    <section id="overview" style="padding-top: 1rem; padding-bottom: 3rem; border-bottom: 1px solid var(--color-border); margin-bottom: 3rem;">
+    <section style="padding-top: 1rem; padding-bottom: 3rem; border-bottom: 1px solid var(--color-border); margin-bottom: 3rem;">
       <div layout="stack" gap="lg">
         <div layout="row" gap="md" style="flex-wrap: wrap;">
           <span badge="primary" pill>Release v1.0.0</span>
@@ -253,9 +106,8 @@
           </p>
         </div>
 
-        <!-- Hero CTA Action Group -->
         <div layout="row" gap="md" style="flex-wrap: wrap; margin-top: 0.5rem;">
-          <a href="#installation" button variant="primary" size="lg" glow style="text-decoration: none;">
+          <a href="pages/installation.html" button variant="primary" size="lg" glow style="text-decoration: none;">
             Get Started Free
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width: 1.1rem; height: 1.1rem;"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
           </a>
@@ -266,49 +118,8 @@
       </div>
     </section>
 
-    <!-- SECTION: INSTALLATION -->
-    <section id="installation" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">📦 Installation &amp; CDN</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Include TaxUI in your web project with a single line of HTML via CDN, install it via NPM, or import standalone modular builds.
-      </p>
-
-      <!-- CDN Option -->
-      <div card style="margin-bottom: 1.5rem;">
-        <header card-header divided>
-          <div card-title>1. Quick CDN Inclusion (Recommended)</div>
-          <span badge="success" pill>Instant Setup</span>
-        </header>
-        <div card-body>
-          <p style="font-size: 0.9rem; color: var(--color-text-muted);">Place this inside your document's <code>&lt;head&gt;</code> tag:</p>
-          <div class="code-container" style="border-radius: var(--radius-md);">
-            <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-            <pre><code>&lt;<span class="token-tag">link</span> <span class="token-attr">rel</span>=<span class="token-val">"stylesheet"</span> <span class="token-attr">href</span>=<span class="token-val">"https://cdn.jsdelivr.net/gh/TaxUI/taxui@1.0.0/dist/taxui.min.css"</span>&gt;</code></pre>
-          </div>
-        </div>
-      </div>
-
-      <!-- NPM Option -->
-      <div card>
-        <header card-header divided>
-          <div card-title>2. Via NPM / Package Manager</div>
-        </header>
-        <div card-body>
-          <div class="code-container" style="border-radius: var(--radius-md); margin-bottom: 1rem;">
-            <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-            <pre><code>npm install taxui</code></pre>
-          </div>
-          <p style="font-size: 0.9rem; color: var(--color-text-muted);">Import into your application stylesheet or bundler:</p>
-          <div class="code-container" style="border-radius: var(--radius-md);">
-            <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-            <pre><code><span class="token-keyword">@import</span> <span class="token-val">"taxui/dist/taxui.min.css"</span>;</code></pre>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: HTML BOILERPLATE -->
-    <section id="quickstart" style="margin-bottom: 3.5rem;">
+    <!-- SECTION: HTML STARTER BOILERPLATE -->
+    <section style="margin-bottom: 3.5rem;">
       <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">⚡ HTML Starter Boilerplate</h2>
       <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
         Copy and paste this production-ready boilerplate to start building immediately with Dark Mode and dynamic theme variables.
@@ -351,785 +162,6 @@
       </div>
     </section>
 
-    <!-- SECTION: GRID SYSTEM -->
-    <section id="layout-grid" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">📐 Declarative Grid System</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Responsive grid layouts with auto-fitting columns, responsive breakpoints, column spanning, and zero CSS media queries needed.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Auto-Fit Grid</span></div>
-        <div class="preview-body">
-          <div layout="grid" grid="auto-fit" min-col="sm" gap="md">
-            <div card surface="sunken" style="padding: 1rem; text-align: center;">Col 1 (Auto-Fit)</div>
-            <div card surface="sunken" style="padding: 1rem; text-align: center;">Col 2 (Auto-Fit)</div>
-            <div card surface="sunken" style="padding: 1rem; text-align: center;">Col 3 (Auto-Fit)</div>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;<span class="token-tag">div</span> <span class="token-attr">layout</span>=<span class="token-val">"grid"</span> <span class="token-attr">grid</span>=<span class="token-val">"auto-fit"</span> <span class="token-attr">min-col</span>=<span class="token-val">"sm"</span> <span class="token-attr">gap</span>=<span class="token-val">"md"</span>&gt;
-  &lt;<span class="token-tag">div</span> <span class="token-attr">card</span>&gt;Col 1&lt;/<span class="token-tag">div</span>&gt;
-  &lt;<span class="token-tag">div</span> <span class="token-attr">card</span>&gt;Col 2&lt;/<span class="token-tag">div</span>&gt;
-  &lt;<span class="token-tag">div</span> <span class="token-attr">card</span>&gt;Col 3&lt;/<span class="token-tag">div</span>&gt;
-&lt;/<span class="token-tag">div</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: FLEXBOX & STACKS -->
-    <section id="layout-flex" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">⚡ Flexbox &amp; Layout Primitives</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Declarative flex patterns for vertical stacks, horizontal rows, toolbars, auto-wrapping tag clusters, and edge pushing.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Split &amp; Cluster</span></div>
-        <div class="preview-body">
-          <div layout="stack" gap="md">
-            <div layout="split" card surface="sunken" style="padding: 0.75rem 1rem;">
-              <span><strong>Dashboard Header</strong> (layout="split")</span>
-              <button variant="primary" size="sm">Action Button</button>
-            </div>
-
-            <div layout="cluster" gap="sm">
-              <span badge="primary">React</span>
-              <span badge="success">Vue</span>
-              <span badge="purple">TypeScript</span>
-              <span badge="warning">TaxUI</span>
-              <span badge="secondary">HTML5</span>
-            </div>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;!-- Navbar / Split Pattern --&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">layout</span>=<span class="token-val">"split"</span>&gt;
-  &lt;<span class="token-tag">span</span>&gt;Title&lt;/<span class="token-tag">span</span>&gt;
-  &lt;<span class="token-tag">button</span> <span class="token-attr">variant</span>=<span class="token-val">"primary"</span>&gt;Action&lt;/<span class="token-tag">button</span>&gt;
-&lt;/<span class="token-tag">div</span>&gt;
-
-&lt;!-- Tag Cluster Pattern --&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">layout</span>=<span class="token-val">"cluster"</span> <span class="token-attr">gap</span>=<span class="token-val">"sm"</span>&gt;
-  &lt;<span class="token-tag">span</span> <span class="token-attr">badge</span>=<span class="token-val">"primary"</span>&gt;Tag 1&lt;/<span class="token-tag">span</span>&gt;
-  &lt;<span class="token-tag">span</span> <span class="token-attr">badge</span>=<span class="token-val">"success"</span>&gt;Tag 2&lt;/<span class="token-tag">span</span>&gt;
-&lt;/<span class="token-tag">div</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: STICKY FOOTER & PAGE LAYOUTS -->
-    <section id="layout-page" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">⚓ Sticky Footer, Holy Grail &amp; App Shells</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Full page architectures that ensure footers always pin to the bottom, support 3-column Holy Grail layouts, and desktop application shells.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Sticky Footer Shell</span></div>
-        <div class="preview-body">
-          <div card style="border: 1px dashed var(--color-border); padding: 1.5rem; background-color: var(--color-bg);">
-            <div layout="stack" gap="md">
-              <header sticky="glass" style="padding: 0.75rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); text-align: center;">
-                <code>&lt;header sticky="glass"&gt;</code> Sticky Top Navigation
-              </header>
-              <main style="padding: 1.5rem; background-color: var(--color-surface); border-radius: var(--radius-md); text-align: center;">
-                <code>&lt;main&gt;</code> Content Area (Automatically expands to fill 100dvh)
-              </main>
-              <footer style="padding: 0.75rem; background-color: var(--color-surface-hover); border-radius: var(--radius-sm); text-align: center; margin-top: auto;">
-                <code>&lt;footer&gt;</code> Pinned Bottom Footer
-              </footer>
-            </div>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;!-- Sticky Footer Layout --&gt;
-&lt;<span class="token-tag">body</span> <span class="token-attr">layout</span>=<span class="token-val">"sticky-footer"</span>&gt;
-  &lt;<span class="token-tag">header</span> <span class="token-attr">sticky</span>=<span class="token-val">"glass"</span>&gt;Navbar&lt;/<span class="token-tag">header</span>&gt;
-  &lt;<span class="token-tag">main</span>&gt;Content goes here&lt;/<span class="token-tag">main</span>&gt;
-  &lt;<span class="token-tag">footer</span>&gt;Pinned Footer&lt;/<span class="token-tag">footer</span>&gt;
-&lt;/<span class="token-tag">body</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: THEME SYSTEM -->
-    <section id="theme-system" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">🎨 Theme System &amp; Dark/Light Modes</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Native color token architecture that dynamically reacts to theme switches without jarring flashes.
-      </p>
-
-      <div class="code-container" style="border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
-        <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-        <pre><code>&lt;!-- Global Dark or Light Mode on root html or body --&gt;
-&lt;<span class="token-tag">html</span> <span class="token-attr">theme</span>=<span class="token-val">"dark"</span>&gt;   &lt;!-- Dark Mode (Default) --&gt;
-&lt;<span class="token-tag">html</span> <span class="token-attr">theme</span>=<span class="token-val">"light"</span>&gt;  &lt;!-- Light Mode --&gt;</code></pre>
-      </div>
-    </section>
-
-    <!-- SECTION: ACCENT PALETTES -->
-    <section id="accent-palettes" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">🌈 Accent Color Palettes</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        6 curated accent color presets that automatically recalculate primary buttons, glow effects, focus rings, and scrollbars.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Supported Accent Palettes</span></div>
-        <div class="preview-body">
-          <div layout="grid" cols="3" gap="sm">
-            <button variant="primary" onclick="setAccent('blue')">Blue (Default)</button>
-            <button variant="primary" onclick="setAccent('emerald')" style="--color-primary: #10b981;">Emerald</button>
-            <button variant="primary" onclick="setAccent('violet')" style="--color-primary: #8b5cf6;">Violet</button>
-            <button variant="primary" onclick="setAccent('amber')" style="--color-primary: #f59e0b; color: #0b0f19;">Amber</button>
-            <button variant="primary" onclick="setAccent('rose')" style="--color-primary: #f43f5e;">Rose</button>
-            <button variant="primary" onclick="setAccent('cyan')" style="--color-primary: #06b6d4;">Cyan</button>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;<span class="token-tag">html</span> <span class="token-attr">theme-accent</span>=<span class="token-val">"blue"</span>&gt;    &lt;!-- Modern Royal Blue --&gt;
-&lt;<span class="token-tag">html</span> <span class="token-attr">theme-accent</span>=<span class="token-val">"emerald"</span>&gt; &lt;!-- Emerald Green --&gt;
-&lt;<span class="token-tag">html</span> <span class="token-attr">theme-accent</span>=<span class="token-val">"violet"</span>&gt;  &lt;!-- Neon Violet --&gt;
-&lt;<span class="token-tag">html</span> <span class="token-attr">theme-accent</span>=<span class="token-val">"amber"</span>&gt;   &lt;!-- Warm Amber --&gt;
-&lt;<span class="token-tag">html</span> <span class="token-attr">theme-accent</span>=<span class="token-val">"rose"</span>&gt;    &lt;!-- Rose Pink --&gt;
-&lt;<span class="token-tag">html</span> <span class="token-attr">theme-accent</span>=<span class="token-val">"cyan"</span>&gt;    &lt;!-- Electric Cyan --&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: SCOPED SURFACES -->
-    <section id="scoped-surfaces" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">🔲 Scoped Surfaces</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Isolate light containers inside dark mode or dark containers inside light mode with zero CSS conflicts.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Scoped Light Surface inside Dark Page</span></div>
-        <div class="preview-body">
-          <div card="elevated" theme="light" style="padding: 1.5rem; max-width: 500px;">
-            <h4 style="color: #0f172a; margin-bottom: 0.5rem;">Embedded Light Document</h4>
-            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">
-              This card explicitly uses <code>theme="light"</code> while the rest of the document remains dark.
-            </p>
-            <button variant="primary" size="sm">Light Action</button>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;<span class="token-tag">div</span> <span class="token-attr">card</span> <span class="token-attr">theme</span>=<span class="token-val">"light"</span>&gt;
-  &lt;<span class="token-tag">h4</span>&gt;Document in Light Theme&lt;/<span class="token-tag">h4</span>&gt;
-&lt;/<span class="token-tag">div</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: BUTTONS -->
-    <section id="comp-buttons" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">🔘 Buttons &amp; Groups</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Multi-variant interactive buttons with GPU-accelerated glow, pill borders, animated loading spinners, and radio segmented controls.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Button Variants</span></div>
-        <div class="preview-body">
-          <div layout="stack" gap="md">
-            <div layout="row" gap="sm" style="flex-wrap: wrap;">
-              <button variant="primary">Primary</button>
-              <button variant="primary" glow>Primary Glow</button>
-              <button variant="secondary">Secondary</button>
-              <button variant="outline">Outline</button>
-              <button variant="ghost">Ghost</button>
-              <button variant="success">Success</button>
-              <button variant="danger">Danger</button>
-              <button variant="primary" pill>Pill Button</button>
-              <button variant="primary" loading>Loading</button>
-            </div>
-
-            <!-- Segmented Control Button Group -->
-            <div button-group>
-              <label><input type="radio" name="plan-demo" checked><span>Monthly</span></label>
-              <label><input type="radio" name="plan-demo"><span>Yearly (Save 20%)</span></label>
-              <label><input type="radio" name="plan-demo"><span>Lifetime</span></label>
-            </div>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;<span class="token-tag">button</span> <span class="token-attr">variant</span>=<span class="token-val">"primary"</span> <span class="token-attr">glow</span>&gt;Primary Glow&lt;/<span class="token-tag">button</span>&gt;
-&lt;<span class="token-tag">button</span> <span class="token-attr">variant</span>=<span class="token-val">"outline"</span>&gt;Outline&lt;/<span class="token-tag">button</span>&gt;
-&lt;<span class="token-tag">button</span> <span class="token-attr">variant</span>=<span class="token-val">"primary"</span> <span class="token-attr">loading</span>&gt;Save&lt;/<span class="token-tag">button</span>&gt;
-
-&lt;!-- Segmented Control / Button Group --&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">button-group</span>&gt;
-  &lt;<span class="token-tag">label</span>&gt;&lt;<span class="token-tag">input</span> <span class="token-attr">type</span>=<span class="token-val">"radio"</span> <span class="token-attr">name</span>=<span class="token-val">"plan"</span> <span class="token-attr">checked</span>&gt;&lt;<span class="token-tag">span</span>&gt;Monthly&lt;/<span class="token-tag">span</span>&gt;&lt;/<span class="token-tag">label</span>&gt;
-  &lt;<span class="token-tag">label</span>&gt;&lt;<span class="token-tag">input</span> <span class="token-attr">type</span>=<span class="token-val">"radio"</span> <span class="token-attr">name</span>=<span class="token-val">"plan"</span>&gt;&lt;<span class="token-tag">span</span>&gt;Yearly&lt;/<span class="token-tag">span</span>&gt;&lt;/<span class="token-tag">label</span>&gt;
-&lt;/<span class="token-tag">div</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: CARDS -->
-    <section id="comp-cards" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">🃏 Cards &amp; Surfaces</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Structured surface containers supporting flat, elevated, glassmorphism blur, neon glow, and interactive hover animations.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Glass &amp; Interactive Cards</span></div>
-        <div class="preview-body">
-          <div layout="grid" cols="2" gap="md">
-            <article card="glass" interactive>
-              <header card-header divided>
-                <div card-title>Glassmorphism Card</div>
-                <span badge="primary" pill>Pro</span>
-              </header>
-              <div card-body>
-                <p style="color: var(--color-text-muted); font-size: 0.9rem;">
-                  Backdrop blur filter with subtle borders and smooth hover lift elevation.
-                </p>
-              </div>
-              <footer card-footer divided>
-                <button variant="primary" size="sm">Explore</button>
-              </footer>
-            </article>
-
-            <article card="glow" interactive>
-              <div card-body>
-                <div card-title>Glow Accent Card</div>
-                <p style="color: var(--color-text-muted); font-size: 0.9rem;">
-                  Reacts directly to the active theme accent color.
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;<span class="token-tag">article</span> <span class="token-attr">card</span>=<span class="token-val">"glass"</span> <span class="token-attr">interactive</span>&gt;
-  &lt;<span class="token-tag">header</span> <span class="token-attr">card-header</span> <span class="token-attr">divided</span>&gt;
-    &lt;<span class="token-tag">div</span> <span class="token-attr">card-title</span>&gt;Glass Card&lt;/<span class="token-tag">div</span>&gt;
-  &lt;/<span class="token-tag">header</span>&gt;
-  &lt;<span class="token-tag">div</span> <span class="token-attr">card-body</span>&gt;
-    &lt;<span class="token-tag">p</span>&gt;Content goes here...&lt;/<span class="token-tag">p</span>&gt;
-  &lt;/<span class="token-tag">div</span>&gt;
-  &lt;<span class="token-tag">footer</span> <span class="token-attr">card-footer</span> <span class="token-attr">divided</span>&gt;
-    &lt;<span class="token-tag">button</span> <span class="token-attr">variant</span>=<span class="token-val">"primary"</span>&gt;Action&lt;/<span class="token-tag">button</span>&gt;
-  &lt;/<span class="token-tag">footer</span>&gt;
-&lt;/<span class="token-tag">article</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: FORMS & SWITCHES -->
-    <section id="comp-forms" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">📝 Forms, Inputs &amp; Switches</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Native form elements with zero JavaScript validation feedback, iOS-style toggle switches, custom input icons, and drag &amp; drop zones.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Input Groups &amp; Switches</span></div>
-        <div class="preview-body">
-          <div layout="grid" cols="2" gap="lg">
-            <div layout="stack" gap="md">
-              <div field>
-                <label>Email Address</label>
-                <div input-icon="left">
-                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
-                  <input type="email" placeholder="name@company.com">
-                </div>
-              </div>
-
-              <div field>
-                <label>Subdomain URL</label>
-                <div input-group>
-                  <span addon>https://</span>
-                  <input type="text" placeholder="my-app">
-                  <span addon>.taxui.dev</span>
-                </div>
-              </div>
-            </div>
-
-            <div layout="stack" gap="md">
-              <label layout="row" gap="sm" style="cursor: pointer;">
-                <input type="checkbox" switch checked>
-                <span>Enable Two-Factor Authentication</span>
-              </label>
-
-              <label layout="row" gap="sm" style="cursor: pointer;">
-                <input type="checkbox" checked>
-                <span>Subscribe to newsletter</span>
-              </label>
-
-              <label layout="row" gap="sm" style="cursor: pointer;">
-                <input type="radio" name="opt" checked>
-                <span>Radio Option Selected</span>
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;!-- iOS Toggle Switch --&gt;
-&lt;<span class="token-tag">input</span> <span class="token-attr">type</span>=<span class="token-val">"checkbox"</span> <span class="token-attr">switch</span> <span class="token-attr">checked</span>&gt;
-
-&lt;!-- Input Group with Addons --&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">input-group</span>&gt;
-  &lt;<span class="token-tag">span</span> <span class="token-attr">addon</span>&gt;https://&lt;/<span class="token-tag">span</span>&gt;
-  &lt;<span class="token-tag">input</span> <span class="token-attr">type</span>=<span class="token-val">"text"</span> <span class="token-attr">placeholder</span>=<span class="token-val">"workspace"</span>&gt;
-  &lt;<span class="token-tag">span</span> <span class="token-attr">addon</span>&gt;.taxui.dev&lt;/<span class="token-tag">span</span>&gt;
-&lt;/<span class="token-tag">div</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: BADGES & CHIPS -->
-    <section id="comp-badges" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">🏷️ Badges, Chips &amp; Notifications</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Semantic status badges, pill tags, removable chips with dismiss buttons, and floating badge counters.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Badges &amp; Chips</span></div>
-        <div class="preview-body">
-          <div layout="stack" gap="md">
-            <div layout="row" gap="sm" style="flex-wrap: wrap;">
-              <span badge="primary">Primary</span>
-              <span badge="success" pill>Active</span>
-              <span badge="warning" pill>Pending</span>
-              <span badge="danger">Failed</span>
-              <span badge="purple" pill>Pro Feature</span>
-              <span badge="secondary">v1.0.0</span>
-            </div>
-
-            <div layout="row" gap="sm" style="flex-wrap: wrap;">
-              <span chip="primary" pill>
-                <span>CSS Framework</span>
-                <button dismiss aria-label="Remove">×</button>
-              </span>
-              <span chip="success" pill>
-                <span>Zero JS</span>
-                <button dismiss aria-label="Remove">×</button>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;!-- Semantic Badges --&gt;
-&lt;<span class="token-tag">span</span> <span class="token-attr">badge</span>=<span class="token-val">"primary"</span>&gt;Primary&lt;/<span class="token-tag">span</span>&gt;
-&lt;<span class="token-tag">span</span> <span class="token-attr">badge</span>=<span class="token-val">"success"</span> <span class="token-attr">pill</span>&gt;Active&lt;/<span class="token-tag">span</span>&gt;
-
-&lt;!-- Removable Dismissible Chip --&gt;
-&lt;<span class="token-tag">span</span> <span class="token-attr">chip</span>=<span class="token-val">"primary"</span> <span class="token-attr">pill</span>&gt;
-  &lt;<span class="token-tag">span</span>&gt;Tag Name&lt;/<span class="token-tag">span</span>&gt;
-  &lt;<span class="token-tag">button</span> <span class="token-attr">dismiss</span>&gt;×&lt;/<span class="token-tag">button</span>&gt;
-&lt;/<span class="token-tag">span</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: MODALS & DRAWERS -->
-    <section id="comp-modals" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">🪟 Native Modals &amp; Side Drawers</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Accessible HTML5 <code>&lt;dialog&gt;</code> modals and sliding side drawers with native backdrop blur, keyboard ESC closing, and zero JS frameworks.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Interactive Demo</span></div>
-        <div class="preview-body">
-          <div layout="row" gap="md">
-            <button variant="primary" onclick="document.getElementById('demo-modal').showModal()">
-              Open Center Modal
-            </button>
-            <button variant="outline" onclick="document.getElementById('demo-drawer').showModal()">
-              Open Right Drawer
-            </button>
-          </div>
-
-          <!-- Dialog Modal Element -->
-          <dialog id="demo-modal" modal="glass" size="md">
-            <header modal-header divided>
-              <div modal-title>Modal Dialog</div>
-              <button modal-close onclick="this.closest('dialog').close()" aria-label="Close">×</button>
-            </header>
-            <div modal-body>
-              <p>This modal is rendered with native HTML5 <code>&lt;dialog&gt;</code> and backdrop blur.</p>
-            </div>
-            <footer modal-footer divided>
-              <button variant="ghost" onclick="this.closest('dialog').close()">Cancel</button>
-              <button variant="primary" onclick="this.closest('dialog').close()">Confirm</button>
-            </footer>
-          </dialog>
-
-          <!-- Dialog Side Drawer Element -->
-          <dialog id="demo-drawer" drawer="right">
-            <header modal-header divided>
-              <div modal-title>Right Side Drawer</div>
-              <button modal-close onclick="this.closest('dialog').close()" aria-label="Close">×</button>
-            </header>
-            <div modal-body>
-              <p>Smooth GPU sliding animation directly from the right edge of the screen.</p>
-            </div>
-            <footer modal-footer divided>
-              <button variant="primary" block onclick="this.closest('dialog').close()">Close Drawer</button>
-            </footer>
-          </dialog>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;!-- Native Dialog Modal --&gt;
-&lt;<span class="token-tag">dialog</span> <span class="token-attr">id</span>=<span class="token-val">"my-modal"</span> <span class="token-attr">modal</span>=<span class="token-val">"glass"</span> <span class="token-attr">size</span>=<span class="token-val">"md"</span>&gt;
-  &lt;<span class="token-tag">header</span> <span class="token-attr">modal-header</span> <span class="token-attr">divided</span>&gt;
-    &lt;<span class="token-tag">div</span> <span class="token-attr">modal-title</span>&gt;Confirm Action&lt;/<span class="token-tag">div</span>&gt;
-    &lt;<span class="token-tag">button</span> <span class="token-attr">modal-close</span> <span class="token-attr">onclick</span>=<span class="token-val">"this.closest('dialog').close()"</span>&gt;×&lt;/<span class="token-tag">button</span>&gt;
-  &lt;/<span class="token-tag">header</span>&gt;
-  &lt;<span class="token-tag">div</span> <span class="token-attr">modal-body</span>&gt;Modal message...&lt;/<span class="token-tag">div</span>&gt;
-&lt;/<span class="token-tag">dialog</span>&gt;
-
-&lt;!-- Side Drawer (Slide in from right) --&gt;
-&lt;<span class="token-tag">dialog</span> <span class="token-attr">drawer</span>=<span class="token-val">"right"</span>&gt;...&lt;/<span class="token-tag">dialog</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: ACCORDIONS -->
-    <section id="comp-accordions" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">📂 Accordions &amp; Collapsibles</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Pure HTML5 <code>&lt;details&gt;</code> accordions with custom animated rotating chevrons and native auto-exclusive closing via the <code>name</code> attribute.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Connected Accordion</span></div>
-        <div class="preview-body">
-          <div accordion>
-            <details name="faq-docs" open>
-              <summary>What is TaxUI?</summary>
-              <div accordion-body>
-                TaxUI is a lightweight declarative CSS framework designed for building fast, modern web applications with pure HTML attributes.
-              </div>
-            </details>
-            <details name="faq-docs">
-              <summary>Does it require JavaScript?</summary>
-              <div accordion-body>
-                No. All components (accordions, tooltips, dark mode, responsive grids) work with 100% pure CSS and native HTML5 elements.
-              </div>
-            </details>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;<span class="token-tag">div</span> <span class="token-attr">accordion</span>&gt;
-  &lt;<span class="token-tag">details</span> <span class="token-attr">name</span>=<span class="token-val">"faq"</span> <span class="token-attr">open</span>&gt;
-    &lt;<span class="token-tag">summary</span>&gt;Section Title&lt;/<span class="token-tag">summary</span>&gt;
-    &lt;<span class="token-tag">div</span> <span class="token-attr">accordion-body</span>&gt;Collapsible body content...&lt;/<span class="token-tag">div</span>&gt;
-  &lt;/<span class="token-tag">details</span>&gt;
-&lt;/<span class="token-tag">div</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: TOOLTIPS -->
-    <section id="comp-tooltips" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">💬 Pure CSS Tooltips (Zero JS)</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Instant hover tooltips with geometric directional arrows, multi-line wrapping, and smooth fade-in transitions.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Hover to Preview Positions</span></div>
-        <div class="preview-body">
-          <div layout="row" gap="md" style="flex-wrap: wrap;">
-            <button variant="secondary" tooltip="Top Tooltip" tooltip-pos="top">Hover Top</button>
-            <button variant="secondary" tooltip="Bottom Tooltip" tooltip-pos="bottom">Hover Bottom</button>
-            <button variant="secondary" tooltip="Left Tooltip" tooltip-pos="left">Hover Left</button>
-            <button variant="secondary" tooltip="Right Tooltip" tooltip-pos="right">Hover Right</button>
-            <button variant="primary" tooltip="Primary Accent Tooltip" tooltip-variant="primary">Accent Variant</button>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;<span class="token-tag">button</span> <span class="token-attr">tooltip</span>=<span class="token-val">"Top Tooltip"</span> <span class="token-attr">tooltip-pos</span>=<span class="token-val">"top"</span>&gt;Hover Top&lt;/<span class="token-tag">button</span>&gt;
-&lt;<span class="token-tag">button</span> <span class="token-attr">tooltip</span>=<span class="token-val">"Primary Alert"</span> <span class="token-attr">tooltip-variant</span>=<span class="token-val">"primary"</span>&gt;Accent&lt;/<span class="token-tag">button</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: SKELETONS -->
-    <section id="comp-skeletons" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">💀 Skeletons &amp; Shimmer Placeholders</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Smooth GPU-accelerated wave shimmer placeholders for realistic skeleton loading states.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Card Skeleton Loading State</span></div>
-        <div class="preview-body">
-          <div card style="max-width: 360px;">
-            <div skeleton="media" style="height: 140px;"></div>
-            <div card-body>
-              <div layout="row" gap="sm">
-                <div skeleton="circle" size="md"></div>
-                <div layout="stack" gap="xs" style="flex: 1;">
-                  <div skeleton="title" w="80%"></div>
-                  <div skeleton="text" w="40%"></div>
-                </div>
-              </div>
-              <div skeleton="paragraph" style="margin-top: 0.5rem;">
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;<span class="token-tag">div</span> <span class="token-attr">skeleton</span>=<span class="token-val">"circle"</span> <span class="token-attr">size</span>=<span class="token-val">"md"</span>&gt;&lt;/<span class="token-tag">div</span>&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">skeleton</span>=<span class="token-val">"title"</span> <span class="token-attr">w</span>=<span class="token-val">"75%"</span>&gt;&lt;/<span class="token-tag">div</span>&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">skeleton</span>=<span class="token-val">"text"</span>&gt;&lt;/<span class="token-tag">div</span>&gt;
-
-&lt;!-- Paragraph Skeleton helper --&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">skeleton</span>=<span class="token-val">"paragraph"</span>&gt;
-  &lt;<span class="token-tag">div</span>&gt;&lt;/<span class="token-tag">div</span>&gt;
-  &lt;<span class="token-tag">div</span>&gt;&lt;/<span class="token-tag">div</span>&gt;
-&lt;/<span class="token-tag">div</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: DATA TABLES -->
-    <section id="comp-tables" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">📊 Responsive Data Tables</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Clean striped tables with hover states, tabular numeric alignment, and auto-stacking mobile cards.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Striped Data Table</span></div>
-        <div class="preview-body" style="padding: 0;">
-          <div table-container>
-            <table striped hoverable>
-              <thead>
-                <tr>
-                  <th>User</th>
-                  <th>Role</th>
-                  <th>Status</th>
-                  <th numeric>Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Alex Rivera</td>
-                  <td>Administrator</td>
-                  <td><span badge="success" pill>Active</span></td>
-                  <td numeric>$1,250.00</td>
-                </tr>
-                <tr>
-                  <td>Sarah Chen</td>
-                  <td>Developer</td>
-                  <td><span badge="primary" pill>Invited</span></td>
-                  <td numeric>$850.00</td>
-                </tr>
-                <tr>
-                  <td>Marcus Thorne</td>
-                  <td>Designer</td>
-                  <td><span badge="secondary" pill>Offline</span></td>
-                  <td numeric>$600.00</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;<span class="token-tag">div</span> <span class="token-attr">table-container</span>&gt;
-  &lt;<span class="token-tag">table</span> <span class="token-attr">striped</span> <span class="token-attr">hoverable</span>&gt;
-    &lt;<span class="token-tag">thead</span>&gt;
-      &lt;<span class="token-tag">tr</span>&gt;&lt;<span class="token-tag">th</span>&gt;User&lt;/<span class="token-tag">th</span>&gt;&lt;<span class="token-tag">th</span> <span class="token-attr">numeric</span>&gt;Amount&lt;/<span class="token-tag">th</span>&gt;&lt;/<span class="token-tag">tr</span>&gt;
-    &lt;/<span class="token-tag">thead</span>&gt;
-    &lt;<span class="token-tag">tbody</span>&gt;
-      &lt;<span class="token-tag">tr</span>&gt;&lt;<span class="token-tag">td</span>&gt;Alex&lt;/<span class="token-tag">td</span>&gt;&lt;<span class="token-tag">td</span> <span class="token-attr">numeric</span>&gt;$1,250.00&lt;/<span class="token-tag">td</span>&gt;&lt;/<span class="token-tag">tr</span>&gt;
-    &lt;/<span class="token-tag">tbody</span>&gt;
-  &lt;/<span class="token-tag">table</span>&gt;
-&lt;/<span class="token-tag">div</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: AVATARS -->
-    <section id="comp-avatars" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">👤 Avatars &amp; User Groups</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Image and letter avatars with active presence indicators (online, busy, away, offline) and stacked avatar groups.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Avatars &amp; Presence Status</span></div>
-        <div class="preview-body">
-          <div layout="stack" gap="md">
-            <div layout="row" gap="md" style="flex-wrap: wrap;">
-              <div avatar size="lg" status="online" pulse>JD</div>
-              <div avatar size="lg" status="busy" variant="gradient">AR</div>
-              <div avatar size="lg" status="away">TC</div>
-              <div avatar size="lg" status="offline">MS</div>
-            </div>
-
-            <!-- Avatar Group -->
-            <div avatar-group>
-              <div avatar size="md">JD</div>
-              <div avatar size="md" variant="gradient">AR</div>
-              <div avatar size="md">TC</div>
-              <div avatar size="md" variant="secondary">+4</div>
-            </div>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;!-- Avatar with Presence Indicator --&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">avatar</span> <span class="token-attr">size</span>=<span class="token-val">"lg"</span> <span class="token-attr">status</span>=<span class="token-val">"online"</span> <span class="token-attr">pulse</span>&gt;JD&lt;/<span class="token-tag">div</span>&gt;
-
-&lt;!-- Stacked Avatar Group --&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">avatar-group</span>&gt;
-  &lt;<span class="token-tag">div</span> <span class="token-attr">avatar</span>&gt;A&lt;/<span class="token-tag">div</span>&gt;
-  &lt;<span class="token-tag">div</span> <span class="token-attr">avatar</span>&gt;B&lt;/<span class="token-tag">div</span>&gt;
-  &lt;<span class="token-tag">div</span> <span class="token-attr">avatar</span> <span class="token-attr">variant</span>=<span class="token-val">"secondary"</span>&gt;+3&lt;/<span class="token-tag">div</span>&gt;
-&lt;/<span class="token-tag">div</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: ALERTS & BANNERS -->
-    <section id="comp-alerts" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">🔔 Alerts, Callouts &amp; Banners</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Contextual feedback alerts with left accent borders, slot layouts, and dismissible close buttons.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Feedback Alerts</span></div>
-        <div class="preview-body">
-          <div layout="stack" gap="md">
-            <div alert="info" border="left">
-              <div alert-icon>ℹ️</div>
-              <div layout="stack" gap="none" style="flex: 1;">
-                <div alert-title>Information Note</div>
-                <div alert-description>TaxUI is configured with zero runtime dependencies.</div>
-              </div>
-            </div>
-
-            <div alert="success">
-              <div alert-icon>✅</div>
-              <div layout="stack" gap="none" style="flex: 1;">
-                <div alert-title>Deployment Successful</div>
-                <div alert-description>Your project was built and packaged in 428ms.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;!-- Callout Alert with Left Border --&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">alert</span>=<span class="token-val">"info"</span> <span class="token-attr">border</span>=<span class="token-val">"left"</span>&gt;
-  &lt;<span class="token-tag">div</span> <span class="token-attr">alert-title</span>&gt;Note&lt;/<span class="token-tag">div</span>&gt;
-  &lt;<span class="token-tag">div</span> <span class="token-attr">alert-description</span>&gt;Helpful message.&lt;/<span class="token-tag">div</span>&gt;
-&lt;/<span class="token-tag">div</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: SCROLLBARS -->
-    <section id="util-scrollbars" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">📜 Custom Scrollbars &amp; Snapping</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Cross-browser styled scrollbars (thin, hidden, accent-colored) and magnetic CSS horizontal scroll snapping for carousels.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Scroll Snapping Carousel with Hidden Scrollbar</span></div>
-        <div class="preview-body">
-          <div scroll="snap-x" scrollbar="none" gap="md" style="padding-bottom: 0.5rem;">
-            <div card surface="sunken" snap="start" style="min-width: 200px; padding: 1.5rem; text-align: center;">Item 1</div>
-            <div card surface="sunken" snap="start" style="min-width: 200px; padding: 1.5rem; text-align: center;">Item 2</div>
-            <div card surface="sunken" snap="start" style="min-width: 200px; padding: 1.5rem; text-align: center;">Item 3</div>
-            <div card surface="sunken" snap="start" style="min-width: 200px; padding: 1.5rem; text-align: center;">Item 4</div>
-            <div card surface="sunken" snap="start" style="min-width: 200px; padding: 1.5rem; text-align: center;">Item 5</div>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;!-- Horizontal Carousel with Snap and Invisible Scrollbar --&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">scroll</span>=<span class="token-val">"snap-x"</span> <span class="token-attr">scrollbar</span>=<span class="token-val">"none"</span> <span class="token-attr">gap</span>=<span class="token-val">"md"</span>&gt;
-  &lt;<span class="token-tag">div</span> <span class="token-attr">card</span> <span class="token-attr">snap</span>=<span class="token-val">"start"</span>&gt;Item 1&lt;/<span class="token-tag">div</span>&gt;
-  &lt;<span class="token-tag">div</span> <span class="token-attr">card</span> <span class="token-attr">snap</span>=<span class="token-val">"start"</span>&gt;Item 2&lt;/<span class="token-tag">div</span>&gt;
-&lt;/<span class="token-tag">div</span>&gt;
-
-&lt;!-- Scrollbar Variants --&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">scrollbar</span>=<span class="token-val">"thin"</span>&gt;Ultra thin 4px scrollbar&lt;/<span class="token-tag">div</span>&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">scrollbar</span>=<span class="token-val">"accent"</span>&gt;Accent-reactive glowing scrollbar&lt;/<span class="token-tag">div</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION: TYPOGRAPHY & ASPECT RATIOS -->
-    <section id="util-typography" style="margin-bottom: 3.5rem;">
-      <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem;">✂️ Truncation, Clamping &amp; Aspect Ratios</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
-        Single and multi-line CSS text clamping, typographic headline balancing, and responsive media aspect ratios.
-      </p>
-
-      <div class="preview-box">
-        <div class="preview-header"><span>Live Preview: Clamping &amp; Media Frame</span></div>
-        <div class="preview-body">
-          <div layout="grid" cols="2" gap="md">
-            <div card="elevated">
-              <div card-body>
-                <div card-title>Multi-line Text Clamping</div>
-                <p clamp="2" style="color: var(--color-text-muted); font-size: 0.9rem;">
-                  TaxUI provides clean declarative attributes for multi-line clamping without requiring custom CSS classes or tricky line-height calculations. Any overflow text is gracefully truncated with an ellipsis.
-                </p>
-                <span badge="secondary" size="sm">clamp="2"</span>
-              </div>
-            </div>
-
-            <div card="elevated">
-              <div card-body>
-                <div card-title>Single Line Truncate</div>
-                <p truncate style="color: var(--color-text-muted); font-size: 0.9rem;">
-                  This is a very long single-line text that automatically truncates when reaching container boundaries.
-                </p>
-                <span badge="secondary" size="sm">truncate</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="code-container">
-          <button class="copy-btn" button size="sm" variant="ghost" onclick="copyCode(this)">Copy</button>
-          <pre><code>&lt;!-- Single-line Truncate --&gt;
-&lt;<span class="token-tag">p</span> <span class="token-attr">truncate</span>&gt;Long line of text...&lt;/<span class="token-tag">p</span>&gt;
-
-&lt;!-- Multi-line Clamp (2 to 6 lines) --&gt;
-&lt;<span class="token-tag">p</span> <span class="token-attr">clamp</span>=<span class="token-val">"2"</span>&gt;Paragraph clamped at exactly 2 lines...&lt;/<span class="token-tag">p</span>&gt;
-
-&lt;!-- Responsive Media Frame with Aspect Ratio --&gt;
-&lt;<span class="token-tag">div</span> <span class="token-attr">media-frame</span> <span class="token-attr">ratio</span>=<span class="token-val">"16:9"</span>&gt;
-  &lt;<span class="token-tag">img</span> <span class="token-attr">src</span>=<span class="token-val">"image.jpg"</span> <span class="token-attr">alt</span>=<span class="token-val">"Cover"</span>&gt;
-&lt;/<span class="token-tag">div</span>&gt;</code></pre>
-        </div>
-      </div>
-    </section>
-
     <!-- FOOTER -->
     <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted);">
       <div layout="stack" gap="xs" style="align-items: center;">
@@ -1140,64 +172,8 @@
         <p style="font-size: 0.85rem;">Released under the MIT License • Built with zero JavaScript runtime dependencies.</p>
       </div>
     </footer>
-
   </main>
 
-  <script>
-    // Copy Code Helper
-    function copyCode(btn) {
-      const code = btn.nextElementSibling.innerText;
-      navigator.clipboard.writeText(code).then(() => {
-        const originalText = btn.innerText;
-        btn.innerText = 'Copied!';
-        btn.setAttribute('variant', 'primary');
-        setTimeout(() => {
-          btn.innerText = originalText;
-          btn.setAttribute('variant', 'ghost');
-        }, 1800);
-      });
-    }
-
-    // Theme Switcher
-    function toggleTheme() {
-      const html = document.documentElement;
-      const current = html.getAttribute('theme') || 'dark';
-      const next = current === 'dark' ? 'light' : 'dark';
-      html.setAttribute('theme', next);
-    }
-
-    // Accent Switcher
-    function setAccent(accent) {
-      document.documentElement.setAttribute('theme-accent', accent);
-      document.querySelectorAll('.accent-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.classList.contains('accent-' + accent));
-      });
-    }
-
-    // Active Sidebar Link Spy
-    function setActiveLink(link) {
-      document.querySelectorAll('.docs-nav-link').forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-    }
-
-    // Live Search Filter
-    function filterDocs(query) {
-      const q = query.toLowerCase().trim();
-      const sections = document.querySelectorAll('main > section');
-      sections.forEach(sec => {
-        const text = sec.innerText.toLowerCase();
-        sec.style.display = text.includes(q) ? 'block' : 'none';
-      });
-    }
-
-    // Keyboard shortcut (Ctrl+K) to focus search
-    window.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        const searchInput = document.getElementById('docs-search');
-        if (searchInput) searchInput.focus();
-      }
-    });
-  </script>
+  <script src="js/docs.js"></script>
 </body>
 </html>
