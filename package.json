@@ -2,10 +2,20 @@
   "name": "taxui",
   "version": "1.0.0",
   "description": "Modern, ultra-fast declarative HTML & CSS framework with zero JS dependencies",
-  "main": "dist/taxui.css",
-  "style": "dist/taxui.css",
+  "main": "dist/taxui.min.css",
+  "style": "dist/taxui.min.css",
   "unpkg": "dist/taxui.min.css",
   "jsdelivr": "dist/taxui.min.css",
+  "exports": {
+    ".": "./dist/taxui.min.css",
+    "./base": "./dist/taxui-base.min.css",
+    "./layout": "./dist/taxui-layout.min.css",
+    "./components": "./dist/taxui-components.min.css",
+    "./utilities": "./dist/taxui-utilities.min.css"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist",
     "src",
@@ -35,10 +45,10 @@
     "grid",
     "ui-kit"
   ],
-  "author": "Elabsurdo984",
+  "author": "TaxUI (https://github.com/TaxUI)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/TaxUI/taxui/issues"
   },
-  "homepage": "https://github.com/TaxUI/taxui#readme"
+  "homepage": "https://taxui.github.io/taxui/"
 }
