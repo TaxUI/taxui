@@ -50,8 +50,5 @@
   "bugs": {
     "url": "https://github.com/TaxUI/taxui/issues"
   },
-  "homepage": "https://taxui.github.io/taxui/",
-  "dependencies": {
-    "@taxui/taxui": "^1.0.0"
-  }
+  "homepage": "https://taxui.dev"
 }

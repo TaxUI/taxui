@@ -34,10 +34,40 @@ function minifyCSS(css) {
   // 3. Remove space around operators and syntax delimiters
   minified = minified.replace(/\s*([{};:,>+~])\s*/g, '$1');
 
-  // 4. Fix spaces needed inside calc(), :where(), etc.
-  minified = minified.replace(/calc\(([^)]+)\)/g, (match, expr) => {
-    return 'calc(' + expr.replace(/\s*([+*\/])\s*/g, '$1').replace(/\s*-\s*/g, ' - ') + ')';
-  });
+  // 4. Fix spaces needed inside calc() for addition and subtraction without breaking CSS custom properties (--var-name)
+  let calcProcessed = '';
+  let i = 0;
+  while (i < minified.length) {
+    if (minified.slice(i, i + 5) === 'calc(') {
+      let depth = 1;
+      let start = i + 5;
+      let j = start;
+      while (j < minified.length && depth > 0) {
+        if (minified[j] === '(') depth++;
+        else if (minified[j] === ')') depth--;
+        j++;
+      }
+      const expr = minified.slice(start, j - 1);
+      const vars = [];
+      let clean = expr.replace(/(?:var|env)\([^()]+\)/g, (v) => {
+        vars.push(v);
+        return `___TOKEN_${vars.length - 1}___`;
+      });
+      clean = clean.replace(/\s*([+])\s*/g, ' + ');
+      clean = clean.replace(/(?<=[0-9a-zA-Z%_\)])\s*-\s*(?=[0-9a-zA-Z%_\(])/g, ' - ');
+      clean = clean.replace(/\s*([*\/])\s*/g, ' $1 ');
+      clean = clean.replace(/\s+/g, ' ').trim();
+      vars.forEach((v, idx) => {
+        clean = clean.replace(`___TOKEN_${idx}___`, v);
+      });
+      calcProcessed += 'calc(' + clean + ')';
+      i = j;
+    } else {
+      calcProcessed += minified[i];
+      i++;
+    }
+  }
+  minified = calcProcessed;
 
   // 5. Remove trailing semicolons before closing brace
   minified = minified.replace(/;}/g, '}');
@@ -170,15 +200,6 @@ function build() {
   // Cleanup temp entry
   const tmpPath = path.join(DIST_DIR, '_tmp_entry.css');
   if (fs.existsSync(tmpPath)) fs.unlinkSync(tmpPath);
-
-  // Copy dist to docs/dist so docs/ is fully self-contained for GitHub Pages
-  const docsDist = path.join(ROOT_DIR, 'docs', 'dist');
-  if (!fs.existsSync(docsDist)) fs.mkdirSync(docsDist, { recursive: true });
-  for (const file of fs.readdirSync(DIST_DIR)) {
-    if (file.endsWith('.css')) {
-      fs.copyFileSync(path.join(DIST_DIR, file), path.join(docsDist, file));
-    }
-  }
 
   // Print results table
   console.log('\n\x1b[32m%s\x1b[0m', '✅ Build completed successfully!\n');
