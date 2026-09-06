@@ -10,6 +10,7 @@
 
 :root {
   /* Spacing Scale */
+  --space-3xs: 0.125rem;
   --space-2xs: 0.25rem;
   --space-xs: 0.5rem;
   --space-sm: 0.75rem;
@@ -21,12 +22,23 @@
 
   /* Gap Tokens for Layouts */
   --gap-none: 0px;
+  --gap-3xs: var(--space-3xs);
+  --gap-2xs: var(--space-2xs);
   --gap-xs: var(--space-xs);
   --gap-sm: var(--space-sm);
   --gap-md: var(--space-md);
   --gap-lg: var(--space-lg);
   --gap-xl: var(--space-xl);
   --gap-2xl: var(--space-2xl);
+  --gap-3xl: var(--space-3xl);
+
+  /* Grid Column Width Tokens */
+  --min-col-2xs: 120px;
+  --min-col-xs: 180px;
+  --min-col-sm: 240px;
+  --min-col-md: 300px;
+  --min-col-lg: 380px;
+  --min-col-xl: 480px;
 
   /* Fluid Breakpoints */
   --bp-sm: 640px;
@@ -1526,7 +1538,7 @@ input[type="range"]::-moz-range-thumb {
   --btn-color: var(--color-text);
   --btn-border: var(--color-border);
   --btn-hover-bg: var(--color-surface-hover);
-  --btn-hover-border: var(--color-input-border-hover);
+  --btn-hover-border: var(--color-border-hover);
   --btn-active-transform: scale(0.98);
   --btn-glow-color: transparent;
   --btn-spinner-color: #ffffff;
@@ -1874,7 +1886,7 @@ input[type="range"]::-moz-range-thumb {
   --btn-color: var(--color-text);
   --btn-border: var(--color-border);
   --btn-hover-bg: var(--color-surface-hover);
-  --btn-hover-border: var(--color-input-border-hover);
+  --btn-hover-border: var(--color-border-hover);
 
   display: inline-flex;
   align-items: center;

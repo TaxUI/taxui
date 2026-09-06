@@ -18,7 +18,7 @@
   --btn-color: var(--color-text);
   --btn-border: var(--color-border);
   --btn-hover-bg: var(--color-surface-hover);
-  --btn-hover-border: var(--color-input-border-hover);
+  --btn-hover-border: var(--color-border-hover);
   --btn-active-transform: scale(0.98);
   --btn-glow-color: transparent;
   --btn-spinner-color: #ffffff;
@@ -366,7 +366,7 @@
   --btn-color: var(--color-text);
   --btn-border: var(--color-border);
   --btn-hover-bg: var(--color-surface-hover);
-  --btn-hover-border: var(--color-input-border-hover);
+  --btn-hover-border: var(--color-border-hover);
 
   display: inline-flex;
   align-items: center;

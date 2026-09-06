@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://taxui.github.io/taxui/">
+  <a href="https://taxui.github.io/taxui-docs/">
     <img src="assets/logo.png" alt="TaxUI Logo" width="110" height="110" style="border-radius: 24px;">
   </a>
 </p>
@@ -77,7 +77,7 @@ npm install @taxui/taxui
 
 Explore full component examples, layout primitives, and interactive previews in our documentation:
 
-👉 **[TaxUI Documentation](https://taxui.github.io/taxui/)**
+👉 **[TaxUI Documentation](https://taxui.github.io/taxui-docs/)**
 
 ---
 
