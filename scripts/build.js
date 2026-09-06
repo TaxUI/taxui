@@ -190,6 +190,7 @@ function build() {
     'components/navbars.css',
     'components/tabs.css',
     'components/breadcrumbs.css',
+    'components/pagination.css',
     'components/forms.css', 'components/buttons.css', 'components/cards.css',
     'components/badges.css', 'components/alerts.css', 'components/avatars.css',
     'components/tables.css', 'components/modals.css', 'components/accordions.css',

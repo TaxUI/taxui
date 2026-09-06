@@ -1702,6 +1702,182 @@ body {
 }
 
 /* ==========================================================================
+   Declarative Pagination Component
+   Accessible, customizable and zero-dependency pagination controls.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base Pagination Container
+   -------------------------------------------------------------------------- */
+:where(nav[pagination], [pagination], .pagination) {
+  --pagination-size: 2.25rem;
+  --pagination-font-size: 0.875rem;
+  --pagination-gap: 0.375rem;
+  --pagination-radius: var(--radius-md);
+  --pagination-bg: var(--color-surface);
+  --pagination-border: var(--color-border);
+  --pagination-color: var(--color-text);
+  --pagination-hover-bg: var(--color-surface-hover);
+  --pagination-hover-color: var(--color-text);
+  --pagination-active-bg: var(--color-primary);
+  --pagination-active-color: #ffffff;
+  --pagination-active-glow: var(--color-primary-glow);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pagination-gap);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Support nested <ul> / <ol> */
+:where(nav[pagination], [pagination]) > :where(ul, ol) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pagination-gap);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. Pagination Items & Interactive Buttons
+   -------------------------------------------------------------------------- */
+:where([pagination], .pagination) :where(a, button, [pagination-item], .page-item) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--pagination-size);
+  height: var(--pagination-size);
+  padding: 0 0.625rem;
+  font-size: var(--pagination-font-size);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--pagination-color);
+  background-color: var(--pagination-bg);
+  border: 1px solid var(--pagination-border);
+  border-radius: var(--pagination-radius);
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+}
+
+/* Hover State */
+:where([pagination], .pagination) :where(a, button, [pagination-item]):hover:not([disabled]):not([aria-disabled="true"]):not([active]):not([aria-current="page"]) {
+  background-color: var(--pagination-hover-bg);
+  color: var(--pagination-hover-color);
+  border-color: var(--color-border-hover);
+}
+
+/* Active Page State */
+:where([pagination], .pagination) :where([active], [aria-current="page"], .page-item.active) {
+  background-color: var(--pagination-active-bg);
+  color: var(--pagination-active-color);
+  border-color: var(--pagination-active-bg);
+  font-weight: 600;
+  box-shadow: 0 2px 8px var(--pagination-active-glow);
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Disabled State */
+:where([pagination], .pagination) :where([disabled], [aria-disabled="true"], .disabled) {
+  opacity: 0.4;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  background-color: var(--pagination-bg);
+  border-color: var(--pagination-border);
+}
+
+/* Keyboard Focus Ring */
+:where([pagination], .pagination) :where(a, button, [pagination-item]):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   3. Ellipsis / Dots Indicator
+   -------------------------------------------------------------------------- */
+:where([pagination-ellipsis], [pagination-dots], .page-ellipsis) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--pagination-size);
+  height: var(--pagination-size);
+  color: var(--color-text-subtle);
+  font-size: var(--pagination-font-size);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. Style Variants
+   -------------------------------------------------------------------------- */
+
+/* Variant: Pills (Rounded) */
+:where([pagination="pills"], [pagination][variant="pills"]) {
+  --pagination-radius: var(--radius-full);
+}
+
+/* Variant: Ghost (Borderless) */
+:where([pagination="ghost"], [pagination][variant="ghost"]) {
+  --pagination-bg: transparent;
+  --pagination-border: transparent;
+}
+
+:where([pagination="ghost"], [pagination][variant="ghost"]) :where(a, button, [pagination-item]):hover:not([disabled]):not([active]) {
+  --pagination-hover-bg: var(--color-surface-hover);
+}
+
+/* Variant: Grouped / Connected Bar */
+:where([pagination="grouped"], [pagination="joined"], [pagination][variant="grouped"]) {
+  --pagination-gap: 0px;
+}
+
+:where([pagination="grouped"], [pagination="joined"]) :where(a, button, [pagination-item]) {
+  border-radius: 0;
+  margin-left: -1px;
+}
+
+:where([pagination="grouped"], [pagination="joined"]) :where(a, button, [pagination-item]):first-child {
+  border-top-left-radius: var(--pagination-radius);
+  border-bottom-left-radius: var(--pagination-radius);
+  margin-left: 0;
+}
+
+:where([pagination="grouped"], [pagination="joined"]) :where(a, button, [pagination-item]):last-child {
+  border-top-right-radius: var(--pagination-radius);
+  border-bottom-right-radius: var(--pagination-radius);
+}
+
+/* --------------------------------------------------------------------------
+   5. Size Presets (size="sm|md|lg")
+   -------------------------------------------------------------------------- */
+:where([pagination][size="sm"], .pagination-sm) {
+  --pagination-size: 1.75rem;
+  --pagination-font-size: 0.775rem;
+  --pagination-gap: 0.25rem;
+}
+
+:where([pagination][size="lg"], .pagination-lg) {
+  --pagination-size: 2.75rem;
+  --pagination-font-size: 1rem;
+  --pagination-gap: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   6. Alignment Helpers
+   -------------------------------------------------------------------------- */
+:where([pagination][align="center"]) { justify-content: center; width: 100%; }
+:where([pagination][align="right"])  { justify-content: flex-end; width: 100%; }
+:where([pagination][align="split"])  { justify-content: space-between; width: 100%; }
+
+/* ==========================================================================
    Forms & Native Inputs Primitives
    Zero-fatigue, beautiful, and accessible form controls out of the box.
    ========================================================================== */
