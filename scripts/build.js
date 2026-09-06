@@ -187,6 +187,7 @@ function build() {
   results.push(buildTarget('Layout Primitives', layoutEntry, 'taxui-layout'));
 
   const compEntry = createSubModuleEntry([
+    'components/navbars.css',
     'components/forms.css', 'components/buttons.css', 'components/cards.css',
     'components/badges.css', 'components/alerts.css', 'components/avatars.css',
     'components/tables.css', 'components/modals.css', 'components/accordions.css',

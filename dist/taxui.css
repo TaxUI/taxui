@@ -377,6 +377,20 @@ body {
   overflow-wrap: break-word;
 }
 
+/* ==========================================================================
+   Universal Accessibility: Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 
 /* 2. Layout Primitives */
 /* ==========================================================================
@@ -1034,6 +1048,303 @@ body {
 
 
 /* 3. Components */
+/* ==========================================================================
+   Declarative Navbars, Headers & Dropdowns
+   100% Pure CSS responsive headers, mobile menus and floating dropdowns.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Core Navbar Container
+   -------------------------------------------------------------------------- */
+:where(nav[navbar], header[navbar], [navbar], .navbar) {
+  --navbar-bg: var(--color-surface);
+  --navbar-border: var(--color-border);
+  --navbar-height: 4rem;
+  --navbar-padding-x: 1.5rem;
+  --navbar-link-color: var(--color-text-muted);
+  --navbar-link-hover: var(--color-text);
+  --navbar-link-active: var(--color-primary);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+  min-height: var(--navbar-height);
+  padding: 0.5rem var(--navbar-padding-x);
+  background-color: var(--navbar-bg);
+  border-bottom: 1px solid var(--navbar-border);
+  position: relative;
+  z-index: 50;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   2. Sticky & Glassmorphism Variants
+   -------------------------------------------------------------------------- */
+:where([navbar][sticky], [navbar][sticky="top"]) {
+  position: sticky;
+  top: 0;
+}
+
+:where([navbar][sticky="glass"], [navbar][variant="glass"]) {
+  position: sticky;
+  top: 0;
+  background-color: rgba(11, 15, 25, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[theme="light"] :where([navbar][sticky="glass"], [navbar][variant="glass"]) {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Transparent Navbar */
+:where([navbar][variant="transparent"]) {
+  background-color: transparent;
+  border-bottom-color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   3. Navbar Brand / Logo ([nav-brand], [navbar-brand])
+   -------------------------------------------------------------------------- */
+:where([nav-brand], [navbar-brand], .navbar-brand) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+:where([nav-brand], [navbar-brand]) img {
+  height: 2rem;
+  width: auto;
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   4. Navbar Navigation Menu & Links ([nav-menu], [nav-link])
+   -------------------------------------------------------------------------- */
+:where([nav-menu], [navbar-menu], .navbar-menu) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+:where([nav-link], .nav-link, [nav-menu] > a, [nav-menu] > li > a) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: var(--navbar-link-color);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: color 0.15s ease, background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+:where([nav-link], .nav-link, [nav-menu] > a, [nav-menu] > li > a):hover {
+  color: var(--navbar-link-hover);
+  background-color: var(--color-surface-hover);
+}
+
+:where([nav-link][active], [nav-link][aria-current="page"], .nav-link.active) {
+  color: var(--navbar-link-active);
+  font-weight: 600;
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   5. Navbar Actions / Right Area ([nav-actions], [navbar-actions])
+   -------------------------------------------------------------------------- */
+:where([nav-actions], [navbar-actions], .navbar-actions) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   6. Pure CSS Dropdowns ([dropdown], details[dropdown])
+   -------------------------------------------------------------------------- */
+:where([dropdown], .dropdown) {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Trigger */
+:where([dropdown] > summary, [dropdown-toggle]) {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem 0.875rem;
+  border-radius: var(--radius-md);
+  color: var(--navbar-link-color);
+  font-size: 0.925rem;
+  font-weight: 500;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+:where([dropdown] > summary::-webkit-details-marker) {
+  display: none;
+}
+
+:where([dropdown] > summary)::after,
+:where([dropdown-toggle])::after {
+  content: "";
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 0.2s ease;
+  opacity: 0.7;
+}
+
+:where(details[dropdown][open] > summary)::after {
+  transform: rotate(225deg) translateY(-2px);
+}
+
+/* Dropdown Menu Panel */
+:where([dropdown-menu], [dropdown-content], .dropdown-menu) {
+  position: absolute;
+  top: calc(100% + 0.375rem);
+  left: 0;
+  min-width: 12rem;
+  padding: 0.375rem;
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  z-index: 100;
+  animation: taxui-dropdown-fade 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Right-aligned dropdown */
+:where([dropdown-menu][align="right"], [dropdown][align="right"] [dropdown-menu]) {
+  left: auto;
+  right: 0;
+}
+
+@keyframes taxui-dropdown-fade {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Dropdown Items */
+:where([dropdown-item], .dropdown-item) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: background-color 0.12s ease;
+  cursor: pointer;
+}
+
+:where([dropdown-item]):hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+:where([dropdown-divider]) {
+  height: 1px;
+  background-color: var(--color-border);
+  margin: 0.25rem 0;
+}
+
+/* Hover-based Dropdown alternative */
+:where(.dropdown-hover:hover > [dropdown-menu], [dropdown="hover"]:hover > [dropdown-menu]) {
+  display: flex;
+}
+
+/* --------------------------------------------------------------------------
+   7. 100% Pure CSS Mobile Responsive Hamburger Menu (Zero JavaScript)
+   -------------------------------------------------------------------------- */
+:where([nav-toggle], [navbar-toggle], .navbar-toggle) {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+/* Responsive Breakpoint (Mobile <= 768px) */
+@media (max-width: 768px) {
+  :where(nav[navbar], header[navbar], [navbar], .navbar) {
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+    height: auto;
+  }
+
+  :where([nav-toggle], [navbar-toggle], .navbar-toggle) {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  :where([nav-menu], [navbar-menu], .navbar-menu) {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    order: 10;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: 0.5rem;
+    gap: 0.25rem;
+  }
+
+  /* When using native details toggle */
+  :where(details[navbar-collapse][open] ~ [nav-menu], details[navbar-collapse][open] [nav-menu]) {
+    display: flex;
+  }
+
+  /* When using checkbox toggle */
+  input[type="checkbox"][navbar-toggle]:checked ~ :where([nav-menu], [navbar-menu]) {
+    display: flex;
+  }
+
+  :where([nav-actions], [navbar-actions]) {
+    order: 5;
+    margin-left: 0.5rem;
+  }
+}
+
 /* ==========================================================================
    Forms & Native Inputs Primitives
    Zero-fatigue, beautiful, and accessible form controls out of the box.
