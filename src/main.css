@@ -14,6 +14,8 @@
 
 /* 3. Components */
 @import "./components/navbars.css";
+@import "./components/tabs.css";
+@import "./components/breadcrumbs.css";
 @import "./components/forms.css";
 @import "./components/buttons.css";
 @import "./components/cards.css";

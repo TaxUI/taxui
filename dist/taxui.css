@@ -1346,6 +1346,362 @@ body {
 }
 
 /* ==========================================================================
+   Pure CSS Tabs & Segmented Controls
+   100% JavaScript-free tab navigation, panel switching and segmented buttons.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base Tabs Container
+   -------------------------------------------------------------------------- */
+:where([tabs], .tabs) {
+  --tabs-gap: 0.25rem;
+  --tabs-padding: 0.25rem;
+  --tabs-bg: transparent;
+  --tabs-border: var(--color-border);
+  --tabs-active-bg: var(--color-surface-hover);
+  --tabs-active-color: var(--color-primary);
+  --tabs-inactive-color: var(--color-text-muted);
+  --tabs-radius: var(--radius-md);
+
+  display: flex;
+  align-items: center;
+  gap: var(--tabs-gap);
+  padding: var(--tabs-padding);
+  background-color: var(--tabs-bg);
+  border-bottom: 1px solid var(--tabs-border);
+  position: relative;
+  list-style: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Hide native radio inputs inside tabs container */
+:where([tabs], .tabs) > input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. Tab Trigger Items (<a tab>, <label>, [tab-item])
+   -------------------------------------------------------------------------- */
+:where([tabs], .tabs) > :where(a, label, [tab], .tab-item) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: var(--tabs-inactive-color);
+  text-decoration: none;
+  border-radius: var(--tabs-radius);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+:where([tabs], .tabs) > :where(a, label, [tab]):hover {
+  color: var(--color-text);
+  background-color: var(--color-surface-hover);
+}
+
+:where([tabs], .tabs) > :where(a[active], label[active], [tab][active], .active) {
+  color: var(--tabs-active-color);
+  font-weight: 600;
+}
+
+/* Radio-driven active tab label */
+:where([tabs], .tabs) > input[type="radio"]:checked + label {
+  color: var(--tabs-active-color);
+  font-weight: 600;
+}
+
+/* Focus Visible for Keyboard Accessibility */
+:where([tabs], .tabs) > input[type="radio"]:focus-visible + label,
+:where([tabs], .tabs) > :where(a, label, [tab]):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Style Variants
+   -------------------------------------------------------------------------- */
+
+/* Variant: Underline / Line (Default) */
+:where([tabs="underline"], [tabs="line"], [tabs]:not([tabs="pills"]):not([tabs="segmented"]):not([tabs="enclosed"])) {
+  border-bottom: 1px solid var(--tabs-border);
+}
+
+:where([tabs="underline"], [tabs="line"]) > :where(a, label, [tab]) {
+  border-radius: 0;
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+}
+
+:where([tabs="underline"], [tabs="line"]) > :where(a[active], [tab][active]),
+:where([tabs="underline"], [tabs="line"]) > input[type="radio"]:checked + label {
+  border-bottom-color: var(--color-primary);
+  color: var(--color-primary);
+  background: transparent;
+}
+
+/* Variant: Pills */
+:where([tabs="pills"], [tabs="pill"]) {
+  border-bottom: none;
+  gap: 0.375rem;
+}
+
+:where([tabs="pills"], [tabs="pill"]) > :where(a, label, [tab]) {
+  border-radius: var(--radius-full);
+}
+
+:where([tabs="pills"], [tabs="pill"]) > :where(a[active], [tab][active]),
+:where([tabs="pills"], [tabs="pill"]) > input[type="radio"]:checked + label {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 6px var(--color-primary-glow);
+}
+
+/* Variant: Segmented Control (iOS / Linear Style) */
+:where([tabs="segmented"], .segmented-control) {
+  --tabs-bg: var(--color-surface);
+  --tabs-border: var(--color-border);
+  --tabs-radius: var(--radius-lg);
+
+  border: 1px solid var(--tabs-border);
+  border-radius: var(--tabs-radius);
+  padding: 0.25rem;
+  background-color: var(--tabs-bg);
+  display: inline-flex;
+  width: auto;
+}
+
+:where([tabs="segmented"]) > :where(a, label, [tab]) {
+  border-radius: calc(var(--tabs-radius) - 2px);
+  padding: 0.375rem 0.875rem;
+  font-size: 0.875rem;
+}
+
+:where([tabs="segmented"]) > :where(a[active], [tab][active]),
+:where([tabs="segmented"]) > input[type="radio"]:checked + label {
+  background-color: var(--color-surface-elevated);
+  color: var(--color-text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Variant: Enclosed / Card Tabs */
+:where([tabs="enclosed"], [tabs="boxed"]) {
+  border-bottom: 1px solid var(--tabs-border);
+}
+
+:where([tabs="enclosed"], [tabs="boxed"]) > :where(a, label, [tab]) {
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  margin-bottom: -1px;
+}
+
+:where([tabs="enclosed"], [tabs="boxed"]) > :where(a[active], [tab][active]),
+:where([tabs="enclosed"], [tabs="boxed"]) > input[type="radio"]:checked + label {
+  background-color: var(--color-surface);
+  border-color: var(--tabs-border);
+  color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   4. Size Modifiers (size="sm|md|lg")
+   -------------------------------------------------------------------------- */
+:where([tabs][size="sm"]) > :where(a, label, [tab]) {
+  padding: 0.25rem 0.625rem;
+  font-size: 0.8125rem;
+}
+
+:where([tabs][size="lg"]) > :where(a, label, [tab]) {
+  padding: 0.75rem 1.25rem;
+  font-size: 1.05rem;
+}
+
+/* Full-width stretch */
+:where([tabs][full], [tabs="full"]) > :where(a, label, [tab]) {
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   5. Tab Panels & Pure CSS Switching Engine
+   -------------------------------------------------------------------------- */
+:where([tab-panels], .tab-panels) {
+  margin-top: 1rem;
+  position: relative;
+}
+
+:where([tab-panel], .tab-panel) {
+  display: none;
+  animation: taxui-tab-fade 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:where([tab-panel][active], .tab-panel.active) {
+  display: block;
+}
+
+/* CSS :has() Automatic Radio-to-Panel Switching */
+:has(#tab-1:checked) ~ [tab-panels] #panel-1,
+:has(#tab-2:checked) ~ [tab-panels] #panel-2,
+:has(#tab-3:checked) ~ [tab-panels] #panel-3,
+:has(#tab-4:checked) ~ [tab-panels] #panel-4,
+:has(#tab-5:checked) ~ [tab-panels] #panel-5 {
+  display: block;
+}
+
+/* Container-level combined tab & panel structure */
+[tab-group] > input[type="radio"]:nth-of-type(1):checked ~ [tab-panels] > [tab-panel]:nth-of-type(1),
+[tab-group] > input[type="radio"]:nth-of-type(2):checked ~ [tab-panels] > [tab-panel]:nth-of-type(2),
+[tab-group] > input[type="radio"]:nth-of-type(3):checked ~ [tab-panels] > [tab-panel]:nth-of-type(3),
+[tab-group] > input[type="radio"]:nth-of-type(4):checked ~ [tab-panels] > [tab-panel]:nth-of-type(4),
+[tab-group] > input[type="radio"]:nth-of-type(5):checked ~ [tab-panels] > [tab-panel]:nth-of-type(5) {
+  display: block;
+}
+
+@keyframes taxui-tab-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Declarative Breadcrumbs Component
+   Clean, accessible and customizable navigation trails with zero JavaScript.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base Breadcrumbs Container
+   -------------------------------------------------------------------------- */
+:where(nav[breadcrumb], nav[breadcrumbs], [breadcrumb], [breadcrumbs], .breadcrumbs) {
+  --breadcrumb-gap: 0.5rem;
+  --breadcrumb-color: var(--color-text-muted);
+  --breadcrumb-hover-color: var(--color-primary);
+  --breadcrumb-active-color: var(--color-text);
+  --breadcrumb-separator: "/";
+  --breadcrumb-separator-color: var(--color-text-subtle);
+  --breadcrumb-font-size: 0.9rem;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--breadcrumb-gap);
+  font-size: var(--breadcrumb-font-size);
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+/* Also support nested <ol> or <ul> */
+:where(nav[breadcrumb], nav[breadcrumbs]) > :where(ol, ul) {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--breadcrumb-gap);
+}
+
+/* --------------------------------------------------------------------------
+   2. Breadcrumb Items & Links
+   -------------------------------------------------------------------------- */
+:where([breadcrumb], [breadcrumbs], .breadcrumbs) :where(li, [breadcrumb-item]) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--breadcrumb-gap);
+}
+
+:where([breadcrumb], [breadcrumbs], .breadcrumbs) a {
+  color: var(--breadcrumb-color);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+:where([breadcrumb], [breadcrumbs], .breadcrumbs) a:hover {
+  color: var(--breadcrumb-hover-color);
+}
+
+/* Keyboard focus ring */
+:where([breadcrumb], [breadcrumbs], .breadcrumbs) a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Active / Current Page */
+:where([breadcrumb], [breadcrumbs], .breadcrumbs) :where([aria-current="page"], [active], li:last-child:not(:has(a[href]:not([aria-current="page"])))) {
+  color: var(--breadcrumb-active-color);
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Automatic Separator Engine
+   -------------------------------------------------------------------------- */
+:where([breadcrumb], [breadcrumbs], .breadcrumbs) :where(li:not(:last-child), [breadcrumb-item]:not(:last-child))::after,
+:where([breadcrumb], [breadcrumbs]:not(:has(li))) > :where(a, span):not(:last-child)::after {
+  content: var(--breadcrumb-separator);
+  color: var(--breadcrumb-separator-color);
+  margin-left: var(--breadcrumb-gap);
+  font-weight: 400;
+  opacity: 0.7;
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. Separator Variants (separator="slash|chevron|arrow|dot")
+   -------------------------------------------------------------------------- */
+:where([separator="chevron"], .breadcrumb-chevron) { --breadcrumb-separator: "›"; }
+:where([separator="arrow"], .breadcrumb-arrow)     { --breadcrumb-separator: "→"; }
+:where([separator="dot"], .breadcrumb-dot)         { --breadcrumb-separator: "•"; }
+:where([separator="dash"], .breadcrumb-dash)       { --breadcrumb-separator: "-"; }
+
+/* --------------------------------------------------------------------------
+   5. Container Variants & Sizes
+   -------------------------------------------------------------------------- */
+/* Sizes */
+:where([breadcrumb][size="sm"], [breadcrumbs][size="sm"]) { --breadcrumb-font-size: 0.8125rem; --breadcrumb-gap: 0.375rem; }
+:where([breadcrumb][size="lg"], [breadcrumbs][size="lg"]) { --breadcrumb-font-size: 1.05rem;   --breadcrumb-gap: 0.625rem; }
+
+/* Pill / Glass Container Style */
+:where([breadcrumb][variant="pill"], [breadcrumbs][variant="pill"]) {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+}
+
+:where([breadcrumb][variant="glass"], [breadcrumbs][variant="glass"]) {
+  background-color: rgba(19, 27, 46, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+}
+
+/* ==========================================================================
    Forms & Native Inputs Primitives
    Zero-fatigue, beautiful, and accessible form controls out of the box.
    ========================================================================== */
